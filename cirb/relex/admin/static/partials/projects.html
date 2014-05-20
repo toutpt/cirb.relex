@@ -1,0 +1,94 @@
+<div class="myMessage">
+<div ng-include="'./partials/messages.html'"></div>
+</div>
+<div id="projects-wrapper" class="row">
+  <div class="col-md-4">
+    <div class="panel" ng-show="projects" ng-class="{'panel-success': projects.length > 0, 'panel-default': projects.length === 0}">
+      <div class="panel-heading" translate>Projects</div>
+      <div class="panel-body">
+        <div class="list-group">
+          <a class="list-group-item" title="{{project.name}}"
+             ng-repeat="project in projects | filter:queryProject"
+             ng-class="{'active': currentProject.code === project.code}"
+             ng-click="setCurrentProject(project)">
+              {{project.code}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-default" ng-if="currentProject">
+      <div class="panel-heading" translate>Project</div>
+      <div class="panel-body">
+
+<tabset>
+  <tab heading="First part">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Code</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="currentProject.code" autofocus/>
+            </div>
+          </div>
+        </div>
+        <div input-localized label="'Name'" value="currentProject.name"></div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Start</label>
+            <div class="col-sm-4">
+              <input type="date" class="form-control" ng-model="currentProject.start"/>
+            </div>
+            <label class="col-sm-2 control-label">End</label>
+            <div class="col-sm-4">
+              <input type="date" class="form-control" ng-model="currentProject.end"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">URL</label>
+            <div class="col-sm-10">
+              <input type="url" class="form-control" ng-model="currentProject.url"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Statut</label>
+            <div class="col-sm-10">
+              <select class="form-control">
+                
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Type de relation</label>
+            <div class="col-sm-4">
+              <select class="form-control">
+                
+              </select>
+            </div>
+            <label class="col-sm-2 control-label">Type d'organisation</label>
+            <div class="col-sm-4">
+              <select class="form-control">
+                
+              </select>
+            </div>
+          </div>
+        </div>
+        <div textarea-localized label="'Content'" value="currentProject.content"></div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Comments</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" ng-model="currentProject.comments"></textarea>
+            </div>
+          </div>
+        </div>
+  </tab>
+  <tab heading="Second part">
+SECOND PART
+  </tab>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

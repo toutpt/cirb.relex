@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="relex">
+<head>
+  <meta charset="utf-8">
+  <title>Relex Backoffice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/built.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="http://www.brussel.irisnet.be/favicon.ico">
+</head>
+<body>
+  <div id="wrapper">
+    <div class="container header">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <a href="http://www.brussel.irisnet.be">
+              <img src="http://www.brussel.irisnet.be/++theme++plonetheme.prb/images/be-thuis-be-brussels.png" alt=""/>
+            </a>
+          </div>
+          <div>
+            <a href="http://www.bruxelles.irisnet.be">
+              <img src="http://www.bruxelles.irisnet.be/++theme++plonetheme.prb/images/be-chez-vous-be-brussels.png" alt=""/>
+            </a>
+          </div>
+          <div>
+            <a href="http://www.brussels.irisnet.be">
+              <img src="http://www.brussels.irisnet.be/++theme++plonetheme.prb/images/be-home-be-brussels.png" alt=""/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container main">
+      <div ng-controller="AuthorizedController">
+        <div class="alert alert-danger" ng-show="!loggedin">
+          You are not loggedin
+        </div>
+        <div ng-if="loggedin">
+          <div ng-view></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/libs.js"></script>
+  <script src="js/built.js"></script>
+</body>
+</html>

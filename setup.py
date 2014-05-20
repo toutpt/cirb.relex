@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 version = '1.0'
 
 setup(
-    name='cirb.relexe',
+    name='cirb.relex',
     version=version,
     description="",
     long_description=open("README.rst").read() + "\n" +

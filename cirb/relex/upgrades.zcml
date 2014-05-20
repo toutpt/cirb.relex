@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/genericsetup"
+    i18n_domain="cirb.relex">
+
+    <upgradeStep
+        source="*"
+        destination="1001"
+        title="Upgrade"
+        description=""
+        profile="cirb.relex:default"
+        handler=".upgrades.common"
+        />
+
+</configure>
