@@ -1,0 +1,9 @@
+[run]
+source = cirb.relexe
+[report]
+omit =
+    extras/*
+    buildout-cache/eggs/*
+    parts/*
+    eggs/*
+    */test*
