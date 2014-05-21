@@ -2,30 +2,40 @@
 <html lang="en" ng-app="relex">
 <head>
   <meta charset="utf-8">
-  <title>Relex Backoffice</title>
+  <title translate>Relex Backoffice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/built.css" />
   <link rel="shortcut icon" type="image/x-icon" href="http://www.brussel.irisnet.be/favicon.ico">
 </head>
 <body>
   <div id="wrapper">
-    <div class="container header">
+    <div class="container header" ng-controller="LanguageController">
       <div class="row">
         <div class="col-md-4">
-          <div>
-            <a href="http://www.brussel.irisnet.be">
+          <div ng-show="getLanguage() === 'nl'" class="ng-hide">
+            <a href="http://www.brussel.irisnet.be" target="_blank">
               <img src="http://www.brussel.irisnet.be/++theme++plonetheme.prb/images/be-thuis-be-brussels.png" alt=""/>
             </a>
           </div>
-          <div>
-            <a href="http://www.bruxelles.irisnet.be">
+          <div ng-show="getLanguage() === 'fr'">
+            <a href="http://www.bruxelles.irisnet.be" target="_blank">
               <img src="http://www.bruxelles.irisnet.be/++theme++plonetheme.prb/images/be-chez-vous-be-brussels.png" alt=""/>
             </a>
           </div>
-          <div>
-            <a href="http://www.brussels.irisnet.be">
+          <div ng-show="getLanguage() === 'en'" class="ng-hide">
+            <a href="http://www.brussels.irisnet.be" target="_blank">
               <img src="http://www.brussels.irisnet.be/++theme++plonetheme.prb/images/be-home-be-brussels.png" alt=""/>
             </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h1><span class="label label-default" translate>Relex</span></h1>
+        </div>
+        <div class="col-md-4">
+          <div class="btn-group-vertical pull-right">
+            <a class="btn" ng-class="{'btn-default': getLanguage() !== 'nl', 'btn-info': getLanguage() === 'nl'}" ng-click="setLanguage('nl')">Nederlands</a>
+            <a class="btn" ng-class="{'btn-default': getLanguage() !== 'fr', 'btn-info': getLanguage() === 'fr'}" ng-click="setLanguage('fr')">Français</a>
+            <a class="btn" ng-class="{'btn-default': getLanguage() !== 'en', 'btn-info': getLanguage() === 'en'}" ng-click="setLanguage('en')">English</a>
           </div>
         </div>
       </div>
@@ -33,7 +43,7 @@
     <div class="container main">
       <div ng-controller="AuthorizedController">
         <div class="alert alert-danger" ng-show="!loggedin">
-          You are not loggedin
+          <span translate>You are not loggedin</span>
         </div>
         <div ng-if="loggedin">
           <div ng-view></div>

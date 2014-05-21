@@ -34,18 +34,43 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 ]);
 /*global angular:false */
 /*jshint strict: false*/
-
+angular.module('relex').run(['langService', 'gettextCatalog',
+    function(langService, gettextCatalog){
+        gettextCatalog.currentLanguage = langService.getCurrentLanguage();
+        gettextCatalog.debug = true;
+    }
+]);
+angular.module("gettext").run(['$http', 'gettextCatalog',
+        function ($http, gettextCatalog) {
+        $http.get('/translations/fr.json').then(function(translations){
+                gettextCatalog.setStrings('fr', translations.data.fr);
+        });
+        $http.get('/translations/nl.json').then(function(translations){
+                gettextCatalog.setStrings('nl', translations.data.fr);
+        });
+}]);
 angular.module('relex.services').factory('langService', [
-    '$cookies',
-    function($cookies){
-        //TODO: check if the Plone cookie is here
+    '$cookies', '$location', 'gettextCatalog',
+    function($cookies, $location, gettextCatalog){
         return {
-            currentLanguage: $cookies.I18N_LANGUAGE,
             setCurrentLanguage: function(lang){
-                $cookies.I18N_LANGUAGE = lang;
+                gettextCatalog.currentLanguage = lang;
+                $cookies.I18N_LANGUAGE = '"' + lang + '"';
             },
             getCurrentLanguage: function(){
-                return this.currentLanguage;
+                var host = $location.host();
+                var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
+                if (cookie){
+                    return cookie;
+                }else if (host === 'www.brussels.irisnet.be'){
+                    return 'en';
+                }else if (host === 'www.bruxelles.irisnet.be'){
+                    return 'fr';
+                }else if (host === 'www.brussel.irisnet.be'){
+                    return 'nl';
+                }else{
+                    return 'fr';
+                }
             },
             createNewTranslatedLabel: function(container, label){
                 container[label] = this.createNewTranslatedValue();
@@ -63,7 +88,12 @@ angular.module('relex.services').factory('langService', [
         };
     }
 ]);
-
+angular.module('relex.controllers').controller('LanguageController', [
+    '$scope', 'langService', function($scope, langService){
+        $scope.getLanguage = langService.getCurrentLanguage;
+        $scope.setLanguage = langService.setCurrentLanguage;
+    }
+]);
 angular.module('relex.directives').directive('inputLocalized',
     function(){
         return {
@@ -88,6 +118,10 @@ angular.module('relex.directives').directive('textareaLocalized',
         };
     }
 );
+/*global angular:false */
+/*jshint strict: false*/
+
+
 angular.module('relex.services').factory('messagesService',
     ['$timeout', function($timeout, $modal){
     var messages = [];
