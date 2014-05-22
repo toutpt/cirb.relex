@@ -379,7 +379,7 @@ angular.module('relex.services').factory('vocabularyService', [
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
-                return $http.get('/api/vocabulary').then(function(data){
+                return $http.get('api/vocabulary').then(function(data){
                     return data.data.vocabularies;
                 });
             },
