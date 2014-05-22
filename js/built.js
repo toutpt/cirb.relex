@@ -27,6 +27,7 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 	function($scope, $cookies){
 		//TODO: check if the Plone cookie is here
 		//$scope.loggedin = $cookies.__ac !== undefined;
+		$scope.loggedin = true;
 	}
 ]);
 /*global angular:false */
