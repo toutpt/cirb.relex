@@ -1,0 +1,77 @@
+<div class="panel panel-default ng-hide" ng-show="currentTerm">
+	<div class="panel-heading" translate>Edit organisation</div>
+	<div class="panel-body">
+		<div class="form-horizontal">
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Code'|translate}} EN</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.code.en"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Code'|translate}} FR</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.code.fr"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Code'|translate}} NL</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.code.nl"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.en"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.fr"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Type'|translate}}</label>
+				<div class="col-md-10">
+					<select class="form-control">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'URL'|translate}}</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+				</div>
+			</div>			
+	        <div select-multiple label="'Cells'" vocabulary="brusselsPartnersVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.brusellesPartners"></div>
+		</div>
+		<div class="form-group">
+		  <div class="pull-right">
+		    <button class="btn btn-primary" translate>Save</button>
+		    <button class="btn btn-default" translate>Cancel</button>
+		    <button class="btn btn-danger" translate>Delete</button>
+		  </div>
+		</div>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading" translate>Organisations</div>
+	<div class="panel-body">
+        <div class="list-group">
+          <a class="list-group-item"
+             ng-repeat="term in terms"
+             ng-class="{'active': currentTerm.code === term.code}"
+             ng-click="setCurrentTerm(term)">
+              [{{t(term.code)}}] {{t(term.name)}}</a>
+        </div>
+
+	</div>
+</div>

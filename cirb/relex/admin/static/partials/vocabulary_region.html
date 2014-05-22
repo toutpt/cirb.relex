@@ -1,0 +1,52 @@
+<div class="panel panel-default ng-hide" ng-show="currentTerm">
+	<div class="panel-heading" translate>Edit region</div>
+	<div class="panel-body">
+		<div class="form-horizontal">
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.en"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.fr"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
+				<div class="col-md-10">
+					<select class="form-control">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+		  <div class="pull-right">
+		    <button class="btn btn-primary" translate>Save</button>
+		    <button class="btn btn-default" translate>Cancel</button>
+		    <button class="btn btn-danger" translate>Delete</button>
+		  </div>
+		</div>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading" translate>Regions</div>
+	<div class="panel-body">
+        <div class="list-group">
+          <a class="list-group-item"
+             ng-repeat="term in terms"
+             ng-class="{'active': currentTerm.code === term.code}"
+             ng-click="setCurrentTerm(term)">
+              [{{term.code}}] {{t(term.name)}}</a>
+        </div>
+
+	</div>
+</div>

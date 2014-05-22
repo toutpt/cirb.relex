@@ -1,0 +1,8 @@
+<h1 translate>Vocabularies</h1>
+<p class="help-block" translate>Please select the vocabulary you want to manage</p>
+<div class="list-group">
+  <a class="list-group-item"
+     ng-repeat="vocab in vocabularies"
+     ng-click="redirectTo(vocab)">
+      {{vocab.name | translate}}</a>
+</div>

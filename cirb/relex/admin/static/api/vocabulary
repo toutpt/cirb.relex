@@ -1,0 +1,85 @@
+{
+	"vocabularies":[
+        {"name": "Country", "id": "country", "terms":[
+            {"code": "FR", "name": {
+                "fr": "France", "en": "France", "nl": "France"
+            }},
+            {"code": "EN", "name": {
+                "fr": "Angleterre", "en": "England", "nl": "Angleterre"
+            }},
+            {"code": "US", "name": {
+               "fr": "Etats Unis", "en": "United State", "nl": "United State"
+            }}
+        ]},
+        {"name": "Region", "id": "region", "terms":[
+            {"code": "R1", "name": {
+               "fr": "Region 1", "en": "Region 1", "nl": "Region 1"
+            }, "country": null},
+            {"code": "R2", "name": {
+               "fr": "Region 2", "en": "Region 2", "nl": "Region 2"
+            }, "country": null},
+            {"code": "R3", "name": {
+               "fr": "Region 3", "en": "Region 3", "nl": "Region 3"
+            }, "country": null}
+        ]},
+        {"name": "City", "id": "city", "terms":[
+            {"code": "V1", "name": {
+                "fr": "Ville 1", "en": "City 1", "nl": "Vil 1"
+            }, "country": null},
+            {"code": "V2", "name": {
+                "fr": "Ville 2", "en": "City 2", "nl": "Vil 2"
+            }, "country": null},
+            {"code": "V3", "name": {
+                "fr": "Ville 3", "en": "City 3", "nl": "Vil 3"
+            }, "country": null}
+        ]},
+        {"name": "Cell", "id": "cell", "terms":[
+            {
+                "code": {"fr": "Cellule 1", "en": "Cell 1", "nl": "C 1"},
+                "description": {"fr": "", "en": "", "nl": ""}
+            },{
+                "code": {"fr": "Cellule 2", "en": "Cell 2", "nl": "C 2"},
+                "description": {"fr": "", "en": "", "nl": ""}
+            },{
+                "code": {"fr": "Cellule 3", "en": "Cell 3", "nl": "C 3"},
+                "description": {"fr": "", "en": "", "nl": ""}
+            }
+        ]},
+        {"name": "Organisation", "id": "organisation", "terms":[
+            {
+                "code": {"fr": "AATL", "en": "AATL", "nl": "AATL"},
+                "name": {"fr": "Organisation 1", "en": "Organisation 1", "nl": "Org 1"}
+            },{
+                "code": {"fr": "ACR", "en": "ACR", "nl": "ACR"},
+                "name": {"fr": "Organisation 2", "en": "Organisation 2", "nl": "Org 2"}
+            },{
+                "code": {"fr": "AEE", "en": "AEE", "nl": "AEE"},
+                "name": {"fr": "Organisation 3", "en": "Organisation 3", "nl": "Org 3"}
+            }
+        ]},
+        {"name": "Contact", "id": "contact", "terms": [
+            {"name": "Contact", "firstname": "Foo", "phone": "", "email": "", "organisation": "", "cell": "", "fonction": ""},
+            {"name": "Contact", "firstname": "Bar", "phone": "", "email": "", "organisation": "", "cell": "", "fonction": ""},
+            {"name": "Contact", "firstname": "Zi", "phone": "", "email": "", "organisation": "", "cell": "", "fonction": ""},
+            {"name": "Contact", "firstname": "Co", "phone": "", "email": "", "organisation": "", "cell": "", "fonction": ""}
+        ]},
+        {"name": "Brussels Partners", "id": "brusselspartners", "terms": [
+            {"name": "Contact", "firstname": "Foo", "phone": "", "email": "", "organisation": "", "cell": ""},
+            {"name": "Contact", "firstname": "Bar", "phone": "", "email": "", "organisation": "", "cell": ""},
+            {"name": "Contact", "firstname": "Zi", "phone": "", "email": "", "organisation": "", "cell": ""},
+            {"name": "Contact", "firstname": "Co", "phone": "", "email": "", "organisation": "", "cell": ""}
+        ]},
+        {"name": "Function", "id": "function", "terms":[
+            {
+                "code": {"fr": "Administrateur delegue", "en": "Delegative administrator", "nl": "??"},
+                "description": {"fr": "", "en": "", "nl": ""}
+            },{
+                "code": {"fr": "Assistant", "en": "Assistant", "nl": ""},
+                "description": {"fr": "", "en": "", "nl": ""}
+            },{
+                "code": {"fr": "Attaché", "en": "Attached", "nl": ""},
+                "description": {"fr": "", "en": "", "nl": ""}
+            }
+        ]}
+    ]
+}

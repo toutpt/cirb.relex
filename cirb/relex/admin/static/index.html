@@ -29,9 +29,10 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h1><span class="label label-default" translate>Relex</span></h1>
+          <h1><a href="#"><span class="label label-default" translate>Relex</span></a></h1>
         </div>
         <div class="col-md-4">
+          <a href="#/vocabulary" class="btn btn-default" translate>Settings</a>
           <div class="btn-group-vertical pull-right">
             <a class="btn" ng-class="{'btn-default': getLanguage() !== 'nl', 'btn-info': getLanguage() === 'nl'}" ng-click="setLanguage('nl')">Nederlands</a>
             <a class="btn" ng-class="{'btn-default': getLanguage() !== 'fr', 'btn-info': getLanguage() === 'fr'}" ng-click="setLanguage('fr')">Français</a>
@@ -45,6 +46,12 @@
         <div class="alert alert-danger" ng-show="!loggedin">
           <span translate>You are not loggedin</span>
         </div>
+    <ol class="breadcrumb" ng-controller="BreadcrumbController">
+      <li ng-repeat="crumb in crumbs">
+        <a href="{{'#' + crumb.path}}">{{crumb.name}}</a>
+      </li>
+    </ol>
+
         <div ng-if="loggedin">
           <div ng-view></div>
         </div>

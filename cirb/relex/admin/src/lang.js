@@ -18,40 +18,40 @@ angular.module("gettext").run(['$http', 'gettextCatalog',
 angular.module('relex.services').factory('langService', [
     '$cookies', '$location', 'gettextCatalog',
     function($cookies, $location, gettextCatalog){
-        return {
-            setCurrentLanguage: function(lang){
+        var service = {};
+        service.setCurrentLanguage = function(lang){
                 gettextCatalog.currentLanguage = lang;
                 $cookies.I18N_LANGUAGE = '"' + lang + '"';
-            },
-            getCurrentLanguage: function(){
-                var host = $location.host();
-                var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
-                if (cookie){
-                    return cookie;
-                }else if (host === 'www.brussels.irisnet.be'){
-                    return 'en';
-                }else if (host === 'www.bruxelles.irisnet.be'){
-                    return 'fr';
-                }else if (host === 'www.brussel.irisnet.be'){
-                    return 'nl';
-                }else{
-                    return 'fr';
-                }
-            },
-            createNewTranslatedLabel: function(container, label){
-                container[label] = this.createNewTranslatedValue();
-            },
-            createNewTranslatedValue: function(){
-                return {
-                    fr: '',
-                    en: '',
-                    nl: ''
-                };
-            },
-            getTranslatedValue: function(container, label){
-                return container[label][this.currentLanguage];
+        };
+        service.getCurrentLanguage = function(){
+            var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
+            var host = $location.host();
+            if (cookie){
+                return cookie;
+            }else if (host === 'www.brussels.irisnet.be'){
+                return 'en';
+            }else if (host === 'www.bruxelles.irisnet.be'){
+                return 'fr';
+            }else if (host === 'www.brussel.irisnet.be'){
+                return 'nl';
+            }else{
+                return 'fr';
             }
         };
+        service.createNewTranslatedLabel = function(container, label){
+            container[label] = this.createNewTranslatedValue();
+        };
+        service.createNewTranslatedValue = function(value){
+            return {
+                fr: value,
+                en: value,
+                nl: value
+            };
+        };
+        service.getTranslatedValue = function(container){
+            return container[service.getCurrentLanguage()];
+        };
+        return service;
     }
 ]);
 angular.module('relex.controllers').controller('LanguageController', [

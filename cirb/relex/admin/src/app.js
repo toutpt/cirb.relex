@@ -17,8 +17,5 @@ angular.module('relex.services', []);
 angular.module('relex.directives', []);
 
 angular.module('relex').config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {
-        controller: 'ProjectsController',
-        templateUrl: 'partials/projects.html'
-    });
+    $routeProvider.otherwise({redirectTo: '/project'});
 }]);

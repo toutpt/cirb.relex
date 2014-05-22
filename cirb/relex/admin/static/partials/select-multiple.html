@@ -1,0 +1,39 @@
+<!--
+Il faut faire ici:
+Un widget qui permet de choisir plusieurs éléments dans une liste d'objets.
+
+Contraintes:
+* afficher les différents propriétés des objets
+* blacklister certaines propriétés
+* remplir une liste cible à la selection
+* permettre de supprimer des éléments de la selection
+
+-->
+
+<div class="form-horizontal">
+	<div class="form-group">
+		<div class="col-sm-2">
+			<label>{{label | translate}}</label>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="limitTo" checked="checked" ng-click="toggleLimit()"/>
+					<span class="help-block" translate>Limit terms</span>
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-10">
+			<div class="input-group margin-bottom-sm">
+				<input type="search" class="form-control" ng-model="queryTerm"/>
+				<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item disabled">{{legend | translate}}</a>
+				<a class="list-group-item"
+					ng-repeat="term in vocabulary | orderBy:'_selected':1 | filter:queryTerm | limitTo:limitTo"
+					ng-class="{'list-group-item-info': isSelected(term)}"
+					ng-click="selectTerm(term)">
+				  {{displayTerm(term)}}</a>
+			</div>
+		</div>
+	</div>
+</div>

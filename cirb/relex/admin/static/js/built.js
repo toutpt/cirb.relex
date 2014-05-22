@@ -17,10 +17,7 @@ angular.module('relex.services', []);
 angular.module('relex.directives', []);
 
 angular.module('relex').config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {
-        controller: 'ProjectsController',
-        templateUrl: 'partials/projects.html'
-    });
+    $routeProvider.otherwise({redirectTo: '/project'});
 }]);
 /*global angular:false */
 /*jshint strict: false*/
@@ -30,6 +27,33 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 	function($scope, $cookies){
 		//TODO: check if the Plone cookie is here
 		$scope.loggedin = $cookies.__ac !== undefined;
+	}
+]);
+/*global angular:false */
+/*jshint strict: false*/
+
+angular.module('relex.controllers').controller('BreadcrumbController',[
+	'$scope', '$location',
+	function($scope, $location){
+		var update = function(){
+			var path = $location.path().split('/');
+			$scope.crumbs = [{name: 'Home', path:'/'}];
+			console.log(path.length);
+			for (var i = 0; i < path.length; i++) {
+				if (path[i].length > 0){
+					$scope.crumbs.push({
+						name: path[i],
+						path: path.slice(0, i+1).join('/')
+					});
+				}
+			}
+		};
+		update();
+		$scope.$watch(function() {
+		    return $location.path();
+		}, function(){
+		    update();
+		});
 	}
 ]);
 /*global angular:false */
@@ -52,40 +76,40 @@ angular.module("gettext").run(['$http', 'gettextCatalog',
 angular.module('relex.services').factory('langService', [
     '$cookies', '$location', 'gettextCatalog',
     function($cookies, $location, gettextCatalog){
-        return {
-            setCurrentLanguage: function(lang){
+        var service = {};
+        service.setCurrentLanguage = function(lang){
                 gettextCatalog.currentLanguage = lang;
                 $cookies.I18N_LANGUAGE = '"' + lang + '"';
-            },
-            getCurrentLanguage: function(){
-                var host = $location.host();
-                var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
-                if (cookie){
-                    return cookie;
-                }else if (host === 'www.brussels.irisnet.be'){
-                    return 'en';
-                }else if (host === 'www.bruxelles.irisnet.be'){
-                    return 'fr';
-                }else if (host === 'www.brussel.irisnet.be'){
-                    return 'nl';
-                }else{
-                    return 'fr';
-                }
-            },
-            createNewTranslatedLabel: function(container, label){
-                container[label] = this.createNewTranslatedValue();
-            },
-            createNewTranslatedValue: function(){
-                return {
-                    fr: '',
-                    en: '',
-                    nl: ''
-                };
-            },
-            getTranslatedValue: function(container, label){
-                return container[label][this.currentLanguage];
+        };
+        service.getCurrentLanguage = function(){
+            var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
+            var host = $location.host();
+            if (cookie){
+                return cookie;
+            }else if (host === 'www.brussels.irisnet.be'){
+                return 'en';
+            }else if (host === 'www.bruxelles.irisnet.be'){
+                return 'fr';
+            }else if (host === 'www.brussel.irisnet.be'){
+                return 'nl';
+            }else{
+                return 'fr';
             }
         };
+        service.createNewTranslatedLabel = function(container, label){
+            container[label] = this.createNewTranslatedValue();
+        };
+        service.createNewTranslatedValue = function(value){
+            return {
+                fr: value,
+                en: value,
+                nl: value
+            };
+        };
+        service.getTranslatedValue = function(container){
+            return container[service.getCurrentLanguage()];
+        };
+        return service;
     }
 ]);
 angular.module('relex.controllers').controller('LanguageController', [
@@ -234,31 +258,89 @@ angular.module('relex.controllers').controller(
 /*jshint strict: false*/
 
 angular.module('relex').config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/project', {
+        controller: 'ProjectsController',
+        templateUrl: 'partials/projects.html'
+    });
     $routeProvider.when('/project/:id', {
         controller: 'ProjectsController',
         templateUrl: 'partials/projects.html'
     });
 }]);
-
+angular.module('relex.services').factory('projectsService', [
+	'$http', function($http){
+        return {
+			postProject: function(project){
+				//return $http.post()
+			}
+		};
+	}
+]);
 angular.module('relex.controllers').controller('ProjectsController', [
-	'$scope', '$location', '$routeParams', 'langService',
-	function($scope, $location, $routeParams, langService){
+	'$scope', '$location', '$routeParams', 'langService', 'projectsService',
+	function($scope, $location, $routeParams, langService, projectsService){
 		//model
 		$scope.projects = [];
 		$scope.currentProject;
-
+        $scope.citiesVocabulary = [];
+        $scope.regionsVocabulary = [];
+        $scope.countriesVocabulary = [];
+        $scope.brusselsPartnersVocabulary = [];
+        $scope.contactsVocabulary = [];
 		//methods
 		$scope.setCurrentProject = function(project){
-			$location.path('project/'+project.code);
+			$location.path('project/'+project.code); //this reload the controller
+		};
+		$scope.addNewProject = function(code){
+            var project = {code:code};
+            projectsService.postProject(project);
+            $scope.projects.push(project);
 		};
 
 		//initialize
+        var _ = langService.createNewTranslatedValue;
+        $scope.citiesVocabulary.push({id: '0', city: _('AALBORG'), country: _('DANEMARK'), region: _('NORDJYLLAND')});
+        $scope.citiesVocabulary.push({id: '1', city: _('ABERDEEN'), country: _('ROYAUME-UNI'), region: _('ECOSSE')});
+        $scope.citiesVocabulary.push({id: '2', city: _('ABIDJAN'), country: _("COTE D'IVOIRE"), region: _('')});
+        $scope.citiesVocabulary.push({id: '3', city: _('ABU DHABI'), country: _('EMIRATS ARABES UNIS'), region: _('')});
+
+        $scope.regionsVocabulary.push({id: '0', country: _('DANEMARK'), region: _('NORDJYLLAND')});
+        $scope.regionsVocabulary.push({id: '1', country: _('ROYAUME-UNI'), region: _('ECOSSE')});
+        $scope.regionsVocabulary.push({id: '2', country: _("COTE D'IVOIRE"), region: _('')});
+        $scope.regionsVocabulary.push({id: '3', country: _('EMIRATS ARABES UNIS'), region: _('')});
+
+        $scope.countriesVocabulary.push({id: '0', country: _('DANEMARK')});
+        $scope.countriesVocabulary.push({id: '1', country: _('ROYAUME-UNI')});
+        $scope.countriesVocabulary.push({id: '2', country: _("COTE D'IVOIRE")});
+        $scope.countriesVocabulary.push({id: '3', country: _('EMIRATS ARABES UNIS')});
+
+        $scope.brusselsPartnersVocabulary.push({id: '0', name: 'BERREWAERTS', firstname: 'MARIE CHRISTINE', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo')});
+        $scope.brusselsPartnersVocabulary.push({id: '1', name: 'CERZER', firstname: 'AFFQSDQSD', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo')});
+
+        $scope.contactsVocabulary.push({id: '0', name: 'BERREWAERTS', firstname: 'MARIE CHRISTINE', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo'), fct: _('INGENIEUR')});
+        $scope.contactsVocabulary.push({id: '1', name: 'CERZER', firstname: 'AFFQSDQSD', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo'), fct: _('ECHEVIN')});
+
 		$scope.projects.push(
-			{
-				code: 'SUM',
-				name: langService.createNewTranslatedValue(),
-				content: langService.createNewTranslatedValue()
-			}
+            {
+                code: 'SUM',
+                name: _(),
+                content: _(),
+                cities: [],
+                regions: [],
+                countries: [],
+                brusellesPartners: [],
+                contacts: []
+            },
+            {
+                code: 'TEST',
+                name: _(),
+                content: _(),
+                cities: [],
+                regions: [],
+                countries: [],
+                brusellesPartners: [],
+                contacts: []
+            }
 		);
 		if ($routeParams.id !== undefined){
 			for (var i = 0; i < $scope.projects.length; i++) {
@@ -268,4 +350,144 @@ angular.module('relex.controllers').controller('ProjectsController', [
 			}
 		}
 	}
+]);
+
+/*global angular:false */
+/*jshint strict: false*/
+
+angular.module('relex').config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/vocabulary', {
+        controller: 'VocabulariesController',
+        templateUrl: 'partials/vocabularies.html'
+    });
+    $routeProvider.when('/vocabulary/:vocabulary', {
+        controller: 'VocabularyController',
+        templateUrl: 'partials/vocabulary.html'
+    });
+    $routeProvider.when('/vocabulary/:vocabulary/:id', {
+        controller: 'VocabularyController',
+        templateUrl: 'partials/vocabulary.html'
+    });
+}]);
+angular.module('relex.services').factory('vocabularyService', [
+    '$http', 'langService',
+    function($http, langService){
+        var _ = langService.createNewTranslatedValue;
+        return {
+            getVocabularies: function(){
+                return $http.get('/api/vocabulary').then(function(data){
+                    return data.data.vocabularies;
+                });
+            },
+            get: function(vocabulary){
+                return this.getVocabularies().then(function(vocabularies){
+                    for (var i = 0; i < vocabularies.length; i++) {
+                        if (vocabulary === vocabularies[i].id){
+                            return vocabularies[i].terms;
+                        }
+                    }
+                });
+            },
+            post: function(vocabulary){
+                //return $http.post()
+            },
+            put: function(vocabulary){
+
+            },
+            delete: function(vocabulary){
+
+            }
+        };
+    }
+]);
+
+angular.module('relex.controllers').controller('VocabulariesController',[
+    '$scope', '$location', 'vocabularyService',
+    function($scope, $location ,vocabularyService){
+        $scope.vocabularies;
+
+        vocabularyService.getVocabularies().then(function(data){
+            $scope.vocabularies = data;
+        });
+        $scope.redirectTo = function(vocab){
+            $location.path('/vocabulary/' + vocab.id);
+        };
+    }
+]);
+
+angular.module('relex.controllers').controller('VocabularyController',[
+    '$scope', '$location', '$routeParams', 'langService', 'vocabularyService',
+    function($scope, $location, $routeParams, langService, vocabularyService){
+        var VOCAB = $routeParams.vocabulary;
+        $scope.template = 'vocabulary_' + VOCAB + '.html';
+        $scope.currentTerm;
+        $scope.t = langService.getTranslatedValue;
+        $scope.terms;
+        vocabularyService.get(VOCAB).then(function(terms){
+            $scope.terms = terms;
+            if ($routeParams.id !== undefined){
+                for (var i = 0; i < $scope.terms.length; i++) {
+                    if ($scope.terms[i].code === $routeParams.id){
+                        $scope.currentTerm = $scope.terms[i];
+                    }
+                }
+            }
+        });
+
+        $scope.setCurrentTerm = function(term){
+            $location.path('/vocabulary/' + VOCAB + '/' + term.code);
+        };
+
+    }
+]);
+/*global angular:false */
+/*jshint strict: false*/
+
+angular.module('relex.directives').directive('selectMultiple',
+    ['langService', function(langService){
+        return {
+            restrict: 'A',
+            templateUrl: 'partials/select-multiple.html',
+            scope:{
+                label: '=',
+                vocabulary: '=',
+                display: '=',
+                target: '=',
+                legend: '='
+            },
+            link: function(scope, elem, attrs){
+                var LIMIT_TO = 2;
+                scope.limitTo = LIMIT_TO;
+                scope.isSelected = function(term){
+                    for (var i = 0; i < scope.target.length; i++) {
+                        if (term === scope.target[i]){
+                            term._selected = 1;
+                            return true;
+                        }
+                        term._selected = 0;
+                    }
+                    return false;
+
+                };
+                scope._ = langService.getTranslatedValue;
+                scope.selectTerm = function(term){
+                    if (scope.isSelected(term)){
+                        scope.target.splice(scope.target.indexOf(term), 1);
+                    }else{
+                        scope.target.push(term);
+                    }
+                };
+                scope.displayTerm = function(term){
+                    return scope.$eval(scope.display, {term:term});
+                };
+                scope.toggleLimit = function(){
+                    if (scope.limitTo === LIMIT_TO){
+                        scope.limitTo = scope.vocabulary.length;
+                    }else{
+                        scope.limitTo = LIMIT_TO;
+                    }
+                };
+            }
+        };
+    }
 ]);

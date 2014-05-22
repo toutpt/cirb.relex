@@ -1,0 +1,91 @@
+<tabset>
+  <tab heading="{{'First part' | translate}}">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>Code</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" ng-model="currentProject.code" autofocus/>
+        </div>
+      </div>
+    </div>
+    <div input-localized label="'Name'" value="currentProject.name"></div>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>Start</label>
+        <div class="col-sm-4">
+          <input type="date" class="form-control" ng-model="currentProject.start"/>
+        </div>
+        <label class="col-sm-2 control-label" translate>End</label>
+        <div class="col-sm-4">
+          <input type="date" class="form-control" ng-model="currentProject.end"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>URL</label>
+        <div class="col-sm-10">
+          <input type="url" class="form-control" ng-model="currentProject.url"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>Status</label>
+        <div class="col-sm-10">
+          <select class="form-control">
+            
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>Relation type</label>
+        <div class="col-sm-4">
+          <select class="form-control">
+            
+          </select>
+        </div>
+        <label class="col-sm-2 control-label" translate>Organisation type</label>
+        <div class="col-sm-4">
+          <select class="form-control">
+            
+          </select>
+        </div>
+      </div>
+    </div>
+    <div textarea-localized label="'Content'" value="currentProject.content"></div>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" translate>Comments</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" ng-model="currentProject.comments"></textarea>
+        </div>
+      </div>
+    </div>
+  </tab>
+  <tab heading="{{'Second part' | translate}}">
+    <div class="panel panel-default">
+      <div class="panel-heading" translate>Brussels partners</div>
+      <div class="panel-body">
+        <div select-multiple label="'Brussels partners'" vocabulary="brusselsPartnersVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.brusellesPartners"></div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" translate>International partners</div>
+      <div class="panel-body">
+        <div select-multiple label="'Countries'" vocabulary="countriesVocabulary" display="'_(term.country)'" legend="'Country'" target="currentProject.countries"></div>
+        <div select-multiple label="'Regions'" vocabulary="regionsVocabulary" display="'_(term.country) + \' - \' + _(term.region)'" legend="'Country - Region'" target="currentProject.regions"></div>
+        <div select-multiple label="'Cities'" vocabulary="citiesVocabulary" display="'_(term.city) + \' - \' + _(term.country) + \' - \' + _(term.region)'" legend="'City - Country - Region'" target="currentProject.cities"></div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" translate>Contacts</div>
+      <div class="panel-body">
+        <div select-multiple label="'Contacts'" vocabulary="contactsVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.contacts"></div>
+      </div>
+    </div>
+  </tab>
+</tabset>
+<div class="form-group">
+  <div class="pull-right">
+    <button class="btn btn-primary" translate>Save</button>
+    <button class="btn btn-default" translate>Cancel</button>
+    <button class="btn btn-danger" translate>Delete</button>
+  </div>
+</div>

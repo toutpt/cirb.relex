@@ -2,10 +2,22 @@
 <div ng-include="'./partials/messages.html'"></div>
 </div>
 <div id="projects-wrapper" class="row">
-  <div class="col-md-4">
-    <div class="panel" ng-show="projects" ng-class="{'panel-success': projects.length > 0, 'panel-default': projects.length === 0}">
+  <div class="col-md-12">
+    <div class="panel panel-default" ng-if="currentProject">
+      <div class="panel-heading" translate>Project</div>
+      <div class="panel-body">
+        <div ng-include="'./partials/project-edit.html'"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-default" ng-show="projects">
       <div class="panel-heading" translate>Projects</div>
       <div class="panel-body">
+        <div class="input-group margin-bottom-sm">
+          <input type="search" class="form-control" ng-model="queryProject"/>
+          <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+        </div>
         <div class="list-group">
           <a class="list-group-item" title="{{project.name}}"
              ng-repeat="project in projects | filter:queryProject"
@@ -16,79 +28,18 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
-    <div class="panel panel-default" ng-if="currentProject">
-      <div class="panel-heading" translate>Project</div>
+  <div class="col-md-4">
+    <div class="panel panel-default" ng-show="projects">
+      <div class="panel-heading" translate>Add a project</div>
       <div class="panel-body">
-
-<tabset>
-  <tab heading="{{'First part' | translate}}">
-        <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>Code</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="currentProject.code" autofocus/>
-            </div>
-          </div>
+        <div class="form-group">
+          <label translate>Code</label>
+          <input type="text" class="form-control" ng-model="newCode"/>
         </div>
-        <div input-localized label="'Name'" value="currentProject.name"></div>
-        <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>Start</label>
-            <div class="col-sm-4">
-              <input type="date" class="form-control" ng-model="currentProject.start"/>
-            </div>
-            <label class="col-sm-2 control-label" translate>End</label>
-            <div class="col-sm-4">
-              <input type="date" class="form-control" ng-model="currentProject.end"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>URL</label>
-            <div class="col-sm-10">
-              <input type="url" class="form-control" ng-model="currentProject.url"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>Status</label>
-            <div class="col-sm-10">
-              <select class="form-control">
-                
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>Relation type</label>
-            <div class="col-sm-4">
-              <select class="form-control">
-                
-              </select>
-            </div>
-            <label class="col-sm-2 control-label" translate>Organisation type</label>
-            <div class="col-sm-4">
-              <select class="form-control">
-                
-              </select>
-            </div>
-          </div>
-        </div>
-        <div textarea-localized label="'Content'" value="currentProject.content"></div>
-        <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label" translate>Comments</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" ng-model="currentProject.comments"></textarea>
-            </div>
-          </div>
-        </div>
-  </tab>
-  <tab heading="{{'Second part' | translate}}">
-SECOND PART
-  </tab>
-
+        <button class="btn btn-primary" ng-click="addNewProject(newCode)" translate>Add a project</button>
       </div>
-
     </div>
   </div>
+
 </div>
 
