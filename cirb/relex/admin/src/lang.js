@@ -8,10 +8,10 @@ angular.module('relex').run(['langService', 'gettextCatalog',
 ]);
 angular.module("gettext").run(['$http', 'gettextCatalog',
         function ($http, gettextCatalog) {
-        $http.get('/translations/fr.json').then(function(translations){
+        $http.get('translations/fr.json').then(function(translations){
                 gettextCatalog.setStrings('fr', translations.data.fr);
         });
-        $http.get('/translations/nl.json').then(function(translations){
+        $http.get('translations/nl.json').then(function(translations){
                 gettextCatalog.setStrings('nl', translations.data.fr);
         });
 }]);
@@ -24,7 +24,11 @@ angular.module('relex.services').factory('langService', [
                 $cookies.I18N_LANGUAGE = '"' + lang + '"';
         };
         service.getCurrentLanguage = function(){
-            var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
+
+            var cookie = $cookies.I18N_LANGUAGE;
+            if (cookie !== undefined){
+                cookie = cookie.replace(/"/g, '');
+            }
             var host = $location.host();
             if (cookie){
                 return cookie;

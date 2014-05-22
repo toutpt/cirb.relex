@@ -26,7 +26,8 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 	'$scope', '$cookies',
 	function($scope, $cookies){
 		//TODO: check if the Plone cookie is here
-		$scope.loggedin = $cookies.__ac !== undefined;
+		//$scope.loggedin = $cookies.__ac !== undefined;
+		$scope.loggedin = true;
 	}
 ]);
 /*global angular:false */
@@ -65,10 +66,10 @@ angular.module('relex').run(['langService', 'gettextCatalog',
 ]);
 angular.module("gettext").run(['$http', 'gettextCatalog',
         function ($http, gettextCatalog) {
-        $http.get('/translations/fr.json').then(function(translations){
+        $http.get('translations/fr.json').then(function(translations){
                 gettextCatalog.setStrings('fr', translations.data.fr);
         });
-        $http.get('/translations/nl.json').then(function(translations){
+        $http.get('translations/nl.json').then(function(translations){
                 gettextCatalog.setStrings('nl', translations.data.fr);
         });
 }]);
@@ -81,7 +82,11 @@ angular.module('relex.services').factory('langService', [
                 $cookies.I18N_LANGUAGE = '"' + lang + '"';
         };
         service.getCurrentLanguage = function(){
-            var cookie = $cookies.I18N_LANGUAGE.replace(/"/g, '');
+
+            var cookie = $cookies.I18N_LANGUAGE;
+            if (cookie !== undefined){
+                cookie = cookie.replace(/"/g, '');
+            }
             var host = $location.host();
             if (cookie){
                 return cookie;
@@ -374,7 +379,7 @@ angular.module('relex.services').factory('vocabularyService', [
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
-                return $http.get('/api/vocabulary').then(function(data){
+                return $http.get('api/vocabulary').then(function(data){
                     return data.data.vocabularies;
                 });
             },
