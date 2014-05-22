@@ -7,7 +7,6 @@ angular.module('relex.controllers').controller('BreadcrumbController',[
 		var update = function(){
 			var path = $location.path().split('/');
 			$scope.crumbs = [{name: 'Home', path:'/'}];
-			console.log(path.length);
 			for (var i = 0; i < path.length; i++) {
 				if (path[i].length > 0){
 					$scope.crumbs.push({

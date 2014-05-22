@@ -80,6 +80,67 @@
                 "code": {"fr": "Attaché", "en": "Attached", "nl": ""},
                 "description": {"fr": "", "en": "", "nl": ""}
             }
+        ]},
+        {"name": "Keywords", "id": "keywords", "terms":[
+            {
+                "word": {"fr": "Keyword 1", "en": "Keyword 1", "nl": "Keyword 1"}
+            },{
+                "word": {"fr": "Keyword 2", "en": "Keyword 2", "nl": "Keyword 2"}
+            },{
+                "word": {"fr": "Keyword 3", "en": "Keyword 3", "nl": "Keyword 3"}
+            }
+        ]},
+        {"name": "Theme", "id": "theme", "terms":[
+            {
+                "theme": {"fr": "Theme 1", "en": "Theme 1", "nl": "Theme 1", "keywords": []}
+            },{
+                "theme": {"fr": "Theme 2", "en": "Theme 2", "nl": "Theme 2", "keywords": []}
+            },{
+                "theme": {"fr": "Theme 3", "en": "Theme 3", "nl": "Theme 3", "keywords": []}
+            }
+        ]},
+        {"name": "Continent", "id": "contient", "terms":[
+            {
+                "code": "AF",
+                "description": {"fr": "Afrique", "en": "", "nl": ""}
+            },{
+                "code": "NA",
+                "description": {"fr": "Amérique du nord", "en": "", "nl": ""}
+            },{
+                "code": "EU",
+                "description": {"fr": "Europe", "en": "", "nl": ""}
+            }
+        ]},
+        {"name": "Organisation type", "id": "organisationtype", "terms":[
+            {
+                "code": {"fr": "ASS INT", "en": "ASS INT", "nl": "ASS INT"},
+                "name": {"fr": "Assocation international", "en": "Assocation international", "nl": "ASSO INT 1"}
+            },{
+                "code": {"fr": "COPCOM", "en": "COPCOM", "nl": "COPCOM"},
+                "name": {"fr": "Coopération (niveau local)", "en": "Cooperation (local)", "nl": "Coop"}
+            },{
+                "code": {"fr": "JUM", "en": "JUM", "nl": "JUM"},
+                "name": {"fr": "Jumelage", "en": "Jumelage", "nl": "Jum"}
+            }
+        ]},
+        {"name": "relation type", "id": "relationtype", "terms":[
+            {
+                "code": {"fr": "BILATERAL", "en": "BILATERAL", "nl": "BILATERAL"},
+                "name": {"fr": "BILATERAL", "en": "BILATERAL", "nl": "BILATERAL"}
+            },{
+                "code": {"fr": "MULTILATERAL", "en": "MULTILATERAL", "nl": "MULTILATERAL"},
+                "name": {"fr": "MULTILATERAL", "en": "MULTILATERAL", "nl": "MULTILATERAL"}
+            }
+        ]},
+        {"name": "Continent", "id": "contient", "terms":[
+            {
+                "description": {"fr": "ACTIF", "en": "ACTIF", "nl": "ACTIF"}
+            },{
+                "description": {"fr": "ARCHIVE", "en": "ARCHIVE", "nl": "ARCHIVE"}
+            },{
+                "description": {"fr": "INACTIF", "en": "INACTIF", "nl": "INACTIF"}
+            }
         ]}
+        
     ]
 }
