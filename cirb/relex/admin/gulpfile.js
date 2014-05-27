@@ -24,6 +24,11 @@ gulp.task('scripts-libs', function() {
       ])
     .pipe(concat("libs.js"))
     .pipe(gulp.dest('static/js'));
+  gulp.src([
+      'bower_components/angular/angular.min.js.map',
+      'bower_components/angular-route/angular-route.min.js.map',
+        ])
+    .pipe(gulp.dest('static/js'));
 });
 gulp.task('scripts', ['scripts-libs'], function() {
   gulp.src(['src/*.js'])

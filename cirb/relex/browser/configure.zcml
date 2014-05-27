@@ -4,6 +4,13 @@
     i18n_domain="cirb.relex">
 
     <!-- -*- extra stuff goes here -*- -->
+  <browser:page
+      for="cirb.relex.interfaces.IRelexBackend"
+      name="relex_vocabulary"
+      class=".vocabulary.VocabularyJSON"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
 
   <!-- EXAMPLE:
   <browser:viewlet

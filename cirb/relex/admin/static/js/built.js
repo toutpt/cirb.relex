@@ -379,27 +379,28 @@ angular.module('relex.services').factory('vocabularyService', [
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
-                return $http.get('api/vocabulary').then(function(data){
-                    return data.data.vocabularies;
+                return $http.get('/relex_web/relex_vocabulary').then(function(data){
+                    return data.data;
                 });
             },
             get: function(vocabulary){
                 return this.getVocabularies().then(function(vocabularies){
                     for (var i = 0; i < vocabularies.length; i++) {
                         if (vocabulary === vocabularies[i].id){
-                            return vocabularies[i].terms;
+                            return vocabularies[i];
                         }
                     }
                 });
             },
-            post: function(vocabulary){
+            post: function(vocabularyID, term){
                 //return $http.post()
+                return $http.post('/relex_web/relex_vocabulary/'+vocabularyID, term);
             },
-            put: function(vocabulary){
-
+            put: function(vocabularyID, term){
+                return $http.put('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id, term);
             },
-            delete: function(vocabulary){
-
+            remove: function(vocabularyID, term){
+                return $http.delete('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id, term);
             }
         };
     }
@@ -427,21 +428,33 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.currentTerm;
         $scope.t = langService.getTranslatedValue;
         $scope.terms;
-        vocabularyService.get(VOCAB).then(function(terms){
-            $scope.terms = terms;
+        vocabularyService.get(VOCAB).then(function(vocabulary){
+
+            $scope.terms = vocabulary.terms;
             if ($routeParams.id !== undefined){
                 for (var i = 0; i < $scope.terms.length; i++) {
                     if ($scope.terms[i].code === $routeParams.id){
                         $scope.currentTerm = $scope.terms[i];
                     }
                 }
+            }else{
+                $scope.currentTerm = vocabulary.model;
             }
         });
 
         $scope.setCurrentTerm = function(term){
             $location.path('/vocabulary/' + VOCAB + '/' + term.code);
         };
-
+        $scope.saveOrAddTerm = function(){
+            if ($scope.currentTerm.id === ""){
+                vocabularyService.post(VOCAB, $scope.currentTerm);
+            }else{
+                vocabularyService.put(VOCAB, $scope.currentTerm);
+            }
+        };
+        $scope.removeTerm = function(){
+            vocabularyService.remove(VOCAB, $scope.currentTerm);
+        };
     }
 ]);
 /*global angular:false */

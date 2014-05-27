@@ -1,0 +1,4 @@
+<layers>
+    <layer name="cirb.relex"
+           interface="cirb.relex.interfaces.ILayer" />
+</layers>
