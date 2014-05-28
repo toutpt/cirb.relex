@@ -39,10 +39,9 @@ class VocabularyJSON(BrowserView):
         self.termID = None
         self._action = request['REQUEST_METHOD']
         self.payload = None
-        import pdb; pdb.set_trace()
+        self._index = None
 
     def __call__(self):
-        import pdb; pdb.set_trace()
         self.update()
         return self.index()
 
@@ -50,11 +49,11 @@ class VocabularyJSON(BrowserView):
         return KEY_STORAGE + '.' + vocabularyID
 
     def update(self):
-        import pdb; pdb.set_trace()
         if self._action == 'GET':
             #load vocabularies terms
             for vocab in self.vocabularies:
                 vocab["terms"] = self._getTerms(vocab['id'])
+            self._index = json.dumps(self.vocabularies)
 
         if self._action == 'POST':
             self._updatePayload()
@@ -68,7 +67,6 @@ class VocabularyJSON(BrowserView):
                 raise ValueError("You can only update term")
             self._updateTerm()
 
-        import pdb; pdb.set_trace()
         if self._action == 'DELETE':
             if self.termID is None:
                 raise ValueError("You can only delete term")
@@ -76,18 +74,18 @@ class VocabularyJSON(BrowserView):
 
     def index(self):
         add_json_header(self.request.response)
-        return json.dumps(self.vocabularies)
+        return self._index
 
     def publishTraverse(self, request, name):
-        import pdb; pdb.set_trace()
         logger.info('publishTraverse '+ name)
         if self.vocabularyID is None:
             self.vocabularyID = name
         elif self.termID is None:
             self.termID = name
-        # stop traversing, we have arrived
-        #request['TraversalRequestNameStack'] = []
-        # return self so the publisher calls this view
+        elif self._action == "POST" and name == "update":
+            self._action = "PUT"
+        elif self._action == "POST" and name == "delete":
+            self._action = "DELETE"
         return self
 
     def _getTerms(self, vocabularyID):
@@ -97,31 +95,37 @@ class VocabularyJSON(BrowserView):
     def _createTerm(self):
         term = json.loads(self.payload)
         terms = self._getTerms(self.vocabularyID)
-        term.id = "%s" % len(terms) + 1
+        term["id"] = "%s" % (len(terms) + 1)
         terms.append(term)
         self.dump(self.vocabularyID, terms)
+        self._index = json.dumps(term)
 
     def _updateTerm(self):
-        term = json.loads(self.payload)
+        uterm = json.loads(self.payload)
         terms = self._getTerms(self.vocabularyID)
         for index, term in enumerate(terms):
-            if term.id == self.termID:
-                terms[index] = term
+            if term["id"] == self.termID:
+                logger.info('update term')
+                terms[index] = uterm
+        self.dump(self.vocabularyID, terms)
+        self._index = self.payload
 
     def _deleteTerm(self):
-        import pdb; pdb.set_trace()
         terms = self._getTerms(self.vocabularyID)
         for term in terms:
-            if term.id == self.termID:
+            if term["id"] == self.termID:
                 terms.remove(term)
         self.dump(self.vocabularyID, terms)
+        self._index = 'deleted'
 
     def _updatePayload(self):
         self.payload = self.request._file.read()
 
     def dump(self, vocabularyID, terms):
+        logger.info('dump %s %s' %(vocabularyID, terms))
         key = self._getVocabularyKey(vocabularyID)
         setattr(self.context, key, json.dumps(terms))
+        self.context._p_changed = 1
 
 
 VOCABULARIES = {
@@ -162,16 +166,16 @@ VOCABULARIES = {
             "description": {"fr": "", "en": "", "nl": ""}}, "terms":[]
         },
         {"name": "Keywords", "id": "keywords", "model": {
-                "word": {"fr": "", "en": "", "nl": ""}
+                "name": {"fr": "", "en": "", "nl": ""}
             }, "terms":[]
         },
         {"name": "Theme", "id": "theme", "model": {
                 "theme": {"fr": "", "en": "", "nl": "", "keywords": []}
             }, "terms":[]
         },
-        {"name": "Continent", "id": "contient", "model": {
+        {"name": "Continent", "id": "continent", "model": {
                 "id": "", "code": "",
-                "description": {"fr": "Afrique", "en": "", "nl": ""}
+                "description": {"fr": "", "en": "", "nl": ""}
             }, "terms":[]
         },
         {"name": "Organisation type", "id": "organisationtype", "model": {
@@ -179,13 +183,9 @@ VOCABULARIES = {
                 "name": {"fr": "", "en": "", "nl": ""}
             }, "terms":[]
         },
-        {"name": "relation type", "id": "relationtype", "model": {
+        {"name": "Relation type", "id": "relationtype", "model": {
                 "id": "", "code": {"fr": "", "en": "", "nl": ""},
                 "name": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
-        },
-        {"name": "Continent", "id": "contient", "model": {
-                "description": {"fr": "", "en": "", "nl": ""}
             }, "terms":[]
         }
     ]

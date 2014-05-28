@@ -1,38 +1,42 @@
 <div class="panel panel-default">
 	<div class="panel-heading" translate>Edit region</div>
 	<div class="panel-body">
-		<div class="form-horizontal">
+		<form novalidate  name="vocabularyForm" class="form-css form-horizontal">
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.en"/>
+					<input type="text" class="form-control" name="nameEn" ng-model="currentTerm.name.en" required/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.fr"/>
+					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" required/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" required/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
 				<div class="col-md-10">
-					<select class="form-control">
+					<select class="form-control" name="country" ng-model="currentTerm.country" ng-options="country.id as country.code for country in vocabularies.country" required>
 					</select>
 				</div>
 			</div>
-		</div>
+		</form>
 		<div class="form-group">
-		  <div class="pull-right">
-		    <button class="btn btn-primary" translate>Save</button>
+		  <div class="pull-right ng-hide" ng-show="currentTerm.id">
+		    <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Save</button>
+		    <button class="btn btn-default" ng-click="reset()" translate>Cancel</button>
+		    <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
+		  </div>
+		  <div class="pull-right ng-hide" ng-show="!currentTerm.id">
+		    <button class="btn btn-primary" ng-click="addTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Add</button>
 		    <button class="btn btn-default" translate>Cancel</button>
-		    <button class="btn btn-danger" translate>Delete</button>
 		  </div>
 		</div>
 	</div>
@@ -43,9 +47,9 @@
         <div class="list-group">
           <a class="list-group-item"
              ng-repeat="term in terms"
-             ng-class="{'active': currentTerm.code === term.code}"
+             ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
-              [{{term.code}}] {{t(term.name)}}</a>
+              {{t(term.name)}}</a>
         </div>
 
 	</div>

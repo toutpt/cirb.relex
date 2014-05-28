@@ -51,8 +51,10 @@
         <a href="{{'#' + crumb.path}}">{{crumb.name}}</a>
       </li>
     </ol>
-
         <div ng-if="loggedin">
+          <div class="myMessage">
+            <div ng-include="'./partials/messages.html'"></div>
+          </div>
           <div ng-view></div>
         </div>
       </div>

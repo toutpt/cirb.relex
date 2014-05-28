@@ -16,33 +16,64 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('vocabularyService', [
-    '$http', 'langService',
-    function($http, langService){
+    '$http', '$q', 'langService',
+    function($http, $q, langService){
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
-                return $http.get('/relex_web/relex_vocabulary').then(function(data){
-                    return data.data;
+                var deferred = $q.defer();
+                $http.get('/relex_web/relex_vocabulary').then(function(data){
+                    deferred.resolve(data.data);
                 });
+                return deferred.promise;
             },
             get: function(vocabulary){
-                return this.getVocabularies().then(function(vocabularies){
+                var deferred = $q.defer();
+                this.getVocabularies().then(function(vocabularies){
                     for (var i = 0; i < vocabularies.length; i++) {
                         if (vocabulary === vocabularies[i].id){
-                            return vocabularies[i];
+                            deferred.resolve(vocabularies[i]);
                         }
                     }
                 });
+                return deferred.promise;
+            },
+            getById: function(vocabulary, id){
+                var deferred = $q.defer();
+                this.get(vocabulary).then(function(vocab){
+                    for (var i = 0; i < vocab.terms.length; i++) {
+                        if (vocab.terms[i].id === id){
+                            deferred.resolve(vocab.terms[i]);
+                        }
+                    }
+                });
+                return deferred.promise;
             },
             post: function(vocabularyID, term){
-                //return $http.post()
-                return $http.post('/relex_web/relex_vocabulary/'+vocabularyID, term);
+                var deferred = $q.defer();
+                $http.post('/relex_web/relex_vocabulary/'+vocabularyID, term)
+                .then(function(data){
+                    deferred.resolve(data.data);
+                });
+                return deferred.promise;
             },
             put: function(vocabularyID, term){
-                return $http.put('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id, term);
+                var deferred = $q.defer();
+                //rest api with Plone doesn't work with publishTraverse put -> post /update
+                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
+                .then(function(data){
+                    deferred.resolve(data.data);
+                });
+                return deferred.promise;
             },
             remove: function(vocabularyID, term){
-                return $http.delete('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id, term);
+                var deferred = $q.defer();
+                //rest api with Plone doesn't work with publishTraverse delete -> post /delete
+                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/delete', term)
+                .then(function(data){
+                    deferred.resolve(data.data);
+                });
+                return deferred.promise;
             }
         };
     }
@@ -63,39 +94,77 @@ angular.module('relex.controllers').controller('VocabulariesController',[
 ]);
 
 angular.module('relex.controllers').controller('VocabularyController',[
-    '$scope', '$location', '$routeParams', 'langService', 'vocabularyService',
-    function($scope, $location, $routeParams, langService, vocabularyService){
+    '$scope', '$location', '$routeParams', 'langService', 'vocabularyService', 'messagesService',
+    function($scope, $location, $routeParams, langService, vocabularyService, messagesService){
         var VOCAB = $routeParams.vocabulary;
         $scope.template = 'vocabulary_' + VOCAB + '.html';
-        $scope.currentTerm;
+        $scope.currentTerm; $scope.originalTerm;
         $scope.t = langService.getTranslatedValue;
         $scope.terms;
-        vocabularyService.get(VOCAB).then(function(vocabulary){
 
-            $scope.terms = vocabulary.terms;
-            if ($routeParams.id !== undefined){
-                for (var i = 0; i < $scope.terms.length; i++) {
-                    if ($scope.terms[i].code === $routeParams.id){
-                        $scope.currentTerm = $scope.terms[i];
-                    }
+
+        var initializeData = function(){
+            vocabularyService.getVocabularies().then(function(vocabularies){
+                $scope.vocabularies = {};
+                for (var i = 0; i < vocabularies.length; i++) {
+                    $scope.vocabularies[vocabularies[i].id] = vocabularies[i].terms;
                 }
-            }else{
-                $scope.currentTerm = vocabulary.model;
-            }
-        });
-
-        $scope.setCurrentTerm = function(term){
-            $location.path('/vocabulary/' + VOCAB + '/' + term.code);
+            });
         };
-        $scope.saveOrAddTerm = function(){
-            if ($scope.currentTerm.id === ""){
-                vocabularyService.post(VOCAB, $scope.currentTerm);
-            }else{
-                vocabularyService.put(VOCAB, $scope.currentTerm);
-            }
+        var initializeVocabularies = function(){
+            vocabularyService.get(VOCAB).then(function(vocabulary){
+                $scope.terms = vocabulary.terms;
+                if ($routeParams.id !== undefined){
+                    var found = false;
+                    for (var i = 0; i < $scope.terms.length; i++) {
+                        if ($scope.terms[i].id === $routeParams.id){
+                            found = true
+                            $scope.currentTerm = $scope.terms[i];
+                            $scope.originalTerm = angular.copy($scope.terms[i]);
+                        }
+                    }
+                    if (!found){
+                        $scope.currentTerm = vocabulary.model;
+                        $scope.originalTerm = angular.copy(vocabulary.model);
+                    }
+                }else{
+                    $scope.currentTerm = vocabulary.model;
+                    $scope.originalTerm = angular.copy(vocabulary.model);
+                }
+            });
+        };
+        var onError = function(error){
+            messagesService.addError(error);
+        };
+        $scope.isUnchanged = function(term){
+            return angular.equals(term, $scope.originalTerm);
+        };
+        $scope.setCurrentTerm = function(term){
+            $location.path('/vocabulary/' + VOCAB + '/' + term.id);
+        };
+        $scope.addTerm = function(){
+            vocabularyService.post(VOCAB, $scope.currentTerm).then(function(data){
+                debugger;
+                messagesService.addInfo('Term added', 2000);
+                $location.path('/vocabulary/' + VOCAB + '/' + data);
+            }, onError);
+        };
+        $scope.saveTerm = function(){
+            vocabularyService.put(VOCAB, $scope.currentTerm).then(function(){
+                messagesService.addInfo('Term updated', 2000);
+                $location.path('/vocabulary/' + VOCAB);
+            }, onError);
         };
         $scope.removeTerm = function(){
-            vocabularyService.remove(VOCAB, $scope.currentTerm);
+            vocabularyService.remove(VOCAB, $scope.currentTerm).then(function(){
+                messagesService.addInfo('Term removed', 2000);
+                $location.path('/vocabulary/' + VOCAB);
+            });
         };
+        $scope.reset = function(){
+            $location.path('/vocabulary/' + VOCAB);
+        };
+        initializeData();
+        initializeVocabularies();
     }
 ]);

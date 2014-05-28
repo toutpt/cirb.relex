@@ -1,47 +1,47 @@
 <div class="panel panel-default">
 	<div class="panel-heading" translate>Edit organisation</div>
 	<div class="panel-body">
-		<div class="form-horizontal">
+		<form novalidate  name="vocabularyForm" class="form-css form-horizontal">
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.code.en"/>
+					<input type="text" class="form-control" name="codeEn" ng-model="currentTerm.code.en"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.code.fr"/>
+					<input type="text" class="form-control" name="codeFR" ng-model="currentTerm.code.fr"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.code.nl"/>
+					<input type="text" class="form-control" name="codeNL" ng-model="currentTerm.code.nl"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.en"/>
+					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.fr"/>
+					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Type'|translate}}</label>
 				<div class="col-md-10">
-					<select class="form-control">
+					<select class="form-control" name="type" ng-model="currentTerm.type" ng-options="type.id as type.code for type in vocabularies.type" required>
 					</select>
 				</div>
 			</div>
@@ -54,11 +54,16 @@
 	        <div select-multiple label="'Cells'" vocabulary="brusselsPartnersVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.brusellesPartners"></div>
 		</div>
 		<div class="form-group">
-		  <div class="pull-right">
-		    <button class="btn btn-primary" translate>Save</button>
-		    <button class="btn btn-default" translate>Cancel</button>
-		    <button class="btn btn-danger" translate>Delete</button>
+  		  <div class="pull-right ng-hide" ng-show="currentTerm.id">
+		    <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Save</button>
+		    <button class="btn btn-default" ng-click="reset()" translate>Cancel</button>
+		    <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
 		  </div>
+		  <div class="pull-right ng-hide" ng-show="!currentTerm.id">
+		    <button class="btn btn-primary" ng-click="addTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Add</button>
+		    <button class="btn btn-default" translate>Cancel</button>
+		  </div>
+
 		</div>
 	</div>
 </div>

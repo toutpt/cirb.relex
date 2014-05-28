@@ -1,35 +1,29 @@
 <div class="panel panel-default">
-	<div class="panel-heading" translate>Edit country</div>
+	<div class="panel-heading" translate>Theme</div>
 	<div class="panel-body">
-		<form novalidate  name="vocabularyForm" class="form-css form-horizontal">
+		<div class="form-horizontal">
 			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
+				<label class="col-md-2 control-label">{{'Theme'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" required/>
+					<input type="text" class="form-control" name="themeEN" ng-model="currentTerm.name.en"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
+				<label class="col-md-2 control-label">{{'Theme'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" required/>
+					<input type="text" class="form-control" name="themeFR" ng-model="currentTerm.name.fr"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
+				<label class="col-md-2 control-label">{{'Theme'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" required/>
+					<input type="text" class="form-control" name="themeNL" ng-model="currentTerm.name.nl"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Code'|translate}}</label>
+				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="code" ng-model="currentTerm.code" required/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Code continent'|translate}}</label>
-				<div class="col-md-10">
-					<select class="form-control" name="continent" ng-model="currentTerm.continent" ng-options="continent.id as continent.code for continent in vocabularies.continent" required>
+					<select class="form-control" name="country" ng-model="currentTerm.country" ng-options="country.id as country.code for country in vocabularies.country" required>
 					</select>
 				</div>
 			</div>
@@ -48,14 +42,14 @@
 	</div>
 </div>
 <div class="panel panel-default">
-	<div class="panel-heading" translate>Countries</div>
+	<div class="panel-heading" translate>Themes</div>
 	<div class="panel-body">
         <div class="list-group">
           <a class="list-group-item"
              ng-repeat="term in terms"
-             ng-class="{'active': currentTerm.id === term.id}"
+             ng-class="{'active': currentTerm.code === term.code}"
              ng-click="setCurrentTerm(term)">
-              [{{term.code}}] {{t(term.name)}}</a>
+              {{t(term.name)}}</a>
         </div>
 
 	</div>

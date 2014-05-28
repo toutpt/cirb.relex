@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: carteeco\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-05-22 16:32+0100\n"
+"PO-Revision-Date: 2014-05-28 14:26+0100\n"
 "Last-Translator: jmf <jmf@makina-corpus.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -13,9 +13,21 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+msgid "Add"
+msgstr "Ajouter"
+
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
 msgid "Add a project"
 msgstr "Ajouter un projet"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Brussels Partners"
+msgstr "Partenaires bruxellois"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Brussels partners"
@@ -23,10 +35,16 @@ msgstr "Partenaires bruxellois"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Cancel"
 msgstr "Annuler"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Cell"
+msgstr "Cellule"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
@@ -43,7 +61,9 @@ msgstr "VIlle - Pays - Région"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "Code"
 msgstr "Code"
 
@@ -51,9 +71,17 @@ msgstr "Code"
 msgid "Code continent"
 msgstr "Code continent"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+msgid "Code index"
+msgstr "Code index"
+
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Comments"
 msgstr "Commentaires"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Contact"
+msgstr "Contact"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Contacts"
@@ -62,6 +90,10 @@ msgstr "Contacts"
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
 msgid "Content"
 msgstr "Contenu"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Continent"
+msgstr "Continent"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
@@ -80,18 +112,32 @@ msgstr "Pays - Région"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Delete"
 msgstr "Supprimer"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+msgid "Description"
+msgstr "Description"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Edit city"
 msgstr "Modifier la ville"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+msgid "Edit continent"
+msgstr "Modifier le continent"
+
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
 msgid "Edit country"
 msgstr "Modifier le pays"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+msgid "Edit organisation"
+msgstr "Modifier l'organisation"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Edit region"
@@ -105,9 +151,17 @@ msgstr "Fin"
 msgid "First part"
 msgstr "Première partie"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Function"
+msgstr "Fonction"
+
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "International partners"
 msgstr "Partenaires étrangers"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Keywords"
+msgstr "Mots-clés"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/select-multiple.html
 msgid "Limit terms"
@@ -116,6 +170,7 @@ msgstr "Limiter les termes"
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Name"
 msgstr "Nom"
@@ -131,6 +186,10 @@ msgstr "Organisation"
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Organisation type"
 msgstr "Type d'organisation"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+msgid "Organisations"
+msgstr "Organisations"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabularies.html
 msgid "Please select the vocabulary you want to manage"
@@ -150,10 +209,12 @@ msgid "Region"
 msgstr "Région"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Regions"
 msgstr "Régions"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Relation type"
 msgstr "Type de relation"
@@ -168,7 +229,9 @@ msgstr "Gestion de Relex"
 
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Save"
 msgstr "Enregistrer"
@@ -189,7 +252,16 @@ msgstr "Début"
 msgid "Status"
 msgstr "Statut"
 
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+msgid "Theme"
+msgstr "Thème"
+
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+msgid "Type"
+msgstr "Type"
+
 #: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "URL"
 msgstr "URL"
 
