@@ -22,17 +22,18 @@ Contraintes:
 			</div>
 		</div>
 		<div class="col-sm-10">
-			<div class="input-group margin-bottom-sm">
+			<div class="list-group">
+			  <div class="input-group margin-bottom-sm select-header">
+                <span class="input-group-addon legend">{{legend | translate}}</span>
 				<input type="search" class="form-control" ng-model="queryTerm"/>
 				<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-			</div>
-			<div class="list-group">
-				<a class="list-group-item disabled">{{legend | translate}}</a>
-				<a class="list-group-item"
-					ng-repeat="term in vocabulary | orderBy:'_selected':1 | filter:queryTerm | limitTo:limitTo"
-					ng-class="{'list-group-item-info': isSelected(term)}"
-					ng-click="selectTerm(term)">
-				  {{displayTerm(term)}}</a>
+			  </div>
+			  <a class="list-group-item"
+				 ng-repeat="term in vocabulary | orderBy:'_selected':1 | filter:queryTerm | limitTo:limitTo"
+				 ng-class="{'list-group-item-info': isSelected(term)}"
+				 ng-click="selectTerm(term)">
+				{{displayTerm(term)}}
+              </a>
 			</div>
 		</div>
 	</div>

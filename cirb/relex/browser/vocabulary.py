@@ -93,9 +93,11 @@ class VocabularyJSON(BrowserView):
         return json.loads(getattr(self.context, key, "[]"))
 
     def _createTerm(self):
-        term = json.loads(self.payload)
         terms = self._getTerms(self.vocabularyID)
-        term["id"] = "%s" % (len(terms) + 1)
+        last_id = max([int(term['id']) for term in terms] or [0])
+        term = json.loads(self.payload)
+
+        term["id"] = u"%s" % unicode(last_id + 1)
         terms.append(term)
         self.dump(self.vocabularyID, terms)
         self._index = json.dumps(term)
@@ -140,7 +142,7 @@ VOCABULARIES = {
         },
         {"name": "City", "id": "city", "model": {
             "id": "", "code": "V1", "name": {"fr": "", "en": "", "nl": ""},
-            "country": ""}, "terms":[]
+            "country": "", "region": ""}, "terms":[]
         },
         {"name": "Cell", "id": "cell", "model":
             {

@@ -25,12 +25,20 @@
 .list-group > a.disabled {
   color: #999999;
 }
-.list-group > a.disabled:hover,
-.list-group > a.disabled:focus {
+.select-header {
+    margin-bottom: -1px;
+}
+
+.select-header .legend {
   color: #999999;
   text-decoration: none;
   background-color: transparent;
   cursor: not-allowed;
+  min-width: 65%;
+  text-align: left;
+}
+a.list-group-item {
+    cursor: pointer;
 }
 
 .form-css input.ng-invalid.ng-dirty {
