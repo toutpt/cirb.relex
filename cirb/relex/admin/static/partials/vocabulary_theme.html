@@ -20,13 +20,11 @@
 					<input type="text" class="form-control" name="themeNL" ng-model="currentTerm.name.nl"/>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
-				<div class="col-md-10">
-					<select class="form-control" name="country" ng-model="currentTerm.country" ng-options="country.id as country.code for country in vocabularies.country" required>
-					</select>
-				</div>
-			</div>
+	        <div select-multiple label="'Keywords'" vocabulary="vocabularies['keywords']"
+                 display="term.name"
+                 legend="Name"
+                 target="currentProject.keywords">
+            </div>
 		</div>
 		<div class="form-group">
 		  <div class="pull-right ng-hide" ng-show="currentTerm.id">
@@ -47,7 +45,7 @@
         <div class="list-group">
           <a class="list-group-item"
              ng-repeat="term in terms"
-             ng-class="{'active': currentTerm.code === term.code}"
+             ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
               {{t(term.name)}}</a>
         </div>

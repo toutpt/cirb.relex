@@ -460,7 +460,6 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.t = langService.getTranslatedValue;
         $scope.terms;
 
-
         var initializeData = function(){
             vocabularyService.getVocabularies().then(function(vocabularies){
                 $scope.vocabularies = {};

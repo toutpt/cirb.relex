@@ -270,7 +270,7 @@ def _import_keywords(cells, relex_web):
                 },
             }
         terms.append(term)
-    key = KEY_STORAGE + '.keyword'
+    key = KEY_STORAGE + '.keywords'
     setattr(relex_web, key, json.dumps(terms))
     print('Imported keywords.')
 
