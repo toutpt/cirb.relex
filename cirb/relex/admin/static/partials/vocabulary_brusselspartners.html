@@ -3,9 +3,9 @@
 	<div class="panel-body">
 		<form novalidate  name="vocabularyForm" class="form-css form-horizontal">
 			<div class="form-group">
-				<label class="col-md-2 control-label" translate>Name</label>
+				<label class="col-md-2 control-label" translate>Lastname</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="name" ng-model="currentTerm.name"/>
+					<input type="text" class="form-control" name="lastname" ng-model="currentTerm.lastname"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -55,14 +55,14 @@
 	</div>
 </div>
 <div class="panel panel-default">
-	<div class="panel-heading" translate>Contacts</div>
+	<div class="panel-heading" translate>Brussels Partners</div>
 	<div class="panel-body">
         <div class="list-group">
           <a class="list-group-item"
              ng-repeat="term in terms"
-             ng-class="{'active': currentTerm.code === term.code}"
+             ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
-              [{{term.name}}] {{term.firstname}}</a>
+              {{term.lastname}} {{term.firstname}} {{term.email}}</a>
         </div>
 
 	</div>

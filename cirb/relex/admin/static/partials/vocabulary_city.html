@@ -54,9 +54,9 @@
         <div class="list-group">
           <a class="list-group-item"
              ng-repeat="term in terms"
-             ng-class="{'active': currentTerm.code === term.code}"
+             ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
-              [{{term.code}}] {{t(term.name)}}</a>
+              [{{term.id}}] {{t(term.name)}}</a>
         </div>
 
 	</div>

@@ -132,63 +132,106 @@ class VocabularyJSON(BrowserView):
 
 VOCABULARIES = {
     "vocabularies":[
-        {"name": "Country", "id": "country", "model":{
-            "id": "", "code": "", "name": {"fr": "", "en": "", "nl": ""}},
-            "terms":[]
+        {"name": "Continent", "id": "continent", "model": {
+                "id": "",
+                "code": "",
+                "description": {"fr": "", "en": "", "nl": ""}
+                },
+         "terms":[]
         },
-        {"name": "Region", "id": "region", "model":{
-            "id": "", "code": "", "name": {"fr": "", "en": "", "nl": ""},
-            "country": ""}, "terms":[]
+        {"name": "Country", "id": "country", "model": {
+                "id": "",
+                "continent": "",
+                "code": "",
+                "name": {"fr": "", "en": "", "nl": ""}
+                },
+         "terms":[]
+        },
+        {"name": "Region", "id": "region", "model": {
+                "id": "",
+                "name": {"fr": "", "en": "", "nl": ""},
+                "country": ""
+                },
+         "terms":[]
         },
         {"name": "City", "id": "city", "model": {
-            "id": "", "code": "V1", "name": {"fr": "", "en": "", "nl": ""},
-            "country": "", "region": ""}, "terms":[]
+                "id": "",
+                "code": "V1",
+                "name": {"fr": "", "en": "", "nl": ""},
+                "country": "",
+                "region": ""
+                },
+         "terms":[]
         },
-        {"name": "Cell", "id": "cell", "model":
-            {
-                "id": "", "code": {"fr": "", "en": "", "nl": ""},
+
+        {"name": "Cell", "id": "cell", "model": {
+                "id": "",
+                "code": {"fr": "", "en": "", "nl": ""},
                 "description": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
+                },
+         "terms":[]
+         },
+        {"name": "Organisation type", "id": "organisationtype", "model": {
+                "id": "",
+                "code": {"fr": "", "en": "", "nl": ""},
+                "name": {"fr": "", "en": "", "nl": ""}
+                },
+         "terms":[]
         },
         {"name": "Organisation", "id": "organisation", "model": {
-                "id": "", "code": {"fr": "", "en": "", "nl": ""},
+                "id": "",
+                "organisationtype": "",
+                "url": "",
+                "cells": [],
+                "code": {"fr": "", "en": "", "nl": ""},
                 "name": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
-        },
-        {"name": "Contact", "id": "contact", "model": {
-            "name": "", "firstname": "", "phone": "", "email": "", "organisation": "", "cell": "", "fonction": ""},
-            "terms": []
-        },
-        {"name": "Brussels Partners", "id": "brusselspartners", "model": {
-            "name": "", "firstname": "", "phone": "", "email": "", "organisation": "", "cell": ""},
-            "terms": []
+                },
+         "terms":[]
         },
         {"name": "Function", "id": "function", "model": {
-            "id": "", "code": {"fr": "", "en": "", "nl": ""},
-            "description": {"fr": "", "en": "", "nl": ""}}, "terms":[]
+                "id": "",
+                "code": {"fr": "", "en": "", "nl": ""},
+                "description": {"fr": "", "en": "", "nl": ""}
+                },
+         "terms":[]
         },
+        {"name": "Contact", "id": "contact", "model": {
+                "id": "",
+                "lastname": "",
+                "firstname": "",
+                "phone": "",
+                "email": "",
+                "organisation": "",
+                "cell": "",
+                "function": ""
+                },
+         "terms": []
+        },
+
+        {"name": "Brussels Partners", "id": "brusselspartners", "model": {
+                "id": "",
+                "lastname": "",
+                "firstname": "",
+                "phone": "",
+                "email": "",
+                "organisation": "",
+                "cell": ""
+                },
+         "terms": []
+        },
+
         {"name": "Keywords", "id": "keywords", "model": {
+                "id": "",
                 "name": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
+                },
+         "terms":[]
         },
         {"name": "Theme", "id": "theme", "model": {
-                "theme": {"fr": "", "en": "", "nl": "", "keywords": []}
-            }, "terms":[]
+                "id": "",
+                "name": {"fr": "", "en": "", "nl": ""},
+                "keywords": [],
+                },
+         "terms":[]
         },
-        {"name": "Continent", "id": "continent", "model": {
-                "id": "", "code": "",
-                "description": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
-        },
-        {"name": "Organisation type", "id": "organisationtype", "model": {
-                "id": "", "code": {"fr": "", "en": "", "nl": ""},
-                "name": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
-        },
-        {"name": "Relation type", "id": "relationtype", "model": {
-                "id": "", "code": {"fr": "", "en": "", "nl": ""},
-                "name": {"fr": "", "en": "", "nl": ""}
-            }, "terms":[]
-        }
     ]
 }
