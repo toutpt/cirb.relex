@@ -23,14 +23,22 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Region'|translate}}</label>
 				<div class="col-md-10">
-					<select class="form-control" name="region" ng-model="currentTerm.region" ng-options="region.id as t(region.name) for region in vocabularies.region" required>
+					<select class="form-control"
+                            name="region"
+                            ng-model="currentTerm.region"
+                            ng-options="region.id as t(region.name) for region in vocabularies.region"
+                            required>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
 				<div class="col-md-10">
-					<select class="form-control" name="country" ng-model="currentTerm.country" ng-options="country.id as country.code for country in vocabularies.country" required>
+					<select class="form-control"
+                            name="country"
+                            ng-model="currentTerm.country"
+                            ng-options="country.id as country.code for country in vocabularies.country"
+                            required>
 					</select>
 				</div>
 			</div>
