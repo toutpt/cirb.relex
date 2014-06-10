@@ -25,7 +25,7 @@
 				<div class="col-md-10">
 					<select class="form-control"
                             name="region"
-                            ng-model="currentTerm.region"
+                            ng-model="currentTerm.region.id"
                             ng-options="region.id as t(region.name) for region in vocabularies.region"
                             required>
 					</select>
@@ -36,7 +36,7 @@
 				<div class="col-md-10">
 					<select class="form-control"
                             name="country"
-                            ng-model="currentTerm.country"
+                            ng-model="currentTerm.country.id"
                             ng-options="country.id as country.code for country in vocabularies.country"
                             required>
 					</select>

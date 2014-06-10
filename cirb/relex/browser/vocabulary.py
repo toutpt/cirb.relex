@@ -189,7 +189,7 @@ VOCABULARIES = {
                 "id": "",
                 "organisationtype": "",
                 "url": "",
-                "cells": [],
+                "cell": [],
                 "code": {"fr": "", "en": "", "nl": ""},
                 "name": {"fr": "", "en": "", "nl": ""}
             },

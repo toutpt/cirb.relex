@@ -55,10 +55,13 @@
 					<input type="text" class="form-control" ng-model="currentTerm.url"/>
 				</div>
 			</div>
-	        <div select-multiple label="'Cells'" vocabulary="cellsVocabulary"
-                 display="[term.code] term.name"
-                 legend="[Code] Name"
-                 target="currentProject.brusellesPartners"></div>
+	        <div select-multiple
+                 label="'Cells'"
+                 vocabulary="vocabularies['cell']"
+                 display="'\'[\'+ _(term.code) +\'] \'+ _(term.description)'"
+                 legend="'[Code] Name'"
+                 target="currentTerm.cell">
+            </div>
 		</div>
 		<div class="form-group">
   		  <div class="pull-right ng-hide" ng-show="currentTerm.id">

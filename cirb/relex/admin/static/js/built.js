@@ -387,12 +387,23 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('vocabularyService', [
-    '$http', '$q', 'langService',
-    function($http, $q, langService){
+    '$http', '$q', '$cacheFactory', 'langService',
+    function($http, $q, $cacheFactory, langService){
         var _ = langService.createNewTranslatedValue;
+        var cache = $cacheFactory('vocabularyService');
+
         return {
             getVocabularies: function(){
-                // TODO: cache vocabularies
+                var deferred = $q.defer();
+                var vocabularies = cache.get('vocabularies');
+
+                /* if cached */
+                if (vocabularies !== undefined) {
+                    deferred.resolve(vocabularies);
+                    return deferred.promise;
+                }
+
+                /* Get a term by its id and its vocabulary's id */
                 var getTermById = function(vocabularies, vocab_id, term_id){
                     var obj = null;
                     angular.forEach(vocabularies, function(vocabulary){
@@ -409,12 +420,21 @@ angular.module('relex.services').factory('vocabularyService', [
                     return obj;
                 };
 
+                /* Find attributes with related object and replace the ids by these objects */
                 var processTerms = function(vocabularies, ids, terms){
                     var deferred = $q.defer();
                     angular.forEach(terms, function(term){
                         angular.forEach(term, function(value, key){
                             if (ids.indexOf(key) !== -1) {
-                                term[key] = getTermById(vocabularies, key, value);
+                                if (value instanceof Array) {
+                                    var values = [];
+                                    angular.forEach(value, function(val){
+                                        values.push(getTermById(vocabularies, key, val));
+                                    });
+                                    term[key] = values;
+                                } else {
+                                    term[key] = getTermById(vocabularies, key, value);
+                                }
                             }
                         });
                     });
@@ -422,7 +442,7 @@ angular.module('relex.services').factory('vocabularyService', [
                     return deferred.promise;
                 };
 
-                var deferred = $q.defer();
+                /* Get all vocabularies from backend */
                 var promises = [];
                 $http.get('/relex_web/relex_vocabulary').then(function(data){
                     var vocabularies = data.data;
@@ -434,13 +454,21 @@ angular.module('relex.services').factory('vocabularyService', [
                     angular.forEach(vocabularies, function(vocabulary){
                         promises.push(processTerms(vocabularies, ids, vocabulary.terms));
                     });
+                    /* Resolve the promise only when all terms have been processed */
                     $q.all(promises).then(function(){
+                        cache.put('vocabularies', vocabularies);
                         deferred.resolve(vocabularies);
                     });
                 });
 
                 return deferred.promise;
             },
+
+            /* Resets the cache */
+            purge: function(){
+                cache.removeAll();
+            },
+
             get: function(vocabulary){
                 var deferred = $q.defer();
                 this.getVocabularies().then(function(vocabularies){
@@ -560,7 +588,6 @@ angular.module('relex.controllers').controller('VocabularyController',[
         };
         $scope.addTerm = function(){
             vocabularyService.post(VOCAB, $scope.currentTerm).then(function(data){
-                debugger;
                 messagesService.addInfo('Term added', 2000);
                 $location.path('/vocabulary/' + VOCAB + '/' + data);
             }, onError);

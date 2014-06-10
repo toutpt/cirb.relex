@@ -20,10 +20,12 @@
 					<input type="text" class="form-control" name="themeNL" ng-model="currentTerm.name.nl"/>
 				</div>
 			</div>
-	        <div select-multiple label="'Keywords'" vocabulary="vocabularies['keywords']"
-                 display="term.name"
-                 legend="Name"
-                 target="currentProject.keywords">
+	        <div select-multiple
+                 label="'Keywords'"
+                 vocabulary="vocabularies['keywords']"
+                 display="'_(term.name)'"
+                 legend="'Name'"
+                 target="currentTerm.keywords">
             </div>
 		</div>
 		<div class="form-group">

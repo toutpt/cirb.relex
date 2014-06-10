@@ -31,7 +31,7 @@
 				<div class="col-md-10">
 					<select class="form-control"
                             name="organisation"
-                            ng-model="currentTerm.organisation"
+                            ng-model="currentTerm.organisation.id"
                             ng-options="organisation.id as t(organisation.code) for organisation in vocabularies.organisation"
                             required>
 					</select>
@@ -42,7 +42,7 @@
 				<div class="col-md-10">
 					<select class="form-control"
                             name="cell"
-                            ng-model="currentTerm.cell"
+                            ng-model="currentTerm.cell.id"
                             ng-options="cell.id as t(cell.code) for cell in vocabularies.cell"
                             required>
 					</select>
@@ -53,7 +53,7 @@
 				<div class="col-md-10">
 					<select class="form-control"
                             name="function"
-                            ng-model="currentTerm.function"
+                            ng-model="currentTerm.function.id"
                             ng-options="function.id as t(function.code) for function in vocabularies.function"
                             required>
 					</select>
@@ -81,7 +81,7 @@
              ng-repeat="term in terms"
              ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
-              {{term.lastname}} {{term.firstname}} {{term.function}} {{term.email}}</a>
+              {{term.lastname}} {{term.firstname}} {{t(term.function.code)}} {{term.email}}</a>
         </div>
 
 	</div>

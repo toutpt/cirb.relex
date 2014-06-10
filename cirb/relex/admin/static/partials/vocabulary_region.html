@@ -23,7 +23,11 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Country'|translate}}</label>
 				<div class="col-md-10">
-					<select class="form-control" name="country" ng-model="currentTerm.country" ng-options="country.id as country.code for country in vocabularies.country" required>
+					<select class="form-control"
+                            name="country"
+                            ng-model="currentTerm.country.id"
+                            ng-options="country.id as country.code for country in vocabularies.country"
+                            required>
 					</select>
 				</div>
 			</div>

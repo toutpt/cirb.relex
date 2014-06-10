@@ -189,7 +189,7 @@ def _import_organisations(cells, cells_orgs, relex_web):
             "id": cell[0].decode('latin-1'),
             "organisationtype": cell[12].decode('latin-1'),
             "url": cell[1].decode('latin-1'),
-            "cells": cells_orgs_dict.get(cell[0], []),
+            "cell": cells_orgs_dict.get(cell[0], []),
             "code": {
                 "fr": cell[5].decode('latin-1'),
                 "en": cell[9].decode('latin-1'),
