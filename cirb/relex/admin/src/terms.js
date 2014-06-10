@@ -21,10 +21,53 @@ angular.module('relex.services').factory('vocabularyService', [
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
+                // TODO: cache vocabularies
+                var getTermById = function(vocabularies, vocab_id, term_id){
+                    var obj = null;
+                    angular.forEach(vocabularies, function(vocabulary){
+                        if (vocabulary['id'] === vocab_id) {
+                            angular.forEach(vocabulary.terms, function(term){
+                                if (term.id === term_id) {
+                                    obj = term;
+                                    return ;
+                                }
+                            });
+                            return ;
+                        }
+                    });
+                    return obj;
+                };
+
+                var processTerms = function(vocabularies, ids, terms){
+                    var deferred = $q.defer();
+                    angular.forEach(terms, function(term){
+                        angular.forEach(term, function(value, key){
+                            if (ids.indexOf(key) !== -1) {
+                                term[key] = getTermById(vocabularies, key, value);
+                            }
+                        });
+                    });
+                    deferred.resolve();
+                    return deferred.promise;
+                };
+
                 var deferred = $q.defer();
+                var promises = [];
                 $http.get('/relex_web/relex_vocabulary').then(function(data){
-                    deferred.resolve(data.data);
+                    var vocabularies = data.data;
+                    var ids = [];
+                    angular.forEach(vocabularies, function(vocabulary){
+                        ids.push(vocabulary.id);
+                    });
+
+                    angular.forEach(vocabularies, function(vocabulary){
+                        promises.push(processTerms(vocabularies, ids, vocabulary.terms));
+                    });
+                    $q.all(promises).then(function(){
+                        deferred.resolve(vocabularies);
+                    });
                 });
+
                 return deferred.promise;
             },
             get: function(vocabulary){
@@ -43,7 +86,10 @@ angular.module('relex.services').factory('vocabularyService', [
                 this.get(vocabulary).then(function(vocab){
                     for (var i = 0; i < vocab.terms.length; i++) {
                         if (vocab.terms[i].id === id){
+
                             deferred.resolve(vocab.terms[i]);
+
+
                         }
                     }
                 });

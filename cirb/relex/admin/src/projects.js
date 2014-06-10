@@ -35,24 +35,25 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.brusselsPartnersVocabulary = [];
         $scope.contactsVocabulary = [];
 
-        $scope.t = langService.getTranslatedValue;
 		//methods
         var initializeData = function(){
-            vocabularyService.getVocabularies().then(function(vocabularies){
-                for (var i = 0; i < vocabularies.length; i++) {
-                    if (vocabularies[i].id == 'city')
-                        $scope.citiesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'organisationtype')
-                        $scope.organisationTypesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'region')
-                        $scope.regionsVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'country')
-                        $scope.countriesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'brusselspartners')
-                        $scope.brusselsPartnersVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'contact')
-                        $scope.contactsVocabulary = vocabularies[i].terms;
-                }
+            vocabularyService.get('city').then(function(vocab){
+                $scope.citiesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('organisationtype').then(function(vocab){
+                $scope.organisationTypesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('region').then(function(vocab){
+                $scope.regionsVocabulary = vocab.terms;
+            });
+            vocabularyService.get('country').then(function(vocab){
+                $scope.countriesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('brusselspartners').then(function(vocab){
+                $scope.brusselsPartnersVocabulary = vocab.terms;
+            });
+            vocabularyService.get('contact').then(function(vocab){
+                $scope.contactsVocabulary = vocab.terms;
             });
         }
 
@@ -64,6 +65,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
             projectsService.postProject(project);
             $scope.projects.push(project);
 		};
+
+        $scope.t = langService.getTranslatedValue;
+        $scope.getById = vocabularyService.getById;
 
 		//initialize
         var _ = langService.createNewTranslatedValue;

@@ -71,3 +71,14 @@ a.list-group-item {
 	width: 40%;
 	top: 0;
 }
+
+.tab-pane {
+    padding-top: 20px;
+}
+
+.input-localized div {
+    margin-bottom: 10px;
+}
+.input-localized div:last-of-type {
+    margin-bottom: 0;
+}

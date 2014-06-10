@@ -2,7 +2,7 @@
 /*jshint strict: false*/
 
 angular.module('relex.directives').directive('selectMultiple',
-    ['langService', function(langService){
+    ['langService', 'vocabularyService', function(langService, vocabularyService){
         return {
             restrict: 'A',
             templateUrl: 'partials/select-multiple.html',

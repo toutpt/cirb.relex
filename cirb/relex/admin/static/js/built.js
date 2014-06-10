@@ -111,6 +111,8 @@ angular.module('relex.services').factory('langService', [
             };
         };
         service.getTranslatedValue = function(container){
+            if (container === undefined)
+                return '';
             return container[service.getCurrentLanguage()];
         };
         return service;
@@ -146,6 +148,7 @@ angular.module('relex.directives').directive('textareaLocalized',
         };
     }
 );
+
 /*global angular:false */
 /*jshint strict: false*/
 
@@ -295,24 +298,25 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.brusselsPartnersVocabulary = [];
         $scope.contactsVocabulary = [];
 
-        $scope.t = langService.getTranslatedValue;
 		//methods
         var initializeData = function(){
-            vocabularyService.getVocabularies().then(function(vocabularies){
-                for (var i = 0; i < vocabularies.length; i++) {
-                    if (vocabularies[i].id == 'city')
-                        $scope.citiesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'organisationtype')
-                        $scope.organisationTypesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'region')
-                        $scope.regionsVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'country')
-                        $scope.countriesVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'brusselspartners')
-                        $scope.brusselsPartnersVocabulary = vocabularies[i].terms;
-                    else if (vocabularies[i].id == 'contact')
-                        $scope.contactsVocabulary = vocabularies[i].terms;
-                }
+            vocabularyService.get('city').then(function(vocab){
+                $scope.citiesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('organisationtype').then(function(vocab){
+                $scope.organisationTypesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('region').then(function(vocab){
+                $scope.regionsVocabulary = vocab.terms;
+            });
+            vocabularyService.get('country').then(function(vocab){
+                $scope.countriesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('brusselspartners').then(function(vocab){
+                $scope.brusselsPartnersVocabulary = vocab.terms;
+            });
+            vocabularyService.get('contact').then(function(vocab){
+                $scope.contactsVocabulary = vocab.terms;
             });
         }
 
@@ -324,6 +328,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
             projectsService.postProject(project);
             $scope.projects.push(project);
 		};
+
+        $scope.t = langService.getTranslatedValue;
+        $scope.getById = vocabularyService.getById;
 
 		//initialize
         var _ = langService.createNewTranslatedValue;
@@ -385,10 +392,53 @@ angular.module('relex.services').factory('vocabularyService', [
         var _ = langService.createNewTranslatedValue;
         return {
             getVocabularies: function(){
+                // TODO: cache vocabularies
+                var getTermById = function(vocabularies, vocab_id, term_id){
+                    var obj = null;
+                    angular.forEach(vocabularies, function(vocabulary){
+                        if (vocabulary['id'] === vocab_id) {
+                            angular.forEach(vocabulary.terms, function(term){
+                                if (term.id === term_id) {
+                                    obj = term;
+                                    return ;
+                                }
+                            });
+                            return ;
+                        }
+                    });
+                    return obj;
+                };
+
+                var processTerms = function(vocabularies, ids, terms){
+                    var deferred = $q.defer();
+                    angular.forEach(terms, function(term){
+                        angular.forEach(term, function(value, key){
+                            if (ids.indexOf(key) !== -1) {
+                                term[key] = getTermById(vocabularies, key, value);
+                            }
+                        });
+                    });
+                    deferred.resolve();
+                    return deferred.promise;
+                };
+
                 var deferred = $q.defer();
+                var promises = [];
                 $http.get('/relex_web/relex_vocabulary').then(function(data){
-                    deferred.resolve(data.data);
+                    var vocabularies = data.data;
+                    var ids = [];
+                    angular.forEach(vocabularies, function(vocabulary){
+                        ids.push(vocabulary.id);
+                    });
+
+                    angular.forEach(vocabularies, function(vocabulary){
+                        promises.push(processTerms(vocabularies, ids, vocabulary.terms));
+                    });
+                    $q.all(promises).then(function(){
+                        deferred.resolve(vocabularies);
+                    });
                 });
+
                 return deferred.promise;
             },
             get: function(vocabulary){
@@ -407,7 +457,10 @@ angular.module('relex.services').factory('vocabularyService', [
                 this.get(vocabulary).then(function(vocab){
                     for (var i = 0; i < vocab.terms.length; i++) {
                         if (vocab.terms[i].id === id){
+
                             deferred.resolve(vocab.terms[i]);
+
+
                         }
                     }
                 });
@@ -531,11 +584,12 @@ angular.module('relex.controllers').controller('VocabularyController',[
         initializeVocabularies();
     }
 ]);
+
 /*global angular:false */
 /*jshint strict: false*/
 
 angular.module('relex.directives').directive('selectMultiple',
-    ['langService', function(langService){
+    ['langService', 'vocabularyService', function(langService, vocabularyService){
         return {
             restrict: 'A',
             templateUrl: 'partials/select-multiple.html',

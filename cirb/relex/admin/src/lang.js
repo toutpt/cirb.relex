@@ -53,6 +53,8 @@ angular.module('relex.services').factory('langService', [
             };
         };
         service.getTranslatedValue = function(container){
+            if (container === undefined)
+                return '';
             return container[service.getCurrentLanguage()];
         };
         return service;

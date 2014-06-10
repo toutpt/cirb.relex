@@ -71,7 +71,7 @@
         <div select-multiple
              label="'Brussels partners'"
              vocabulary="brusselsPartnersVocabulary"
-             display="'term.lastname + \' - \' + term.firstname + \' - \' + term.organisation + \' - \' + term.cell'"
+             display="'term.lastname + \' - \' + term.firstname + \' - \' + _(term.organisation.code) + \' - \' + _(term.cell.code)'"
              legend="'Name - Firstname - organisation - cell'"
              target="currentProject.brusellesPartners"></div>
       </div>
@@ -88,12 +88,12 @@
         <div select-multiple
              label="'Regions'"
              vocabulary="regionsVocabulary"
-             display="'term.country + \' - \' + _(term.name)'"
+             display="'_(term.country.name) + \' - \' + _(term.name)'"
              legend="'Country - Region'" target="currentProject.regions"></div>
         <div select-multiple
              label="'Cities'"
              vocabulary="citiesVocabulary"
-             display="'_(term.name) + \' - \' + term.country + \' - \' + term.region'"
+             display="'_(term.name) + \' - \' + _(term.country.name) + \' - \' + _(term.region.name)'"
              legend="'City - Country - Region'" target="currentProject.cities"></div>
       </div>
     </div>
@@ -103,7 +103,7 @@
         <div select-multiple
              label="'Contacts'"
              vocabulary="contactsVocabulary"
-             display="'term.lastname + \' - \' + term.firstname + \' - \' + term.organisation + \' - \' + term.cell'"
+             display="'term.lastname + \' - \' + term.firstname + \' - \' + _(term.organisation.code) + \' - \' + _(term.cell.code)'"
              legend="'Name - Firstname - organisation - cell'"
              target="currentProject.contacts"></div>
       </div>
