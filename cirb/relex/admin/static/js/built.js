@@ -282,16 +282,40 @@ angular.module('relex.services').factory('projectsService', [
 ]);
 angular.module('relex.controllers').controller('ProjectsController', [
 	'$scope', '$location', '$routeParams', 'langService', 'projectsService',
-	function($scope, $location, $routeParams, langService, projectsService){
+    'vocabularyService',
+	function($scope, $location, $routeParams, langService, projectsService,
+            vocabularyService){
 		//model
 		$scope.projects = [];
 		$scope.currentProject;
+        $scope.organisationTypesVocabulary = [];
         $scope.citiesVocabulary = [];
         $scope.regionsVocabulary = [];
         $scope.countriesVocabulary = [];
         $scope.brusselsPartnersVocabulary = [];
         $scope.contactsVocabulary = [];
+
+        $scope.t = langService.getTranslatedValue;
 		//methods
+        var initializeData = function(){
+            vocabularyService.getVocabularies().then(function(vocabularies){
+                for (var i = 0; i < vocabularies.length; i++) {
+                    if (vocabularies[i].id == 'city')
+                        $scope.citiesVocabulary = vocabularies[i].terms;
+                    else if (vocabularies[i].id == 'organisationtype')
+                        $scope.organisationTypesVocabulary = vocabularies[i].terms;
+                    else if (vocabularies[i].id == 'region')
+                        $scope.regionsVocabulary = vocabularies[i].terms;
+                    else if (vocabularies[i].id == 'country')
+                        $scope.countriesVocabulary = vocabularies[i].terms;
+                    else if (vocabularies[i].id == 'brusselspartners')
+                        $scope.brusselsPartnersVocabulary = vocabularies[i].terms;
+                    else if (vocabularies[i].id == 'contact')
+                        $scope.contactsVocabulary = vocabularies[i].terms;
+                }
+            });
+        }
+
 		$scope.setCurrentProject = function(project){
 			$location.path('project/'+project.code); //this reload the controller
 		};
@@ -303,26 +327,6 @@ angular.module('relex.controllers').controller('ProjectsController', [
 
 		//initialize
         var _ = langService.createNewTranslatedValue;
-        $scope.citiesVocabulary.push({id: '0', city: _('AALBORG'), country: _('DANEMARK'), region: _('NORDJYLLAND')});
-        $scope.citiesVocabulary.push({id: '1', city: _('ABERDEEN'), country: _('ROYAUME-UNI'), region: _('ECOSSE')});
-        $scope.citiesVocabulary.push({id: '2', city: _('ABIDJAN'), country: _("COTE D'IVOIRE"), region: _('')});
-        $scope.citiesVocabulary.push({id: '3', city: _('ABU DHABI'), country: _('EMIRATS ARABES UNIS'), region: _('')});
-
-        $scope.regionsVocabulary.push({id: '0', country: _('DANEMARK'), region: _('NORDJYLLAND')});
-        $scope.regionsVocabulary.push({id: '1', country: _('ROYAUME-UNI'), region: _('ECOSSE')});
-        $scope.regionsVocabulary.push({id: '2', country: _("COTE D'IVOIRE"), region: _('')});
-        $scope.regionsVocabulary.push({id: '3', country: _('EMIRATS ARABES UNIS'), region: _('')});
-
-        $scope.countriesVocabulary.push({id: '0', country: _('DANEMARK')});
-        $scope.countriesVocabulary.push({id: '1', country: _('ROYAUME-UNI')});
-        $scope.countriesVocabulary.push({id: '2', country: _("COTE D'IVOIRE")});
-        $scope.countriesVocabulary.push({id: '3', country: _('EMIRATS ARABES UNIS')});
-
-        $scope.brusselsPartnersVocabulary.push({id: '0', name: 'BERREWAERTS', firstname: 'MARIE CHRISTINE', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo')});
-        $scope.brusselsPartnersVocabulary.push({id: '1', name: 'CERZER', firstname: 'AFFQSDQSD', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo')});
-
-        $scope.contactsVocabulary.push({id: '0', name: 'BERREWAERTS', firstname: 'MARIE CHRISTINE', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo'), fct: _('INGENIEUR')});
-        $scope.contactsVocabulary.push({id: '1', name: 'CERZER', firstname: 'AFFQSDQSD', tel: '++32(0)2 75 75 11', email: 'toto@toto.com', organisation: _('titi'), cell: _('foo'), fct: _('ECHEVIN')});
 
 		$scope.projects.push(
             {
@@ -353,8 +357,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
 				}
 			}
 		}
+        initializeData();
 	}
 ]);
+
 
 /*global angular:false */
 /*jshint strict: false*/

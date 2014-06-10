@@ -132,70 +132,79 @@ class VocabularyJSON(BrowserView):
 
 VOCABULARIES = {
     "vocabularies":[
-        {"name": "Continent", "id": "continent", "model": {
+        {
+            "name": "Continent", "id": "continent", "model": {
                 "id": "",
                 "code": "",
                 "description": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Country", "id": "country", "model": {
+        {
+            "name": "Country", "id": "country", "model": {
                 "id": "",
                 "continent": "",
                 "code": "",
                 "name": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Region", "id": "region", "model": {
+        {
+            "name": "Region", "id": "region", "model": {
                 "id": "",
                 "name": {"fr": "", "en": "", "nl": ""},
                 "country": ""
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "City", "id": "city", "model": {
+        {
+            "name": "City", "id": "city", "model": {
                 "id": "",
                 "code": "V1",
                 "name": {"fr": "", "en": "", "nl": ""},
                 "country": "",
                 "region": ""
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
 
-        {"name": "Cell", "id": "cell", "model": {
+        {
+            "name": "Cell", "id": "cell", "model": {
                 "id": "",
                 "code": {"fr": "", "en": "", "nl": ""},
                 "description": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
-         },
-        {"name": "Organisation type", "id": "organisationtype", "model": {
+            },
+            "terms":[]
+        },
+        {
+            "name": "Organisation type", "id": "organisationtype", "model": {
                 "id": "",
                 "code": {"fr": "", "en": "", "nl": ""},
                 "name": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Organisation", "id": "organisation", "model": {
+        {
+            "name": "Organisation", "id": "organisation", "model": {
                 "id": "",
                 "organisationtype": "",
                 "url": "",
                 "cells": [],
                 "code": {"fr": "", "en": "", "nl": ""},
                 "name": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Function", "id": "function", "model": {
+        {
+            "name": "Function", "id": "function", "model": {
                 "id": "",
                 "code": {"fr": "", "en": "", "nl": ""},
                 "description": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Contact", "id": "contact", "model": {
+        {
+            "name": "Contact", "id": "contact", "model": {
                 "id": "",
                 "lastname": "",
                 "firstname": "",
@@ -204,11 +213,12 @@ VOCABULARIES = {
                 "organisation": "",
                 "cell": "",
                 "function": ""
-                },
-         "terms": []
+            },
+            "terms": []
         },
 
-        {"name": "Brussels Partners", "id": "brusselspartners", "model": {
+        {
+            "name": "Brussels Partners", "id": "brusselspartners", "model": {
                 "id": "",
                 "lastname": "",
                 "firstname": "",
@@ -216,22 +226,24 @@ VOCABULARIES = {
                 "email": "",
                 "organisation": "",
                 "cell": ""
-                },
-         "terms": []
+            },
+            "terms": []
         },
 
-        {"name": "Keywords", "id": "keywords", "model": {
+        {
+            "name": "Keywords", "id": "keywords", "model": {
                 "id": "",
                 "name": {"fr": "", "en": "", "nl": ""}
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
-        {"name": "Theme", "id": "theme", "model": {
+        {
+            "name": "Theme", "id": "theme", "model": {
                 "id": "",
                 "name": {"fr": "", "en": "", "nl": ""},
                 "keywords": [],
-                },
-         "terms":[]
+            },
+            "terms":[]
         },
     ]
 }

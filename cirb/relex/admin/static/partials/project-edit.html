@@ -30,21 +30,26 @@
         <label class="col-sm-2 control-label" translate>Status</label>
         <div class="col-sm-10">
           <select class="form-control">
-            
+            <option value="active" translate>Active</option>
+            <option value="inactive" translate>Inactive</option>
+            <option value="archive" translate>Archive</option>
           </select>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-2 control-label" translate>Relation type</label>
         <div class="col-sm-4">
-          <select class="form-control">
-            
+          <select class="form-control" name="relationtype">
+            <option value="bilateral" translate>Bilateral</option>
+            <option value="multilateral" translate>Multilateral</option>
           </select>
         </div>
         <label class="col-sm-2 control-label" translate>Organisation type</label>
         <div class="col-sm-4">
-          <select class="form-control">
-            
+          <select class="form-control"
+                  name="organisationtype"
+                  ng-model="currentProject.organisationtype"
+                  ng-options="type.id as t(type.name) for type in organisationTypesVocabulary">
           </select>
         </div>
       </div>
@@ -63,21 +68,44 @@
     <div class="panel panel-default">
       <div class="panel-heading" translate>Brussels partners</div>
       <div class="panel-body">
-        <div select-multiple label="'Brussels partners'" vocabulary="brusselsPartnersVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.brusellesPartners"></div>
+        <div select-multiple
+             label="'Brussels partners'"
+             vocabulary="brusselsPartnersVocabulary"
+             display="'term.lastname + \' - \' + term.firstname + \' - \' + term.organisation + \' - \' + term.cell'"
+             legend="'Name - Firstname - organisation - cell'"
+             target="currentProject.brusellesPartners"></div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading" translate>International partners</div>
       <div class="panel-body">
-        <div select-multiple label="'Countries'" vocabulary="countriesVocabulary" display="'_(term.country)'" legend="'Country'" target="currentProject.countries"></div>
-        <div select-multiple label="'Regions'" vocabulary="regionsVocabulary" display="'_(term.country) + \' - \' + _(term.region)'" legend="'Country - Region'" target="currentProject.regions"></div>
-        <div select-multiple label="'Cities'" vocabulary="citiesVocabulary" display="'_(term.city) + \' - \' + _(term.country) + \' - \' + _(term.region)'" legend="'City - Country - Region'" target="currentProject.cities"></div>
+        <div select-multiple
+             label="'Countries'"
+             vocabulary="countriesVocabulary"
+             display="'_(term.name)'"
+             legend="'Country'"
+             target="currentProject.countries"></div>
+        <div select-multiple
+             label="'Regions'"
+             vocabulary="regionsVocabulary"
+             display="'term.country + \' - \' + _(term.name)'"
+             legend="'Country - Region'" target="currentProject.regions"></div>
+        <div select-multiple
+             label="'Cities'"
+             vocabulary="citiesVocabulary"
+             display="'_(term.name) + \' - \' + term.country + \' - \' + term.region'"
+             legend="'City - Country - Region'" target="currentProject.cities"></div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading" translate>Contacts</div>
       <div class="panel-body">
-        <div select-multiple label="'Contacts'" vocabulary="contactsVocabulary" display="'term.name + \' - \' + term.firstname + \' - \' + _(term.organisation) + \' - \' + _(term.cell)'" legend="'Name - Firstname - organisation - cell'" target="currentProject.contacts"></div>
+        <div select-multiple
+             label="'Contacts'"
+             vocabulary="contactsVocabulary"
+             display="'term.lastname + \' - \' + term.firstname + \' - \' + term.organisation + \' - \' + term.cell'"
+             legend="'Name - Firstname - organisation - cell'"
+             target="currentProject.contacts"></div>
       </div>
     </div>
   </tab>
