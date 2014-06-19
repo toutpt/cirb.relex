@@ -7,11 +7,17 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="cirb.relex">
+  <five:registerPackage package="." initialize=".initialize" />
 
   <includeDependencies package="." />
   <include package=".browser" />
 
   <i18n:registerTranslations directory="locales" />
+
+  <permission
+      id="cirb.relex.addProject"
+      title="cirb.relex: Add Project"
+      />
 
   <genericsetup:registerProfile
       name="default"
