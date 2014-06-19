@@ -94,7 +94,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
 
         atapi.TextField(
             'content_fr',
-            widget=atapi.RichWidget(
+            widget=atapi.TextAreaWidget(
                 label="Content FR",
                 i18n_domain="cirb.relex",
             ),
@@ -102,7 +102,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
 
         atapi.TextField(
             'content_en',
-            widget=atapi.RichWidget(
+            widget=atapi.TextAreaWidget(
                 label="Content EN",
                 i18n_domain="cirb.relex",
             ),
@@ -110,7 +110,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
 
         atapi.TextField(
             'content_nl',
-            widget=atapi.RichWidget(
+            widget=atapi.TextAreaWidget(
                 label="Content NL",
                 i18n_domain="cirb.relex",
             ),
