@@ -13,7 +13,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'code',
             widget=atapi.StringWidget(
-                label='Code',
+                label=u'Code',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -21,7 +21,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'name_fr',
             widget=atapi.StringWidget(
-                label='Name FR',
+                label=u'Name FR',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -29,7 +29,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'name_en',
             widget=atapi.StringWidget(
-                label='Name EN',
+                label=u'Name EN',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -37,7 +37,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'name_nl',
             widget=atapi.StringWidget(
-                label='Name NL',
+                label=u'Name NL',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -45,7 +45,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.DateTimeField(
             'start',
             widget=atapi.CalendarWidget(
-                label='Start',
+                label=u'Start',
                 show_hm=False,
                 i18n_domain='cirb.relex',
             ),
@@ -54,7 +54,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.DateTimeField(
             'end',
             widget=atapi.CalendarWidget(
-                label='End',
+                label=u'End',
                 show_hm=False,
                 i18n_domain='cirb.relex',
             ),
@@ -63,7 +63,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'url',
             widget=atapi.StringWidget(
-                label='URL',
+                label=u'URL',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -71,7 +71,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'status',
             widget=atapi.StringWidget(
-                label='Status',
+                label=u'Status',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -79,7 +79,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'relationtype',
             widget=atapi.StringWidget(
-                label='Relation type',
+                label=u'Relation type',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -87,7 +87,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.StringField(
             'organisationtype',
             widget=atapi.StringWidget(
-                label='Organisation type',
+                label=u'Organisation type',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -95,7 +95,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.TextField(
             'content_fr',
             widget=atapi.TextAreaWidget(
-                label="Content FR",
+                label=u"Content FR",
                 i18n_domain="cirb.relex",
             ),
         ),
@@ -103,7 +103,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.TextField(
             'content_en',
             widget=atapi.TextAreaWidget(
-                label="Content EN",
+                label=u"Content EN",
                 i18n_domain="cirb.relex",
             ),
         ),
@@ -111,7 +111,47 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         atapi.TextField(
             'content_nl',
             widget=atapi.TextAreaWidget(
-                label="Content NL",
+                label=u"Content NL",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'brusselspartners',
+            widget=atapi.LinesWidget(
+                label=u"Brussels partners",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'countries',
+            widget=atapi.LinesWidget(
+                label=u"Countries",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'regions',
+            widget=atapi.LinesWidget(
+                label=u"Regions",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'cities',
+            widget=atapi.LinesWidget(
+                label=u"Cities",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'contacts',
+            widget=atapi.LinesWidget(
+                label=u"Contacts",
                 i18n_domain="cirb.relex",
             ),
         ),
