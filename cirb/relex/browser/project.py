@@ -71,10 +71,14 @@ class ProjectJSON(BrowserView):
             self._createProject()
 
         if self._action == 'PUT':
+            if self.project is None:
+                raise ValueError("No project provided")
             self._updatePayload()
             self._updateProject()
 
         if self._action == 'DELETE':
+            if self.project is None:
+                raise ValueError("No project provided")
             self._deleteProject()
 
     def index(self):
@@ -126,11 +130,12 @@ class ProjectJSON(BrowserView):
 
     def _createProject(self):
         """ Return newly created project, see _getProject. """
-        code = self.payload['code']
+        code = json.loads(self.payload)['code']
         chooser = INameChooser(self.context)
         project_id = chooser.chooseName(code, self.context)
-        project = self.context.invokeFactory("Project", project_id)
-        project.code = code
+        self.context.invokeFactory("Project", project_id)
+        project = self.context[project_id]
+        project.setFromJSON(self.payload)
         project.setTitleFromData()
         self._index = project.getJSON()
 

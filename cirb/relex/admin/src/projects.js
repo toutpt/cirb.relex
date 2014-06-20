@@ -12,10 +12,23 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('projectsService', [
-	'$http', function($http){
+	'$http', '$q', function($http, $q){
         return {
-			postProject: function(project){
-				//return $http.post()
+            getProjects: function(){
+                var deferred = $q.defer();
+                $http.get('/relex_web/relex_project').then(function(data){
+                    var projects = data.data;
+                    deferred.resolve(projects);
+                });
+                return deferred.promise;
+            },
+			createProject: function(project){
+                var deferred = $q.defer();
+                $http.post('/relex_web/relex_project', project).then(function(data){
+                    var project = data.data;
+                    deferred.resolve(project);
+                });
+                return deferred.promise;
 			}
 		};
 	}
@@ -37,6 +50,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
 
 		//methods
         var initializeData = function(){
+            projectsService.getProjects().then(function(projects){
+                $scope.projects = projects;
+            });
+
             vocabularyService.get('city').then(function(vocab){
                 $scope.citiesVocabulary = vocab.terms;
             });
@@ -58,12 +75,13 @@ angular.module('relex.controllers').controller('ProjectsController', [
         }
 
 		$scope.setCurrentProject = function(project){
-			$location.path('project/'+project.code); //this reload the controller
+			$location.path('project/'+project.id); //this reload the controller
 		};
 		$scope.addNewProject = function(code){
-            var project = {code:code};
-            projectsService.postProject(project);
-            $scope.projects.push(project);
+            var project = {code: code};
+            projectsService.createProject(project).then(function(project){
+                $scope.projects.push(project);
+            });
 		};
 
         $scope.t = langService.getTranslatedValue;
@@ -72,31 +90,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		//initialize
         var _ = langService.createNewTranslatedValue;
 
-		$scope.projects.push(
-            {
-                code: 'SUM',
-                name: _(),
-                content: _(),
-                cities: [],
-                regions: [],
-                countries: [],
-                brusellesPartners: [],
-                contacts: []
-            },
-            {
-                code: 'TEST',
-                name: _(),
-                content: _(),
-                cities: [],
-                regions: [],
-                countries: [],
-                brusellesPartners: [],
-                contacts: []
-            }
-		);
 		if ($routeParams.id !== undefined){
 			for (var i = 0; i < $scope.projects.length; i++) {
-				if ($scope.projects[i].code === $routeParams.id){
+				if ($scope.projects[i].id === $routeParams.id){
 					$scope.currentProject = $scope.projects[i];
 				}
 			}

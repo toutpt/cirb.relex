@@ -183,22 +183,24 @@ class Project(atct.ATCTContent):
     security.declarePublic("setTitleFromData")
 
     def setTitleFromData(self):
-        return u"{code}".format(code=self.code)
+        self.setTitle(u"{code}".format(code=self.code))
+        self.reindexObject(idxs=["Title"])
 
     security.declarePublic("getJSON")
 
     def getJSON(self):
         project_json = {}
         project_json['id'] = self.id
+        project_json['code'] = self.code
         project_json['name'] = {
             'fr': self.name_fr,
             'en': self.name_en,
             'nl': self.name_nl,
         }
         project_json['content'] = {
-            'fr': self.content_fr,
-            'en': self.content_en,
-            'nl': self.content_nl,
+            'fr': self.content_fr.raw,
+            'en': self.content_en.raw,
+            'nl': self.content_nl.raw,
         }
         project_json['start'] = self.start
         project_json['end'] = self.end
@@ -206,13 +208,18 @@ class Project(atct.ATCTContent):
         project_json['status'] = self.status
         project_json['relationtype'] = self.relationtype
         project_json['organisationtype'] = self.organisationtype
-        project_json['comments'] = self.comments
+        project_json['comments'] = self.comments.raw
         project_json['brusselspartners'] = self.brusselspartners
-        project_json['country'] = self.country
-        project_json['region'] = self.region
-        project_json['city'] = self.city
-        project_json['contact'] = self.contact
+        project_json['country'] = self.countries
+        project_json['region'] = self.regions
+        project_json['city'] = self.cities
+        project_json['contact'] = self.contacts
         return json.dumps(project_json)
 
+    security.declarePublic("setFromJSON")
+
+    def setFromJSON(self, project_json):
+        project_json = json.loads(project_json)
+        self.code = project_json.get('code', '')
 
 atapi.registerType(Project, 'cirb.relex')

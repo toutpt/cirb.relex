@@ -8,25 +8,27 @@
     </div>
   </div>
   <div class="col-md-8">
-    <div class="panel panel-default" ng-show="projects">
+    <div class="panel panel-default">
       <div class="panel-heading" translate>Projects</div>
       <div class="panel-body">
         <div class="input-group margin-bottom-sm">
           <input type="search" class="form-control" ng-model="queryProject"/>
           <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
         </div>
+        <div ng-show="!projects.length" translate>No projects</div>
         <div class="list-group">
-          <a class="list-group-item" title="{{project.name}}"
+          <a class="list-group-item" title="t({{project.name}})"
              ng-repeat="project in projects | filter:queryProject"
              ng-class="{'active': currentProject.code === project.code}"
              ng-click="setCurrentProject(project)">
-              {{project.code}}</a>
+              {{project.title}}
+          </a>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default" ng-show="projects">
+    <div class="panel panel-default">
       <div class="panel-heading" translate>Add a project</div>
       <div class="panel-body">
         <div class="form-group">
