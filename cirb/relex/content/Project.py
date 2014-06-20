@@ -1,3 +1,5 @@
+import json
+
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
@@ -116,6 +118,14 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             ),
         ),
 
+        atapi.TextField(
+            'comments',
+            widget=atapi.TextAreaWidget(
+                label=u"Comments",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
         atapi.LinesField(
             'brusselspartners',
             widget=atapi.LinesWidget(
@@ -168,7 +178,41 @@ class Project(atct.ATCTContent):
     implements(IProject)
 
     schema = ProjectSchema
-
     security = ClassSecurityInfo()
+
+    security.declarePublic("setTitleFromData")
+
+    def setTitleFromData(self):
+        return u"{code}".format(code=self.code)
+
+    security.declarePublic("getJSON")
+
+    def getJSON(self):
+        project_json = {}
+        project_json['id'] = self.id
+        project_json['name'] = {
+            'fr': self.name_fr,
+            'en': self.name_en,
+            'nl': self.name_nl,
+        }
+        project_json['content'] = {
+            'fr': self.content_fr,
+            'en': self.content_en,
+            'nl': self.content_nl,
+        }
+        project_json['start'] = self.start
+        project_json['end'] = self.end
+        project_json['url'] = self.url
+        project_json['status'] = self.status
+        project_json['relationtype'] = self.relationtype
+        project_json['organisationtype'] = self.organisationtype
+        project_json['comments'] = self.comments
+        project_json['brusselspartners'] = self.brusselspartners
+        project_json['country'] = self.country
+        project_json['region'] = self.region
+        project_json['city'] = self.city
+        project_json['contact'] = self.contact
+        return json.dumps(project_json)
+
 
 atapi.registerType(Project, 'cirb.relex')

@@ -12,6 +12,14 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="cirb.relex.interfaces.IRelexBackend"
+      name="relex_project"
+      class=".project.ProjectJSON"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
+
   <!-- EXAMPLE:
   <browser:viewlet
       name="cirb.someviewlet"
