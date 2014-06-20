@@ -312,9 +312,20 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.contactsVocabulary = [];
 
 		//methods
+        var checkCurrentProject = function(){
+		    if ($routeParams.id !== undefined){
+			    for (var i = 0; i < $scope.projects.length; i++) {
+				    if ($scope.projects[i].id === $routeParams.id){
+					    $scope.currentProject = $scope.projects[i];
+				    }
+			    }
+		    }
+        }
+
         var initializeData = function(){
             projectsService.getProjects().then(function(projects){
                 $scope.projects = projects;
+                checkCurrentProject()
             });
 
             vocabularyService.get('city').then(function(vocab){
@@ -338,7 +349,7 @@ angular.module('relex.controllers').controller('ProjectsController', [
         }
 
 		$scope.setCurrentProject = function(project){
-			$location.path('project/'+project.id); //this reload the controller
+			$location.path('project/' + project.id);  // This reload the controller
 		};
 		$scope.addNewProject = function(code){
             var project = {code: code};
@@ -347,19 +358,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
             });
 		};
 
+		//initialize
         $scope.t = langService.getTranslatedValue;
         $scope.getById = vocabularyService.getById;
-
-		//initialize
         var _ = langService.createNewTranslatedValue;
-
-		if ($routeParams.id !== undefined){
-			for (var i = 0; i < $scope.projects.length; i++) {
-				if ($scope.projects[i].id === $routeParams.id){
-					$scope.currentProject = $scope.projects[i];
-				}
-			}
-		}
         initializeData();
 	}
 ]);
