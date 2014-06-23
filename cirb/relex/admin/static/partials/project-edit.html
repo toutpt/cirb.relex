@@ -82,19 +82,19 @@
         <div select-multiple
              label="'Countries'"
              vocabulary="countriesVocabulary"
-             display="'_(term.name)'"
-             legend="'Country'"
+             display="'\'[\' + term.code + \'] \' + _(term.name)'"
+             legend="'[Code] Country'"
              target="currentProject.country"></div>
         <div select-multiple
              label="'Regions'"
              vocabulary="regionsVocabulary"
-             display="'_(term.country.name) + \' - \' + _(term.name)'"
-             legend="'Country - Region'" target="currentProject.region"></div>
+             display="'_(term.name) + \' - \' + _(term.country.name)'"
+             legend="'Region - Country'" target="currentProject.region"></div>
         <div select-multiple
              label="'Cities'"
              vocabulary="citiesVocabulary"
-             display="'_(term.name) + \' - \' + _(term.country.name) + \' - \' + _(term.region.name)'"
-             legend="'City - Country - Region'" target="currentProject.city"></div>
+             display="'_(term.name) + \' - \' + _(term.region.name) + \' - \' + _(term.country.name)'"
+             legend="'City - Region - Country'" target="currentProject.city"></div>
       </div>
     </div>
     <div class="panel panel-default">

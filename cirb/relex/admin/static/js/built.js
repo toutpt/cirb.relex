@@ -702,10 +702,13 @@ angular.module('relex.directives').directive('selectMultiple',
                     var selected = '1';
                     if (scope.isSelected(term))
                         selected = '0';
-                    if (term.hasOwnProperty('code'))
+                    // Country has a code attribute which is a String
+                    if (term.hasOwnProperty('code') && term.code instanceof Object)
                         return selected + scope._(term.code);
                     if (term.hasOwnProperty('name'))
                         return selected + scope._(term.name)
+                    if (term.hasOwnProperty('lastname'))
+                        return selected + term.lastname
                     if (term.hasOwnProperty('id'))
                         return selected + scope._(term.id)
                     return selected
