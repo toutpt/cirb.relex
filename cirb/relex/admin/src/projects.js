@@ -77,8 +77,6 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.contactsVocabulary = [];
 
 		//methods
-        var _ = langService.createNewTranslatedValue;
-
         var checkCurrentProject = function(){
 		    if ($routeParams.id !== undefined){
                 projectsService.getProject($routeParams.id).then(function(project){
@@ -124,9 +122,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		};
 		$scope.saveCurrentProject = function(){
             projectsService.updateProject($scope.currentProject).then(function(){
-                messagesService.addInfo(_("Project updated succesfully"), 3000);
+                messagesService.addInfo("Project updated succesfully", 3000);
             }, function(){
-                messagesService.addError(_("Error while updating the project"));
+                messagesService.addError("Error while updating the project");
             });
         };
 		$scope.cancelCurrentProject = function(){
@@ -134,10 +132,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		};
 		$scope.deleteCurrentProject = function(){
             projectsService.deleteProject($scope.currentProject).then(function(){
-                messagesService.addInfo(_("Project deleted succesfully"), 3000);
+                messagesService.addInfo("Project deleted succesfully", 3000);
                 $location.path('project');
             }, function(){
-                messagesService.addError(_("Error while deleting the project"));
+                messagesService.addError("Error while deleting the project");
             });
         };
 

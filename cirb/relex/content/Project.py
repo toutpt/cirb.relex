@@ -203,11 +203,11 @@ class Project(atct.ATCTContent):
             'nl': self.content_nl.getRaw(),
         }
         if self.start is not None:
-            project_json['start'] = self.start.strftime('%m/%d/%Y')
+            project_json['start'] = self.start.strftime('%Y-%m-%d')
         else:
             project_json['start'] = None
         if self.end is not None:
-            project_json['end'] = self.end.strftime('%m/%d/%Y')
+            project_json['end'] = self.end.strftime('%Y-%m-%d')
         else:
             project_json['end'] = None
         project_json['url'] = self.url

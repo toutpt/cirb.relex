@@ -16,19 +16,19 @@ Contraintes:
 			<label>{{label | translate}}</label>
 			<div class="radio">
 				<label>
-					<input type="radio" name="limitTo" value="5" ng-model="limitTo" checked />
+					<input type="radio" ng-name="limitTo-{{label}}" value="5" ng-model="limitTo" checked />
 					<span class="help-block">5</span>
 				</label>
 				<label>
-					<input type="radio" name="limitTo" value="10" ng-model="limitTo" />
+					<input type="radio" ng-name="limitTo-{{label}}" value="10" ng-model="limitTo" />
 					<span class="help-block">10</span>
 				</label>
 				<label>
-					<input type="radio" name="limitTo" value="20" ng-model="limitTo" />
+					<input type="radio" ng-name="limitTo-{{label}}" value="20" ng-model="limitTo" />
 					<span class="help-block">20</span>
 				</label>
 				<label>
-					<input type="radio" name="limitTo" value="-1" ng-model="limitTo" />
+					<input type="radio" ng-name="limitTo-{{label}}" value="-1" ng-model="limitTo" />
 					<span class="help-block" translate>All</span>
 				</label>
 			</div>
