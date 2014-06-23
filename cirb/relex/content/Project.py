@@ -191,6 +191,7 @@ class Project(atct.ATCTContent):
     def getJSON(self):
         project_json = {}
         project_json['id'] = self.id
+        project_json['title'] = self.Title()
         project_json['code'] = self.code
         project_json['name'] = {
             'fr': self.name_fr,

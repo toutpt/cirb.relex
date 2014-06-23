@@ -117,7 +117,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		$scope.addNewProject = function(code){
             var project = {code: code};
             projectsService.createProject(project).then(function(project){
+                messagesService.addInfo("Project created succesfully", 3000);
                 $scope.projects.push(project);
+            }, function(){
+                messagesService.addError("Error while creating the project");
             });
 		};
 		$scope.saveCurrentProject = function(){

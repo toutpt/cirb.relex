@@ -19,7 +19,7 @@
         <div class="list-group">
           <a class="list-group-item" title="t({{project.name}})"
              ng-repeat="project in projects | filter:queryProject"
-             ng-class="{'active': currentProject.code === project.code}"
+             ng-class="{'active': currentProject.id === project.id}"
              ng-click="setCurrentProject(project)">
               {{project.title}}
           </a>
