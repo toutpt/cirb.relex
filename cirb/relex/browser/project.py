@@ -141,8 +141,10 @@ class ProjectJSON(BrowserView):
 
     def _updateProject(self):
         """ Return newly updated project, see _getProject. """
-        self._index = json.dumps('')
+        self.project.setFromJSON(self.payload)
+        self._index = self.project.getJSON()
 
     def _deleteProject(self):
         """ Return 'deleted' if the delete is successfull """
+        self.context.manage_delObjects([self.projectId])
         self._index = 'deleted'

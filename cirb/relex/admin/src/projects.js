@@ -29,15 +29,43 @@ angular.module('relex.services').factory('projectsService', [
                     deferred.resolve(project);
                 });
                 return deferred.promise;
-			}
+			},
+            getProject: function(id){
+                var deferred = $q.defer();
+                $http.get('/relex_web/relex_project/'+ id).then(function(data){
+                    var project = data.data;
+                    deferred.resolve(project);
+                });
+                return deferred.promise;
+            },
+			updateProject: function(project){
+                var deferred = $q.defer();
+                $http.post('/relex_web/relex_project/'+ project.id +'/update',
+                           project).then(function(data){
+                    var project = data.data;
+                    deferred.resolve(project);
+                });
+                return deferred.promise;
+			},
+			deleteProject: function(project){
+                var deferred = $q.defer();
+                $http.post('/relex_web/relex_project/'+ project.id +'/delete').then(function(data){
+                    if (data.data === 'deleted') {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                    }
+                });
+                return deferred.promise;
+			},
 		};
 	}
 ]);
 angular.module('relex.controllers').controller('ProjectsController', [
 	'$scope', '$location', '$routeParams', 'langService', 'projectsService',
-    'vocabularyService',
+    'vocabularyService', 'messagesService',
 	function($scope, $location, $routeParams, langService, projectsService,
-            vocabularyService){
+            vocabularyService, messagesService){
 		//model
 		$scope.projects = [];
 		$scope.currentProject;
@@ -49,13 +77,13 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.contactsVocabulary = [];
 
 		//methods
+        var _ = langService.createNewTranslatedValue;
+
         var checkCurrentProject = function(){
 		    if ($routeParams.id !== undefined){
-			    for (var i = 0; i < $scope.projects.length; i++) {
-				    if ($scope.projects[i].id === $routeParams.id){
-					    $scope.currentProject = $scope.projects[i];
-				    }
-			    }
+                projectsService.getProject($routeParams.id).then(function(project){
+                    $scope.currentProject = project;
+                });
 		    }
         }
 
@@ -94,11 +122,28 @@ angular.module('relex.controllers').controller('ProjectsController', [
                 $scope.projects.push(project);
             });
 		};
+		$scope.saveCurrentProject = function(){
+            projectsService.updateProject($scope.currentProject).then(function(){
+                messagesService.addInfo(_("Project updated succesfully"), 3000);
+            }, function(){
+                messagesService.addError(_("Error while updating the project"));
+            });
+        };
+		$scope.cancelCurrentProject = function(){
+			$location.path('project');  // This reload the controller
+		};
+		$scope.deleteCurrentProject = function(){
+            projectsService.deleteProject($scope.currentProject).then(function(){
+                messagesService.addInfo(_("Project deleted succesfully"), 3000);
+                $location.path('project');
+            }, function(){
+                messagesService.addError(_("Error while deleting the project"));
+            });
+        };
 
 		//initialize
         $scope.t = langService.getTranslatedValue;
         $scope.getById = vocabularyService.getById;
-        var _ = langService.createNewTranslatedValue;
         initializeData();
 	}
 ]);

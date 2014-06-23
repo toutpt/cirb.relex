@@ -29,7 +29,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" translate>Status</label>
         <div class="col-sm-10">
-          <select class="form-control">
+          <select class="form-control" ng-model="currentProject.status">
             <option value="active" translate>Active</option>
             <option value="inactive" translate>Inactive</option>
             <option value="archive" translate>Archive</option>
@@ -39,7 +39,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" translate>Relation type</label>
         <div class="col-sm-4">
-          <select class="form-control" name="relationtype">
+          <select class="form-control" ng-model="currentProject.relationtype">
             <option value="bilateral" translate>Bilateral</option>
             <option value="multilateral" translate>Multilateral</option>
           </select>
@@ -112,8 +112,8 @@
 </tabset>
 <div class="form-group">
   <div class="pull-right">
-    <button class="btn btn-primary" translate>Save</button>
-    <button class="btn btn-default" translate>Cancel</button>
-    <button class="btn btn-danger" translate>Delete</button>
+    <button class="btn btn-primary" ng-click="saveCurrentProject()" translate>Save</button>
+    <button class="btn btn-default" ng-click="cancelCurrentProject()" translate>Cancel</button>
+    <button class="btn btn-danger" ng-click="deleteCurrentProject()" translate>Delete</button>
   </div>
 </div>

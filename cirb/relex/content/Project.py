@@ -1,11 +1,11 @@
 import json
 
-from zope.interface import implements
-
 from AccessControl import ClassSecurityInfo
+from DateTime import DateTime
 from Products.Archetypes import public as atapi
 from Products.ATContentTypes import atct
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from zope.interface import implements
 
 from cirb.relex.interfaces import IProject
 
@@ -198,12 +198,18 @@ class Project(atct.ATCTContent):
             'nl': self.name_nl,
         }
         project_json['content'] = {
-            'fr': self.content_fr.raw,
-            'en': self.content_en.raw,
-            'nl': self.content_nl.raw,
+            'fr': self.content_fr.getRaw(),
+            'en': self.content_en.getRaw(),
+            'nl': self.content_nl.getRaw(),
         }
-        project_json['start'] = self.start
-        project_json['end'] = self.end
+        if self.start is not None:
+            project_json['start'] = self.start.strftime('%m/%d/%Y')
+        else:
+            project_json['start'] = None
+        if self.end is not None:
+            project_json['end'] = self.end.strftime('%m/%d/%Y')
+        else:
+            project_json['end'] = None
         project_json['url'] = self.url
         project_json['status'] = self.status
         project_json['relationtype'] = self.relationtype
@@ -221,5 +227,29 @@ class Project(atct.ATCTContent):
     def setFromJSON(self, project_json):
         project_json = json.loads(project_json)
         self.code = project_json.get('code', '')
+        self.name_fr = project_json.get('name', {}).get('fr', '')
+        self.name_en = project_json.get('name', {}).get('en', '')
+        self.name_nl = project_json.get('name', {}).get('nl', '')
+        self.content_fr.raw = project_json.get('content', {}).get('fr', '')
+        self.content_en.raw = project_json.get('content', {}).get('en', '')
+        self.content_nl.raw = project_json.get('content', {}).get('nl', '')
+        if project_json.get('start', None):
+            self.start = DateTime(project_json.get('start', ''))
+        else:
+            self.start = None
+        if project_json.get('end', None):
+            self.end = DateTime(project_json.get('end', ''))
+        else:
+            self.end = None
+        self.url = project_json.get('url', '')
+        self.status = project_json.get('status', '')
+        self.relationtype = project_json.get('relationtype', '')
+        self.organisationtype = project_json.get('organisationtype', '')
+        self.comments.raw = project_json.get('comments', '')
+        self.brusselspartners = project_json.get('brusselspartners', tuple())
+        self.countries = project_json.get('country', tuple())
+        self.regions = project_json.get('region', tuple())
+        self.cities = project_json.get('city', tuple())
+        self.contacts = project_json.get('contact', tuple())
 
 atapi.registerType(Project, 'cirb.relex')
