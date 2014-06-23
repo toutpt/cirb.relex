@@ -670,6 +670,7 @@ angular.module('relex.directives').directive('selectMultiple',
             },
             link: function(scope, elem, attrs){
                 scope.limitTo = 5;
+                scope.selected = true;
                 scope.getLimitTo = function(){
                     if (parseInt(scope.limitTo) <= 0)
                         return scope.vocabulary.length;
@@ -702,6 +703,8 @@ angular.module('relex.directives').directive('selectMultiple',
                     var selected = '1';
                     if (scope.isSelected(term))
                         selected = '0';
+                    if (!scope.selected)
+                        selected = '';
                     // Country has a code attribute which is a String
                     if (term.hasOwnProperty('code') && term.code instanceof Object)
                         return selected + scope._(term.code);
