@@ -14,10 +14,22 @@ Contraintes:
 	<div class="form-group">
 		<div class="col-sm-2">
 			<label>{{label | translate}}</label>
-			<div class="checkbox">
+			<div class="radio">
 				<label>
-					<input type="checkbox" name="limitTo" checked="checked" ng-click="toggleLimit()"/>
-					<span class="help-block" translate>Limit terms</span>
+					<input type="radio" name="limitTo" value="5" ng-model="limitTo" checked />
+					<span class="help-block">5</span>
+				</label>
+				<label>
+					<input type="radio" name="limitTo" value="10" ng-model="limitTo" />
+					<span class="help-block">10</span>
+				</label>
+				<label>
+					<input type="radio" name="limitTo" value="20" ng-model="limitTo" />
+					<span class="help-block">20</span>
+				</label>
+				<label>
+					<input type="radio" name="limitTo" value="-1" ng-model="limitTo" />
+					<span class="help-block" translate>All</span>
 				</label>
 			</div>
 		</div>
@@ -29,7 +41,7 @@ Contraintes:
 				<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
 			  </div>
 			  <a class="list-group-item"
-				 ng-repeat="term in vocabulary | orderBy:'_selected':1 | filter:queryTerm | limitTo:limitTo"
+				 ng-repeat="term in vocabulary | orderBy:orderBy | filter:queryTerm | limitTo:getLimitTo()"
 				 ng-class="{'list-group-item-info': isSelected(term)}"
 				 ng-click="selectTerm(term)">
 				{{displayTerm(term)}}

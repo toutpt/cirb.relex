@@ -11,19 +11,23 @@ angular.module('relex.directives').directive('selectMultiple',
                 vocabulary: '=',
                 display: '=',
                 target: '=',
-                legend: '='
+                legend: '=',
             },
             link: function(scope, elem, attrs){
-                var LIMIT_TO = 2;
-                scope.limitTo = LIMIT_TO;
+                scope.limitTo = 5;
+                scope.getLimitTo = function(){
+                    if (parseInt(scope.limitTo) <= 0)
+                        return scope.vocabulary.length;
+                    return parseInt(scope.target.length) + parseInt(scope.limitTo);
+                };
                 scope.isSelected = function(term){
                     for (var i = 0; i < scope.target.length; i++) {
-                        if (term === scope.target[i]){
+                        if (term.id === scope.target[i].id){
                             term._selected = 1;
                             return true;
                         }
-                        term._selected = 0;
                     }
+                    term._selected = 0;
                     return false;
 
                 };
@@ -38,12 +42,18 @@ angular.module('relex.directives').directive('selectMultiple',
                 scope.displayTerm = function(term){
                     return scope.$eval(scope.display, {term:term});
                 };
-                scope.toggleLimit = function(){
-                    if (scope.limitTo === LIMIT_TO){
-                        scope.limitTo = scope.vocabulary.length;
-                    }else{
-                        scope.limitTo = LIMIT_TO;
-                    }
+                scope.orderBy = function(term){
+                    // Selected first
+                    var selected = '1';
+                    if (scope.isSelected(term))
+                        selected = '0';
+                    if (term.hasOwnProperty('code'))
+                        return selected + scope._(term.code);
+                    if (term.hasOwnProperty('name'))
+                        return selected + scope._(term.name)
+                    if (term.hasOwnProperty('id'))
+                        return selected + scope._(term.id)
+                    return selected
                 };
             }
         };
