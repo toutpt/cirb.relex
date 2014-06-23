@@ -209,6 +209,12 @@ angular.module('relex.controllers').controller('VocabularyController',[
         var onError = function(error){
             messagesService.addError(error);
         };
+        $scope.orderByName = function(term){
+            return $scope.t(term.name);
+        };
+        $scope.orderByCode = function(term){
+            return $scope.t(term.code);
+        };
         $scope.isUnchanged = function(term){
             return angular.equals(term, $scope.originalTerm);
         };

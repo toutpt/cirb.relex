@@ -26,7 +26,8 @@
 					<select class="form-control"
                             name="country"
                             ng-model="currentTerm.country.id"
-                            ng-options="country.id as country.code for country in vocabularies.country"
+                            ng-options="country as '[' + country.code + '] ' + t(country.name)
+                                        for country in vocabularies.country | orderBy:orderByName"
                             required>
 					</select>
 				</div>
@@ -50,7 +51,7 @@
 	<div class="panel-body">
         <div class="list-group">
           <a class="list-group-item"
-             ng-repeat="term in terms"
+             ng-repeat="term in terms | orderBy:orderByName"
              ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
               {{t(term.name)}}</a>

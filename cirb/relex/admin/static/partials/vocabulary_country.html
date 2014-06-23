@@ -52,7 +52,7 @@
 	<div class="panel-body">
         <div class="list-group">
           <a class="list-group-item"
-             ng-repeat="term in terms"
+             ng-repeat="term in terms | orderBy:orderByName"
              ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
               [{{term.code}}] {{t(term.name)}}</a>
