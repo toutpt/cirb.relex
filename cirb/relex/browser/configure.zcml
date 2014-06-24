@@ -21,9 +21,26 @@
       />
 
   <browser:page
+      for="cirb.relex.interfaces.IRelexBackend"
+      name="tree_view"
+      class=".relex_web.TreeView"
+      template="templates/tree.pt"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      for="cirb.relex.interfaces.IRelexBackend"
+      name="search_view"
+      class=".relex_web.SearchView"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
+
+  <browser:page
       for="cirb.relex.interfaces.IProject"
       name="view"
-      template="project.pt"
+      template="templates/project.pt"
       layer="cirb.relex.interfaces.ILayer"
       permission="zope2.View"
       />

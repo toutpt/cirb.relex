@@ -20,6 +20,11 @@
       recursive="True"
       />
 
+  <browser:resourceDirectory
+      name="cirb.relex"
+      directory="resources"
+      />
+
   <permission
       id="cirb.relex.addProject"
       title="cirb.relex: Add Project"

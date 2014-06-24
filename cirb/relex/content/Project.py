@@ -176,7 +176,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
 finalizeATCTSchema(ProjectSchema)
 
 
-class Project(atct.ATCTContent):
+class Project(atct.ATCTOrderedFolder):
     """Project content type.
     """
 
