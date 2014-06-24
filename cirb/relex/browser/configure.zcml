@@ -20,6 +20,14 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      for="cirb.relex.interfaces.IProject"
+      name="view"
+      template="project.pt"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
+
   <!-- EXAMPLE:
   <browser:viewlet
       name="cirb.someviewlet"

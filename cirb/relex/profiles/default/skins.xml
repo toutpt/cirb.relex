@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+  <object name="relex" meta_type="Filesystem Directory View"
+          directory="cirb.relex:skins/relex"/>
+  <skin-path name="*">
+    <layer name="relex" insert-after="custom"/>
+  </skin-path>
+</object>

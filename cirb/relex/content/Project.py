@@ -131,6 +131,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Brussels partners",
                 i18n_domain="cirb.relex",
+                macro="project_lines",
             ),
         ),
 
@@ -139,6 +140,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Countries",
                 i18n_domain="cirb.relex",
+                macro="project_lines",
             ),
         ),
 
@@ -147,6 +149,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Regions",
                 i18n_domain="cirb.relex",
+                macro="project_lines",
             ),
         ),
 
@@ -155,6 +158,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Cities",
                 i18n_domain="cirb.relex",
+                macro="project_lines",
             ),
         ),
 
@@ -163,6 +167,7 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Contacts",
                 i18n_domain="cirb.relex",
+                macro="project_lines",
             ),
         ),
     ),
@@ -252,5 +257,8 @@ class Project(atct.ATCTContent):
         self.regions = project_json.get('region', tuple())
         self.cities = project_json.get('city', tuple())
         self.contacts = project_json.get('contact', tuple())
+        # Set title and reindex
+        self.setTitleFromData()
+        self.reindexObject()
 
 atapi.registerType(Project, 'cirb.relex')

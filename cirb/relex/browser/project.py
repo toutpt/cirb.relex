@@ -136,7 +136,6 @@ class ProjectJSON(BrowserView):
         self.context.invokeFactory("Project", project_id)
         project = self.context[project_id]
         project.setFromJSON(self.payload)
-        project.setTitleFromData()
         self._index = project.getJSON()
 
     def _updateProject(self):

@@ -14,6 +14,12 @@
 
   <i18n:registerTranslations directory="locales" />
 
+  <cmf:registerDirectory
+      name="skins"
+      directory="skins"
+      recursive="True"
+      />
+
   <permission
       id="cirb.relex.addProject"
       title="cirb.relex: Add Project"
