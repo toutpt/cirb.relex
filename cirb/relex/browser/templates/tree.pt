@@ -18,11 +18,17 @@
     <metal:content-core fill-slot="content-core">
       <div id="projects_tree">
         <ul>
-          <li tal:repeat="project context/getFolderContents">
-            <span><a href="" tal:attributes="href project/getURL" tal:content="project/Title">Project</a></span>
-            <ul tal:define="context project" tal:condition="project/getFolderContents">
-              <li tal:repeat="project context/getFolderContents">
-                <span><a href="" tal:attributes="href project/getURL" tal:content="project/Title">Project</a></span>
+          <li tal:repeat="project view/getProjectsTree">
+            <span>
+              <a href="" tal:attributes="href project/obj/getURL"
+                 tal:content="project/obj/Title">Project</a>
+            </span>
+            <ul tal:condition="project/child">
+              <li tal:repeat="subproject project/child">
+                <span>
+                  <a href="" tal:attributes="href subproject/obj/getURL"
+                     tal:content="subproject/obj/Title">Sub-project</a>
+                </span>
               </li>
             </ul>
           </li>

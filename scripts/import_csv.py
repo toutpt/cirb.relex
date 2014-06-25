@@ -373,7 +373,7 @@ def _create_projects(countries, regions, cities, contacts, brusselspartners,
                      projects, context, parent):
     for cell in projects.get(parent, []):
         # Deleted projects
-        if cell[13].decode('latin-1') == 'O':
+        if cell[17].decode('latin-1') == 'O':
             continue
         project = _create_project(cell, context)
         project.setCountries(countries.get(cell[0], []))
