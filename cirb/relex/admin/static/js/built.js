@@ -343,10 +343,30 @@ angular.module('relex.controllers').controller('ProjectsController', [
         var checkCurrentProject = function(){
 		    if ($routeParams.id !== undefined){
                 projectsService.getProject($routeParams.id).then(function(project){
+                    vocabularyService.getByIds('brusselspartners', project.brusselspartners)
+                        .then(function(terms){
+                            project.brusselspartners = terms;
+                        });
+                    vocabularyService.getByIds('country', project.country)
+                        .then(function(terms){
+                            project.country = terms;
+                        });
+                    vocabularyService.getByIds('region', project.region)
+                        .then(function(terms){
+                            project.region = terms;
+                        });
+                    vocabularyService.getByIds('city', project.city)
+                        .then(function(terms){
+                            project.city = terms;
+                        });
+                    vocabularyService.getByIds('contact', project.contact)
+                        .then(function(terms){
+                            project.contact = terms;
+                        });
                     $scope.currentProject = project;
                 });
 		    }
-        }
+        };
 
         var initializeData = function(){
             projectsService.getProjects().then(function(projects){
@@ -372,7 +392,7 @@ angular.module('relex.controllers').controller('ProjectsController', [
             vocabularyService.get('contact').then(function(vocab){
                 $scope.contactsVocabulary = vocab.terms;
             });
-        }
+        };
 
 		$scope.setCurrentProject = function(project){
 			$location.path('project/' + project.id);  // This reload the controller
@@ -529,12 +549,21 @@ angular.module('relex.services').factory('vocabularyService', [
                 this.get(vocabulary).then(function(vocab){
                     for (var i = 0; i < vocab.terms.length; i++) {
                         if (vocab.terms[i].id === id){
-
                             deferred.resolve(vocab.terms[i]);
-
-
                         }
                     }
+                });
+                return deferred.promise;
+            },
+            getByIds: function(vocabulary, ids){
+                var deferred = $q.defer();
+                var promises = [];
+                var service = this;
+                angular.forEach(ids, function(id){
+                    promises.push(service.getById(vocabulary, id));
+                });
+                $q.all(promises).then(function(terms){
+                    deferred.resolve(terms);
                 });
                 return deferred.promise;
             },

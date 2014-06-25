@@ -131,7 +131,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Brussels partners",
                 i18n_domain="cirb.relex",
-                macro="project_lines",
             ),
         ),
 
@@ -140,7 +139,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Countries",
                 i18n_domain="cirb.relex",
-                macro="project_lines",
             ),
         ),
 
@@ -149,7 +147,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Regions",
                 i18n_domain="cirb.relex",
-                macro="project_lines",
             ),
         ),
 
@@ -158,7 +155,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Cities",
                 i18n_domain="cirb.relex",
-                macro="project_lines",
             ),
         ),
 
@@ -167,7 +163,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             widget=atapi.LinesWidget(
                 label=u"Contacts",
                 i18n_domain="cirb.relex",
-                macro="project_lines",
             ),
         ),
     ),
@@ -252,11 +247,21 @@ class Project(atct.ATCTOrderedFolder):
         self.relationtype = project_json.get('relationtype', '')
         self.organisationtype = project_json.get('organisationtype', '')
         self.comments.raw = project_json.get('comments', '')
-        self.brusselspartners = project_json.get('brusselspartners', tuple())
-        self.countries = project_json.get('country', tuple())
-        self.regions = project_json.get('region', tuple())
-        self.cities = project_json.get('city', tuple())
-        self.contacts = project_json.get('contact', tuple())
+        self.brusselspartners = [
+            t['id'] for t in project_json.get('brusselspartners', tuple())
+        ]
+        self.countries = [
+            t['id'] for t in project_json.get('country', tuple())
+        ]
+        self.regions = [
+            t['id'] for t in project_json.get('region', tuple())
+        ]
+        self.cities = [
+            t['id'] for t in project_json.get('city', tuple())
+        ]
+        self.contacts = [
+            t['id'] for t in project_json.get('contact', tuple())
+        ]
         # Set title and reindex
         self.setTitleFromData()
         self.reindexObject()

@@ -114,12 +114,21 @@ angular.module('relex.services').factory('vocabularyService', [
                 this.get(vocabulary).then(function(vocab){
                     for (var i = 0; i < vocab.terms.length; i++) {
                         if (vocab.terms[i].id === id){
-
                             deferred.resolve(vocab.terms[i]);
-
-
                         }
                     }
+                });
+                return deferred.promise;
+            },
+            getByIds: function(vocabulary, ids){
+                var deferred = $q.defer();
+                var promises = [];
+                var service = this;
+                angular.forEach(ids, function(id){
+                    promises.push(service.getById(vocabulary, id));
+                });
+                $q.all(promises).then(function(terms){
+                    deferred.resolve(terms);
                 });
                 return deferred.promise;
             },
