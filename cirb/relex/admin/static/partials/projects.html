@@ -18,7 +18,7 @@
         <div ng-show="!projects.length" translate>No projects</div>
         <div class="list-group">
           <a class="list-group-item" title="t({{project.name}})"
-             ng-repeat="project in projects | filter:queryProject"
+             ng-repeat="project in projects | filter:queryProject | orderBy:'title'"
              ng-class="{'active': currentProject.id === project.id}"
              ng-click="setCurrentProject(project)">
               {{project.title}}
