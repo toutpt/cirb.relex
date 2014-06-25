@@ -10,7 +10,11 @@ import json
 import os
 import sys
 
-from cirb.relex.browser.vocabulary import KEY_STORAGE, VOCABULARIES
+from DateTime import DateTime
+from zope.component.hooks import setSite
+from zope.container.interfaces import INameChooser
+
+from cirb.relex.browser.vocabulary import KEY_STORAGE
 
 CSVS = (
     'CELLS',
@@ -299,6 +303,119 @@ def _import_themes(cells, cells_keywords, relex_web):
     print('Imported themes.')
 
 
+# ================= Projects  =====================
+
+def _import_projects(csv_dict, relex_web):
+    """
+       PROJECTS:
+           0: ID
+           1: PARENT
+           2: CODE
+           3: DESC_NL
+           4: DESC_EN
+           5: INTERNETWORK => ORGANISATION TYPE
+           6: URL
+           7: CONTENT_NL
+           8:
+           9:
+           10: START
+           11: COMMENTS
+           12:
+           13: CONTENT_FR
+           14:
+           15: END
+           16: DESC_FR
+           17: DELETE
+           18: PRJS_ID => STATUS (17: ACTIF, 18: INACTIF, 19: ARCHIVE)
+           19: RELT_ID => RELATIONS (17: BILATERAL, 18: MULTILATERAL)
+           20: CONTENT_EN
+    """
+    countries = {}
+    for cell in csv_dict['PROJECTS_COUNTRIES']:
+        if cell[0] not in countries.keys():
+            countries[cell[0]] = []
+        countries[cell[0]].append(cell[5])
+    regions = {}
+    for cell in csv_dict['PROJECTS_REGIONS']:
+        if cell[0] not in regions.keys():
+            regions[cell[0]] = []
+        regions[cell[0]].append(cell[1])
+    cities = {}
+    for cell in csv_dict['PROJECTS_CITIES']:
+        if cell[0] not in cities.keys():
+            cities[cell[0]] = []
+        cities[cell[0]].append(cell[5])
+    contacts_type = {}
+    for cell in csv_dict['CONTACTS']:
+        contacts_type[cell[0]] = cell[12]
+    contacts = {}
+    brusselspartners = {}
+    for cell in csv_dict['PROJECTS_CONTACTS']:
+        if contacts_type[cell[5]] == 'PB':
+            contacts_dict = brusselspartners
+        else:
+            contacts_dict = contacts
+        if cell[0] not in contacts_dict.keys():
+            contacts_dict[cell[0]] = []
+        contacts_dict[cell[0]].append(cell[5])
+
+    for cell in csv_dict['PROJECTS']:
+        project = _create_project(cell, relex_web)
+        project.countries = countries.get(cell[0], [])
+        project.regions = regions.get(cell[0], [])
+        project.cities = cities.get(cell[0], [])
+        project.contacts = contacts.get(cell[0], [])
+        project.brusselspartners = brusselspartners.get(cell[0], [])
+        project.setTitleFromData()
+        project.reindexObject()
+        # Deleted projects
+        if cell[13].decode('latin-1') == 'N':
+            pass  # TODO: workflow ?
+    print('Imported projects.')
+
+
+def _create_project(cell, relex_web):
+    STATUS = {'17': 'active', '18': 'inactive', '19': 'archive'}
+    RTYPE = {'17': 'bilateral', '18': 'multilateral'}
+    chooser = INameChooser(relex_web)
+    project_id = chooser.chooseName(cell[2].decode('latin-1'), relex_web)
+
+    # Create project
+    relex_web.invokeFactory("Project", project_id)
+    project = relex_web[project_id]
+
+    # Set project attributes
+    project.code = cell[2].decode('latin-1')
+    project.name_fr = cell[16].decode('latin-1')
+    project.name_en = cell[4].decode('latin-1')
+    project.name_nl = cell[3].decode('latin-1')
+    project.content_fr.raw = cell[13].decode('latin-1')
+    project.content_en.raw = cell[20].decode('latin-1')
+    project.content_nl.raw = cell[7].decode('latin-1')
+    project.comments.raw = cell[11].decode('latin-1')
+    project.url = cell[6].decode('latin-1')
+    project.organisationtype = cell[5].decode('latin-1')
+    project.status = STATUS.get(cell[18].decode('latin-1'), '')
+    project.relationtype = RTYPE.get(cell[19].decode('latin-1'), '')
+    project.start = _get_datetime(cell[10].decode('latin-1'))
+    project.end = _get_datetime(cell[15].decode('latin-1'))
+
+    return project
+
+
+def _get_datetime(date):
+    if not date:
+        return None
+    day = date[0:2]
+    month = date[3:5]
+    year = date[6:8]
+    if int(year) < 80:
+        year = u'20' + year
+    else:
+        year = u'19' + year
+    return DateTime('{}{}{}'.format(year, month, day))
+
+
 # ================= Main method  =====================
 
 def import_csv(relex_web, folder):
@@ -320,11 +437,13 @@ def import_csv(relex_web, folder):
     _import_themes(
         csv_dict['THEMES'], csv_dict['KEYWORDS_THEMES'], relex_web
         )
+    _import_projects(csv_dict, relex_web)
 
 
 if 'app' in locals():
     relex_web = app.restrictedTraverse('Plone').restrictedTraverse('relex_web')
     folder = len(sys.argv) > 1 and sys.argv[1] or '.'
+    setSite(app.restrictedTraverse('Plone'))
     import_csv(relex_web, folder)
 
     relex_web._p_changed = 1
