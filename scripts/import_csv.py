@@ -359,46 +359,62 @@ def _import_projects(csv_dict, relex_web):
             contacts_dict[cell[0]] = []
         contacts_dict[cell[0]].append(cell[5])
 
+    projects = {}
     for cell in csv_dict['PROJECTS']:
-        project = _create_project(cell, relex_web)
-        project.countries = countries.get(cell[0], [])
-        project.regions = regions.get(cell[0], [])
-        project.cities = cities.get(cell[0], [])
-        project.contacts = contacts.get(cell[0], [])
-        project.brusselspartners = brusselspartners.get(cell[0], [])
+        if cell[1] not in projects.keys():
+            projects[cell[1]] = []
+        projects[cell[1]].append(cell)
+    _create_projects(countries, regions, cities, contacts, brusselspartners,
+                     projects, relex_web, '')
+    print('Imported projects.')
+
+
+def _create_projects(countries, regions, cities, contacts, brusselspartners,
+                     projects, context, parent):
+    for cell in projects.get(parent, []):
+        project = _create_project(cell, context)
+        project.setCountries(countries.get(cell[0], []))
+        project.setRegions(regions.get(cell[0], []))
+        project.setCities(cities.get(cell[0], []))
+        project.setContacts(contacts.get(cell[0], []))
+        project.setBrusselspartners(brusselspartners.get(cell[0], []))
         project.setTitleFromData()
         project.reindexObject()
         # Deleted projects
         if cell[13].decode('latin-1') == 'N':
             pass  # TODO: workflow ?
-    print('Imported projects.')
+        # Create children projects
+        _create_projects(
+            countries, regions, cities, contacts, brusselspartners,
+            projects, project, cell[0]
+        )
 
 
-def _create_project(cell, relex_web):
+def _create_project(cell, context):
     STATUS = {'17': 'active', '18': 'inactive', '19': 'archive'}
     RTYPE = {'17': 'bilateral', '18': 'multilateral'}
-    chooser = INameChooser(relex_web)
-    project_id = chooser.chooseName(cell[2].decode('latin-1'), relex_web)
+    chooser = INameChooser(context)
+    project_id = chooser.chooseName(cell[2].decode('latin-1'), context)
 
     # Create project
-    relex_web.invokeFactory("Project", project_id)
-    project = relex_web[project_id]
+    context.invokeFactory("Project", project_id)
+    project = context[project_id]
 
     # Set project attributes
-    project.code = cell[2].decode('latin-1')
-    project.name_fr = cell[16].decode('latin-1')
-    project.name_en = cell[4].decode('latin-1')
-    project.name_nl = cell[3].decode('latin-1')
-    project.content_fr.raw = cell[13].decode('latin-1')
-    project.content_en.raw = cell[20].decode('latin-1')
-    project.content_nl.raw = cell[7].decode('latin-1')
-    project.comments.raw = cell[11].decode('latin-1')
-    project.url = cell[6].decode('latin-1')
-    project.organisationtype = cell[5].decode('latin-1')
-    project.status = STATUS.get(cell[18].decode('latin-1'), '')
-    project.relationtype = RTYPE.get(cell[19].decode('latin-1'), '')
-    project.start = _get_datetime(cell[10].decode('latin-1'))
-    project.end = _get_datetime(cell[15].decode('latin-1'))
+    project.setCode(cell[2].decode('latin-1'))
+    project.setName_fr(cell[16].decode('latin-1'))
+    project.setName_en(cell[4].decode('latin-1'))
+    project.setName_nl(cell[3].decode('latin-1'))
+    project.setContent_fr(cell[13].decode('latin-1'))
+    project.setContent_en(cell[20].decode('latin-1'))
+    project.setContent_nl(cell[7].decode('latin-1'))
+    project.setComments(cell[11].decode('latin-1'))
+    project.setUrl(cell[6].decode('latin-1'))
+    project.setOrganisationtype(cell[5].decode('latin-1'))
+    project.setStatus(STATUS.get(cell[18].decode('latin-1'), ''))
+    project.setRelationtype(RTYPE.get(cell[19].decode('latin-1'), ''))
+    project.setStart(_get_datetime(cell[10].decode('latin-1')))
+    project.setEnd(_get_datetime(cell[15].decode('latin-1')))
 
     return project
 

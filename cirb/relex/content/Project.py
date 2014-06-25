@@ -192,76 +192,76 @@ class Project(atct.ATCTOrderedFolder):
         project_json = {}
         project_json['id'] = self.id
         project_json['title'] = self.Title()
-        project_json['code'] = self.code
+        project_json['code'] = self.getCode()
         project_json['name'] = {
-            'fr': self.name_fr,
-            'en': self.name_en,
-            'nl': self.name_nl,
+            'fr': self.getName_fr(),
+            'en': self.getName_en(),
+            'nl': self.getName_nl(),
         }
         project_json['content'] = {
-            'fr': self.content_fr.getRaw(),
-            'en': self.content_en.getRaw(),
-            'nl': self.content_nl.getRaw(),
+            'fr': self.getContent_fr(),
+            'en': self.getContent_en(),
+            'nl': self.getContent_nl(),
         }
-        if self.start is not None:
-            project_json['start'] = self.start.strftime('%Y-%m-%d')
+        if self.getStart() is not None:
+            project_json['start'] = self.getStart().strftime('%Y-%m-%d')
         else:
             project_json['start'] = None
-        if self.end is not None:
-            project_json['end'] = self.end.strftime('%Y-%m-%d')
+        if self.getEnd() is not None:
+            project_json['end'] = self.getEnd().strftime('%Y-%m-%d')
         else:
             project_json['end'] = None
-        project_json['url'] = self.url
-        project_json['status'] = self.status
-        project_json['relationtype'] = self.relationtype
-        project_json['organisationtype'] = self.organisationtype
-        project_json['comments'] = self.comments.raw
-        project_json['brusselspartners'] = self.brusselspartners
-        project_json['country'] = self.countries
-        project_json['region'] = self.regions
-        project_json['city'] = self.cities
-        project_json['contact'] = self.contacts
+        project_json['url'] = self.getUrl()
+        project_json['status'] = self.getStatus()
+        project_json['relationtype'] = self.getRelationtype()
+        project_json['organisationtype'] = self.getOrganisationtype()
+        project_json['comments'] = self.getComments()
+        project_json['brusselspartners'] = self.getBrusselspartners()
+        project_json['country'] = self.getCountries()
+        project_json['region'] = self.getRegions()
+        project_json['city'] = self.getCities()
+        project_json['contact'] = self.getContacts()
         return json.dumps(project_json)
 
     security.declarePublic("setFromJSON")
 
     def setFromJSON(self, project_json):
         project_json = json.loads(project_json)
-        self.code = project_json.get('code', '')
-        self.name_fr = project_json.get('name', {}).get('fr', '')
-        self.name_en = project_json.get('name', {}).get('en', '')
-        self.name_nl = project_json.get('name', {}).get('nl', '')
-        self.content_fr.raw = project_json.get('content', {}).get('fr', '')
-        self.content_en.raw = project_json.get('content', {}).get('en', '')
-        self.content_nl.raw = project_json.get('content', {}).get('nl', '')
+        self.setCode(project_json.get('code', ''))
+        self.setName_fr(project_json.get('name', {}).get('fr', ''))
+        self.setName_en(project_json.get('name', {}).get('en', ''))
+        self.setName_nl(project_json.get('name', {}).get('nl', ''))
+        self.setContent_fr(project_json.get('content', {}).get('fr', ''))
+        self.setContent_en(project_json.get('content', {}).get('en', ''))
+        self.setContent_nl(project_json.get('content', {}).get('nl', ''))
         if project_json.get('start', None):
-            self.start = DateTime(project_json.get('start', ''))
+            self.setStart(DateTime(project_json.get('start', '')))
         else:
-            self.start = None
+            self.setStart(None)
         if project_json.get('end', None):
-            self.end = DateTime(project_json.get('end', ''))
+            self.setEnd(DateTime(project_json.get('end', '')))
         else:
-            self.end = None
-        self.url = project_json.get('url', '')
-        self.status = project_json.get('status', '')
-        self.relationtype = project_json.get('relationtype', '')
-        self.organisationtype = project_json.get('organisationtype', '')
-        self.comments.raw = project_json.get('comments', '')
-        self.brusselspartners = [
+            self.setEnd(None)
+        self.setUrl(project_json.get('url', ''))
+        self.setStatus(project_json.get('status', ''))
+        self.setRelationtype(project_json.get('relationtype', ''))
+        self.setOrganisationtype(project_json.get('organisationtype', ''))
+        self.setComments(project_json.get('comments', ''))
+        self.setBrusselspartners([
             t['id'] for t in project_json.get('brusselspartners', tuple())
-        ]
-        self.countries = [
+        ])
+        self.setCountries([
             t['id'] for t in project_json.get('country', tuple())
-        ]
-        self.regions = [
+        ])
+        self.setRegions([
             t['id'] for t in project_json.get('region', tuple())
-        ]
-        self.cities = [
+        ])
+        self.setCities([
             t['id'] for t in project_json.get('city', tuple())
-        ]
-        self.contacts = [
+        ])
+        self.setContacts([
             t['id'] for t in project_json.get('contact', tuple())
-        ]
+        ])
         # Set title and reindex
         self.setTitleFromData()
         self.reindexObject()
