@@ -11,6 +11,7 @@ POST /relex_project/:projectId/delete delete the project
 
 import json
 import logging
+from Acquisition import aq_parent
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.container.interfaces import INameChooser
@@ -57,7 +58,10 @@ class ProjectJSON(BrowserView):
 
     def update(self):
         if self.projectId is not None:
-            self.project = self.context.restrictedTraverse(self.projectId)
+            reference_catalog = getToolByName(
+                self.context, 'reference_catalog'
+            )
+            self.project = reference_catalog.lookupObject(self.projectId)
 
         if self._action == 'GET' and self.projectId is None:
             self.catalog = getToolByName(self.context, 'portal_catalog')
@@ -100,7 +104,7 @@ class ProjectJSON(BrowserView):
         """
         projects = self.catalog(portal_type='Project')
         projects_list = [
-            {"id": brain.id, "title": brain.Title}
+            {"id": brain.UID, "title": brain.Title}
             for brain in projects
         ]
         self._index = json.dumps(projects_list)
@@ -145,5 +149,6 @@ class ProjectJSON(BrowserView):
 
     def _deleteProject(self):
         """ Return 'deleted' if the delete is successfull """
-        self.context.manage_delObjects([self.projectId])
+        parent = aq_parent(self.project)
+        parent.manage_delObjects([self.project.id])
         self._index = 'deleted'

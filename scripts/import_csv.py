@@ -358,12 +358,12 @@ def _import_projects(csv_dict, relex_web):
         if cell[0] not in contacts_dict.keys():
             contacts_dict[cell[0]] = []
         contacts_dict[cell[0]].append(cell[5])
-
     projects = {}
     for cell in csv_dict['PROJECTS']:
         if cell[1] not in projects.keys():
             projects[cell[1]] = []
         projects[cell[1]].append(cell)
+
     _create_projects(countries, regions, cities, contacts, brusselspartners,
                      projects, relex_web, '')
     print('Imported projects.')
@@ -372,6 +372,9 @@ def _import_projects(csv_dict, relex_web):
 def _create_projects(countries, regions, cities, contacts, brusselspartners,
                      projects, context, parent):
     for cell in projects.get(parent, []):
+        # Deleted projects
+        if cell[13].decode('latin-1') == 'O':
+            continue
         project = _create_project(cell, context)
         project.setCountries(countries.get(cell[0], []))
         project.setRegions(regions.get(cell[0], []))
@@ -380,9 +383,6 @@ def _create_projects(countries, regions, cities, contacts, brusselspartners,
         project.setBrusselspartners(brusselspartners.get(cell[0], []))
         project.setTitleFromData()
         project.reindexObject()
-        # Deleted projects
-        if cell[13].decode('latin-1') == 'N':
-            pass  # TODO: workflow ?
         # Create children projects
         _create_projects(
             countries, regions, cities, contacts, brusselspartners,

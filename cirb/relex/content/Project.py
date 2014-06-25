@@ -190,7 +190,7 @@ class Project(atct.ATCTOrderedFolder):
 
     def getJSON(self):
         project_json = {}
-        project_json['id'] = self.id
+        project_json['id'] = self.UID()
         project_json['title'] = self.Title()
         project_json['code'] = self.getCode()
         project_json['name'] = {
