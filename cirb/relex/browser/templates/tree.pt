@@ -38,6 +38,12 @@
       <script>
         $(document).ready(function(){
           $('#projects_tree').fancytree();
+          $("#projects_tree").keydown(function(event){
+            if (event.keyCode == 13 || event.keyCode == 32) {
+              var url = $('.fancytree-focused a').attr('href');
+              window.location = url;
+            }
+          });
         });
       </script>
     </metal:content-core>
