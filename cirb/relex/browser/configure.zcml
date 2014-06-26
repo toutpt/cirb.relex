@@ -33,6 +33,7 @@
       for="cirb.relex.interfaces.IRelexBackend"
       name="search_view"
       class=".relex_web.SearchView"
+      template="templates/search.pt"
       layer="cirb.relex.interfaces.ILayer"
       permission="zope2.View"
       />

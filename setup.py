@@ -36,6 +36,7 @@ setup(
     install_requires=[
         'setuptools',
         # -*- Extra requirements: -*-
+        'collective.js.datatables',
     ],
     extras_require=dict(
         test=['plone.app.testing', 'plone.app.robotframework'],

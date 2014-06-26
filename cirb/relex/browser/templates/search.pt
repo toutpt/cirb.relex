@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xml:lang="en" lang="en"
+      i18n:domain="cirb.relex"
+      metal:use-macro="here/main_template/macros/master">
+  <head><title></title></head>
+  <body>
+    <metal:content-core fill-slot="content-core">
+
+      <table id="projects_table">
+        <thead>
+          <tr>
+            <th><span i18n:translate="">Code</span></th>
+            <th><span i18n:translate="">Status</span></th>
+            <th><span i18n:translate="">Relation type</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tal:block tal:repeat="project view/getProjects">
+            <tr tal:define="project project/getObject">
+              <td><a tal:attributes="href project/absolute_url" tal:content="project/getCode"></a></td>
+              <td tal:content="project/getStatus"></td>
+              <td tal:content="project/getRelationtype"></td>
+            </tr>
+          </tal:block>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th><input type="text" /></th>
+            <th><input type="text" /></th>
+            <th><input type="text" /></th>
+          </tr>
+        </tfoot>
+      </table>
+
+      <script>
+        var table = $('#projects_table').dataTable();
+        $('tfoot input').keyup(function(i){
+            table.fnFilter(this.value, $('tfoot input').index(this));
+        });
+      </script>
+
+    </metal:content-core>
+  </body>
+</html>

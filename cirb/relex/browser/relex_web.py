@@ -21,4 +21,9 @@ class TreeView(BrowserView):
 
 
 class SearchView(BrowserView):
-    pass
+    def __call__(self):
+        self.catalog = getToolByName(self.context, 'portal_catalog')
+        return self.index()
+
+    def getProjects(self):
+        return self.catalog(portal_type="Project")
