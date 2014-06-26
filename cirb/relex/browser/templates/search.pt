@@ -9,12 +9,19 @@
   <body>
     <metal:content-core fill-slot="content-core">
 
+      <div id="filters_table">
+        <h2>Filters</h2>
+        <dl>
+          <dt><label for="filter-code">Code</label></dt>
+          <dd><input type="text" id="filter-code" data-column="0" /></dd>
+        </dl>
+      </div>
+
       <table id="projects_table">
         <thead>
           <tr>
             <th><span i18n:translate="">Code</span></th>
-            <th><span i18n:translate="">Status</span></th>
-            <th><span i18n:translate="">Relation type</span></th>
+            <th><span i18n:translate="">Name</span></th>
           </tr>
         </thead>
 
@@ -22,25 +29,22 @@
           <tal:block tal:repeat="project view/getProjects">
             <tr tal:define="project project/getObject">
               <td><a tal:attributes="href project/absolute_url" tal:content="project/getCode"></a></td>
-              <td tal:content="project/getStatus"></td>
-              <td tal:content="project/getRelationtype"></td>
+              <td tal:content="python:view.getName(project)"></td>
             </tr>
           </tal:block>
         </tbody>
 
-        <tfoot>
-          <tr>
-            <th><input type="text" /></th>
-            <th><input type="text" /></th>
-            <th><input type="text" /></th>
-          </tr>
-        </tfoot>
       </table>
 
       <script>
-        var table = $('#projects_table').dataTable();
-        $('tfoot input').keyup(function(i){
-            table.fnFilter(this.value, $('tfoot input').index(this));
+        var table = $('#projects_table').dataTable({
+            "bLengthChange": false,
+            // "sPaginationType": "full_numbers",
+            "iDisplayLength": -1,
+        });
+        $('#filters_table input').keyup(function(i){
+            var col = $(this).attr('data-column');
+            table.fnFilter(this.value, col);
         });
       </script>
 
