@@ -9,7 +9,105 @@
   <body>
     <metal:content-core fill-slot="content-core">
 
-      <div tal:content="context/contacts"></div>
+      <dl tal:define="value view/getName" tal:condition="value">
+        <dt i18n:translate="">Name</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="value view/getStart" tal:condition="value">
+        <dt i18n:translate="">Start</dt>
+        <dd tal:content="python:here.toLocalizedTime(value)"></dd>
+      </dl>
+
+      <dl tal:define="value view/getEnd" tal:condition="value">
+        <dt i18n:translate="">End</dt>
+        <dd tal:content="python:here.toLocalizedTime(value)"></dd>
+      </dl>
+
+      <dl tal:define="value view/getUrl" tal:condition="value">
+        <dt i18n:translate="">URL</dt>
+        <dd><a tal:attributes="href value" tal:content="value"></a></dd>
+      </dl>
+
+      <dl tal:define="value view/getStatus" tal:condition="value">
+        <dt i18n:translate="">Status</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="value view/getRelationType" tal:condition="value">
+        <dt i18n:translate="">Relation type</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="value view/getOrganisationType" tal:condition="value">
+        <dt i18n:translate="">Organisation type</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="value view/getContent" tal:condition="value">
+        <dt i18n:translate="">Content</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="value view/getComments" tal:condition="value">
+        <dt i18n:translate="">Comments</dt>
+        <dd tal:content="value"></dd>
+      </dl>
+
+      <dl tal:define="values view/getBrusselsPartners" tal:condition="values">
+        <dt i18n:translate="">Brussels partners</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
+      <dl tal:define="values view/getCountries" tal:condition="values">
+        <dt i18n:translate="">Countries</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
+      <dl tal:define="values view/getRegions" tal:condition="values">
+        <dt i18n:translate="">Regions</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
+      <dl tal:define="values view/getCities" tal:condition="values">
+        <dt i18n:translate="">Cities</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
+      <dl tal:define="values view/getContacts" tal:condition="values">
+        <dt i18n:translate="">Contacts</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
 
     </metal:content-core>
   </body>

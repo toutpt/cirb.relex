@@ -14,11 +14,118 @@ import logging
 from Acquisition import aq_parent
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
+from zope.component import getMultiAdapter
 from zope.container.interfaces import INameChooser
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
+from cirb.relex.content.vocabularies import getTerm, getTerms
+from cirb.relex.i18n import _
+
 logger = logging.getLogger('relex')
+
+
+class ProjectView(BrowserView):
+    def __call__(self):
+        self.update()
+        return self.index()
+
+    def update(self):
+        context = self.context.aq_inner
+        portal_state = getMultiAdapter((context, self.request),
+                                       name=u'plone_portal_state')
+        self.current_language = portal_state.language()
+
+    def getName(self):
+        if self.current_language == 'fr':
+            return self.context.getName_fr()
+        if self.current_language == 'en':
+            return self.context.getName_en()
+        if self.current_language == 'nl':
+            return self.context.getName_nl()
+
+    def getStart(self):
+        return self.context.getStart()
+
+    def getEnd(self):
+        return self.context.getEnd()
+
+    def getUrl(self):
+        return self.context.getUrl()
+
+    def getStatus(self):
+        STATUS = {
+            'active': _('Active'),
+            'inactive': _('Inactive'),
+            'archive': _('Archive'),
+        }
+        return STATUS.get(self.context.getStatus(), '')
+
+    def getRelationType(self):
+        RTYPE = {
+            'bilateral': _('Bilateral'),
+            'multilateral': _('Multilateral'),
+        }
+        return RTYPE.get(self.context.getRelationtype(), '')
+
+    def getOrganisationType(self):
+        organisation = getTerm(
+            'organisationtype', self.context.getOrganisationtype()
+        )
+        if organisation is None:
+            return None
+        return organisation['name'].get(self.current_language, None)
+
+    def getContent(self):
+        if self.current_language == 'fr':
+            return self.context.getContent_fr()
+        if self.current_language == 'en':
+            return self.context.getContent_en()
+        if self.current_language == 'nl':
+            return self.context.getContent_nl()
+
+    def getComments(self):
+        return self.context.getComments()
+
+    def getBrusselsPartners(self):
+        ids = self.context.getBrusselspartners()
+        terms = getTerms('brusselspartners', ids)
+        return sorted([
+            '{0} {1}'.format(term['lastname'], term['firstname'])
+            for term in terms if term is not None
+        ])
+
+    def getCountries(self):
+        ids = self.context.getCountries()
+        terms = getTerms('country', ids)
+        return sorted([
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ])
+
+    def getRegions(self):
+        ids = self.context.getRegions()
+        terms = getTerms('region', ids)
+        return sorted([
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ])
+
+    def getCities(self):
+        ids = self.context.getCities()
+        terms = getTerms('city', ids)
+        return sorted([
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ])
+
+    def getContacts(self):
+        ids = self.context.getContacts()
+        terms = getTerms('contact', ids)
+        return sorted([
+            '{0} {1}'.format(term['lastname'], term['firstname'])
+            for term in terms if term is not None
+        ])
 
 
 def add_json_header(response):

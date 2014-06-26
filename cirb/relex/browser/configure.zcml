@@ -40,6 +40,7 @@
   <browser:page
       for="cirb.relex.interfaces.IProject"
       name="view"
+      class=".project.ProjectView"
       template="templates/project.pt"
       layer="cirb.relex.interfaces.ILayer"
       permission="zope2.View"
