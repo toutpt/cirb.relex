@@ -2,6 +2,9 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 
+from cirb.relex.content.vocabularies import getTerm, getTerms
+from cirb.relex.i18n import _
+
 
 class TreeView(BrowserView):
     def __call__(self):
@@ -43,3 +46,26 @@ class SearchView(BrowserView):
             return project.getName_en()
         if self.current_language == 'nl':
             return project.getName_nl()
+
+    def getStatus(self, project):
+        STATUS = {
+            'active': _('Active'),
+            'inactive': _('Inactive'),
+            'archive': _('Archive'),
+        }
+        return STATUS.get(project.getStatus(), '')
+
+    def getRelationType(self, project):
+        RTYPE = {
+            'bilateral': _('Bilateral'),
+            'multilateral': _('Multilateral'),
+        }
+        return RTYPE.get(project.getRelationtype(), '')
+
+    def getOrganisationType(self, project):
+        organisation = getTerm(
+            'organisationtype', project.getOrganisationtype()
+        )
+        if organisation is None:
+            return None
+        return organisation['name'].get(self.current_language, None)

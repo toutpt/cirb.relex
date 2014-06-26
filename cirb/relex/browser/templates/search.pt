@@ -10,10 +10,21 @@
     <metal:content-core fill-slot="content-core">
 
       <div id="filters_table">
-        <h2>Filters</h2>
         <dl>
           <dt><label for="filter-code">Code</label></dt>
           <dd><input type="text" id="filter-code" data-column="0" /></dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-status">Status</label></dt>
+          <dd><input type="text" id="filter-status" data-column="2" /></dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-relationtype">Relation Type</label></dt>
+          <dd><input type="text" id="filter-relationtype" data-column="3" /></dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-organisationtype">Organisation Type</label></dt>
+          <dd><input type="text" id="filter-organisationtype" data-column="4" /></dd>
         </dl>
       </div>
 
@@ -22,6 +33,9 @@
           <tr>
             <th><span i18n:translate="">Code</span></th>
             <th><span i18n:translate="">Name</span></th>
+            <th><span i18n:translate="">Status</span></th>
+            <th><span i18n:translate="">Relation type</span></th>
+            <th><span i18n:translate="">Organisation type</span></th>
           </tr>
         </thead>
 
@@ -30,6 +44,9 @@
             <tr tal:define="project project/getObject">
               <td><a tal:attributes="href project/absolute_url" tal:content="project/getCode"></a></td>
               <td tal:content="python:view.getName(project)"></td>
+              <td tal:content="python:view.getStatus(project)"></td>
+              <td tal:content="python:view.getRelationType(project)"></td>
+              <td tal:content="python:view.getOrganisationType(project)"></td>
             </tr>
           </tal:block>
         </tbody>
@@ -41,6 +58,13 @@
             "bLengthChange": false,
             // "sPaginationType": "full_numbers",
             "iDisplayLength": -1,
+            "aoColumns": [
+                null,
+                null,
+                {"bVisible": false},
+                {"bVisible": false},
+                {"bVisible": false},
+            ],
         });
         $('#filters_table input').keyup(function(i){
             var col = $(this).attr('data-column');
