@@ -1,3 +1,6 @@
+from time import time
+
+from plone.memoize import ram
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
@@ -22,6 +25,11 @@ class TreeView(BrowserView):
                 'child': self.getProjectsTree(path=brain.getPath()),
             })
         return projects
+
+
+def getProjectKey(fun, view, project):
+    """ Key for ram.cache().  60 * 30 = 30 minutes """
+    return '{0}{1}'.format(project.UID, time() // (60 * 30))
 
 
 class SearchView(BrowserView):
@@ -51,7 +59,14 @@ class SearchView(BrowserView):
         terms = sorted(list(set(terms)))
         return terms
 
+    @ram.cache(getProjectKey)
+    def getCode(self, project):
+        project = project.getObject()
+        return project.getCode()
+
+    @ram.cache(getProjectKey)
     def getName(self, project):
+        project = project.getObject()
         if self.current_language == 'fr':
             return project.getName_fr()
         if self.current_language == 'en':
@@ -59,13 +74,19 @@ class SearchView(BrowserView):
         if self.current_language == 'nl':
             return project.getName_nl()
 
+    @ram.cache(getProjectKey)
     def getStatus(self, project):
+        project = project.getObject()
         return project.getStatus()
 
+    @ram.cache(getProjectKey)
     def getRelationType(self, project):
+        project = project.getObject()
         return project.getRelationtype()
 
+    @ram.cache(getProjectKey)
     def getOrganisationType(self, project):
+        project = project.getObject()
         organisation = getTerm(
             'organisationtype', project.getOrganisationtype()
         )
@@ -73,7 +94,9 @@ class SearchView(BrowserView):
             return None
         return organisation['name'].get(self.current_language, None)
 
+    @ram.cache(getProjectKey)
     def getCountries(self, project):
+        project = project.getObject()
         ids = project.getCountries()
         terms = getTerms('country', ids)
         return [
@@ -81,7 +104,9 @@ class SearchView(BrowserView):
             for term in terms if term is not None
         ]
 
+    @ram.cache(getProjectKey)
     def getRegions(self, project):
+        project = project.getObject()
         ids = project.getRegions()
         terms = getTerms('region', ids)
         return [
@@ -89,7 +114,9 @@ class SearchView(BrowserView):
             for term in terms if term is not None
         ]
 
+    @ram.cache(getProjectKey)
     def getCities(self, project):
+        project = project.getObject()
         ids = project.getCities()
         terms = getTerms('city', ids)
         return [
@@ -97,7 +124,9 @@ class SearchView(BrowserView):
             for term in terms if term is not None
         ]
 
+    @ram.cache(getProjectKey)
     def getContacts(self, project):
+        project = project.getObject()
         ids = project.getContacts()
         terms = getTerms('contact', ids)
         return [
@@ -105,12 +134,12 @@ class SearchView(BrowserView):
             for term in terms if term is not None
         ]
 
+    @ram.cache(getProjectKey)
     def getPartners(self, project):
+        project = project.getObject()
         ids = project.getBrusselspartners()
         terms = getTerms('brusselspartners', ids)
         return sorted([
             u'{0} {1}'.format(term['lastname'], term['firstname'])
             for term in terms if term is not None
         ])
-
-

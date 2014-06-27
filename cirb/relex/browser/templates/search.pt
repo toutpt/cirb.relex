@@ -115,20 +115,19 @@
         </thead>
 
         <tbody>
-          <tal:block tal:repeat="project view/getProjects">
-            <tr tal:define="project project/getObject">
-              <td><a tal:attributes="href project/absolute_url" tal:content="project/getCode"></a></td>
-              <td tal:content="python:view.getName(project)"></td>
-              <td tal:content="python:view.getStatus(project)"></td>
-              <td tal:content="python:view.getRelationType(project)"></td>
-              <td tal:content="python:view.getOrganisationType(project)"></td>
-              <td tal:content="python:view.getCountries(project)"></td>
-              <td tal:content="python:view.getRegions(project)"></td>
-              <td tal:content="python:view.getCities(project)"></td>
-              <td tal:content="python:view.getContacts(project)"></td>
-              <td tal:content="python:view.getPartners(project)"></td>
-            </tr>
-          </tal:block>
+          <tr tal:repeat="project view/getProjects">
+            <td><a tal:attributes="href project/getURL"
+                   tal:content="python:view.getCode(project)"></a></td>
+            <td tal:content="python:view.getName(project)"></td>
+            <td tal:content="python:view.getStatus(project)"></td>
+            <td tal:content="python:view.getRelationType(project)"></td>
+            <td tal:content="python:view.getOrganisationType(project)"></td>
+            <td tal:content="python:view.getCountries(project)"></td>
+            <td tal:content="python:view.getRegions(project)"></td>
+            <td tal:content="python:view.getCities(project)"></td>
+            <td tal:content="python:view.getContacts(project)"></td>
+            <td tal:content="python:view.getPartners(project)"></td>
+          </tr>
         </tbody>
 
       </table>
