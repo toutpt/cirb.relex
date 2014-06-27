@@ -91,7 +91,7 @@ class ProjectView(BrowserView):
         ids = self.context.getBrusselspartners()
         terms = getTerms('brusselspartners', ids)
         return sorted([
-            '{0} {1}'.format(term['lastname'], term['firstname'])
+            u'{0} {1}'.format(term['lastname'], term['firstname'])
             for term in terms if term is not None
         ])
 
@@ -123,7 +123,7 @@ class ProjectView(BrowserView):
         ids = self.context.getContacts()
         terms = getTerms('contact', ids)
         return sorted([
-            '{0} {1}'.format(term['lastname'], term['firstname'])
+            u'{0} {1}'.format(term['lastname'], term['firstname'])
             for term in terms if term is not None
         ])
 

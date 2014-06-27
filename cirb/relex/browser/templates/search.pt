@@ -11,20 +11,90 @@
 
       <div id="filters_table">
         <dl>
-          <dt><label for="filter-code">Code</label></dt>
+          <dt><label for="filter-code" i18n:translate="">Code</label></dt>
           <dd><input type="text" id="filter-code" data-column="0" /></dd>
         </dl>
         <dl>
-          <dt><label for="filter-status">Status</label></dt>
-          <dd><input type="text" id="filter-status" data-column="2" /></dd>
+          <dt><label for="filter-status" i18n:translate="">Status</label></dt>
+          <dd>
+            <select id="filter-status" data-column="2">
+              <option value=""></option>
+              <option value="active" i18n:translate="">Active</option>
+              <option value="inactive" i18n:translate="">Inactive</option>
+              <option value="archive" i18n:translate="">Archive</option>
+            </select>
+          </dd>
         </dl>
         <dl>
-          <dt><label for="filter-relationtype">Relation Type</label></dt>
-          <dd><input type="text" id="filter-relationtype" data-column="3" /></dd>
+          <dt><label for="filter-relationtype" i18n:translate="">Relation Type</label></dt>
+          <dd>
+            <select id="filter-relationtype" data-column="3">
+              <option value=""></option>
+              <option value="bilateral" i18n:translate="">Bilateral</option>
+              <option value="multilateral" i18n:translate="">Multilateral</option>
+            </select>
+          </dd>
         </dl>
         <dl>
-          <dt><label for="filter-organisationtype">Organisation Type</label></dt>
-          <dd><input type="text" id="filter-organisationtype" data-column="4" /></dd>
+          <dt><label for="filter-organisationtype" i18n:translate="">Organisation Type</label></dt>
+          <dd>
+            <select id="filter-organisationtype" data-column="4">
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('organisationtype')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-country" i18n:translate="">Country</label></dt>
+          <dd>
+            <select id="filter-country" data-column="5" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('country')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-region" i18n:translate="">Region</label></dt>
+          <dd>
+            <select id="filter-region" data-column="6" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('region')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-city" i18n:translate="">City</label></dt>
+          <dd>
+            <select id="filter-city" data-column="7" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('city')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt><label for="filter-contact" i18n:translate="">Contact</label></dt>
+          <dd>
+            <select id="filter-contact" data-column="8" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsContact('contact')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-brusselspartners" i18n:translate="">Brussels partners</label></dt>
+          <dd>
+            <select id="filter-brusselspartners" data-column="9" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsContact('brusselspartners')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
         </dl>
       </div>
 
@@ -36,6 +106,11 @@
             <th><span i18n:translate="">Status</span></th>
             <th><span i18n:translate="">Relation type</span></th>
             <th><span i18n:translate="">Organisation type</span></th>
+            <th><span i18n:translate="">Country</span></th>
+            <th><span i18n:translate="">Region</span></th>
+            <th><span i18n:translate="">City</span></th>
+            <th><span i18n:translate="">Contact</span></th>
+            <th><span i18n:translate="">Partenaire</span></th>
           </tr>
         </thead>
 
@@ -47,6 +122,11 @@
               <td tal:content="python:view.getStatus(project)"></td>
               <td tal:content="python:view.getRelationType(project)"></td>
               <td tal:content="python:view.getOrganisationType(project)"></td>
+              <td tal:content="python:view.getCountries(project)"></td>
+              <td tal:content="python:view.getRegions(project)"></td>
+              <td tal:content="python:view.getCities(project)"></td>
+              <td tal:content="python:view.getContacts(project)"></td>
+              <td tal:content="python:view.getPartners(project)"></td>
             </tr>
           </tal:block>
         </tbody>
@@ -64,11 +144,28 @@
                 {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},
+                {"bVisible": false},
+                {"bVisible": false},
+                {"bVisible": false},
+                {"bVisible": false},
+                {"bVisible": false},
             ],
         });
         $('#filters_table input').keyup(function(i){
             var col = $(this).attr('data-column');
             table.fnFilter(this.value, col);
+        });
+        $('#filters_table select').change(function(i){
+            var col = $(this).attr('data-column');
+            var multiple = $(this).attr('data-multiple');
+            if (!this.value) {
+                table.fnFilter('', col);
+            } else if (multiple !== undefined && multiple !== false) {
+                table.fnFilter(this.value, col);
+            } else {
+                var value = '^' + this.value + '$';
+                table.fnFilter(value, col, true, false);
+            }
         });
       </script>
 

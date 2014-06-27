@@ -2,7 +2,7 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
 
-from cirb.relex.content.vocabularies import getTerm, getTerms
+from cirb.relex.content.vocabularies import getTerm, getTerms, getVocabulary
 from cirb.relex.i18n import _
 
 
@@ -39,6 +39,18 @@ class SearchView(BrowserView):
     def getProjects(self):
         return self.catalog(portal_type="Project")
 
+    def getAllTermsName(self, vocabulary_id):
+        terms = [t['name'].get(self.current_language, None)
+                 for t in getVocabulary(vocabulary_id)]
+        terms = sorted(list(set(terms)))
+        return terms
+
+    def getAllTermsContact(self, vocabulary_id):
+        terms = [u'{0} {1}'.format(t['lastname'], t['firstname'])
+                 for t in getVocabulary(vocabulary_id)]
+        terms = sorted(list(set(terms)))
+        return terms
+
     def getName(self, project):
         if self.current_language == 'fr':
             return project.getName_fr()
@@ -48,19 +60,10 @@ class SearchView(BrowserView):
             return project.getName_nl()
 
     def getStatus(self, project):
-        STATUS = {
-            'active': _('Active'),
-            'inactive': _('Inactive'),
-            'archive': _('Archive'),
-        }
-        return STATUS.get(project.getStatus(), '')
+        return project.getStatus()
 
     def getRelationType(self, project):
-        RTYPE = {
-            'bilateral': _('Bilateral'),
-            'multilateral': _('Multilateral'),
-        }
-        return RTYPE.get(project.getRelationtype(), '')
+        return project.getRelationtype()
 
     def getOrganisationType(self, project):
         organisation = getTerm(
@@ -69,3 +72,45 @@ class SearchView(BrowserView):
         if organisation is None:
             return None
         return organisation['name'].get(self.current_language, None)
+
+    def getCountries(self, project):
+        ids = project.getCountries()
+        terms = getTerms('country', ids)
+        return [
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ]
+
+    def getRegions(self, project):
+        ids = project.getRegions()
+        terms = getTerms('region', ids)
+        return [
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ]
+
+    def getCities(self, project):
+        ids = project.getCities()
+        terms = getTerms('city', ids)
+        return [
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ]
+
+    def getContacts(self, project):
+        ids = project.getContacts()
+        terms = getTerms('contact', ids)
+        return [
+            u'{0} {1}'.format(term['lastname'], term['firstname'])
+            for term in terms if term is not None
+        ]
+
+    def getPartners(self, project):
+        ids = project.getBrusselspartners()
+        terms = getTerms('brusselspartners', ids)
+        return sorted([
+            u'{0} {1}'.format(term['lastname'], term['firstname'])
+            for term in terms if term is not None
+        ])
+
+
