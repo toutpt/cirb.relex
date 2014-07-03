@@ -16,6 +16,11 @@
   </head>
   <body>
     <metal:content-core fill-slot="content-core">
+      <div tal:condition="view/canManageRelex">
+        <a tal:attributes="href string:${context/absolute_url}/admin"
+           i18n:translate="">Admin</a>
+      </div>
+
       <div id="projects_tree">
         <ul>
           <li tal:repeat="project view/getProjectsTree">

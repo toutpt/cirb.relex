@@ -6,6 +6,8 @@
       <role name="Site Administrator"/>
       <role name="Owner"/>
       <role name="Contributor"/>
+    </permission>
+    <permission name="cirb.relex: Manage Relex" acquire="True">
       <role name="Site Administrator"/>
     </permission>
   </permissions>

@@ -22,7 +22,7 @@
 
   <browser:page
       for="cirb.relex.interfaces.IRelexBackend"
-      name="tree_view"
+      name="relex_tree_view"
       class=".relex_web.TreeView"
       template="templates/tree.pt"
       layer="cirb.relex.interfaces.ILayer"
@@ -31,7 +31,7 @@
 
   <browser:page
       for="cirb.relex.interfaces.IRelexBackend"
-      name="search_view"
+      name="relex_search_view"
       class=".relex_web.SearchView"
       template="templates/search.pt"
       layer="cirb.relex.interfaces.ILayer"

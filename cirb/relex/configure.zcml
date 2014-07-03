@@ -30,6 +30,11 @@
       title="cirb.relex: Add Project"
       />
 
+  <permission
+      id="cirb.relex.ManageRelex"
+      title="cirb.relex: Manage Relex"
+      />
+
   <genericsetup:registerProfile
       name="default"
       title="cirb.relex"

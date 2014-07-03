@@ -4,6 +4,7 @@ from plone.memoize import ram
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
+from zope.security import checkPermission
 
 from cirb.relex.content.vocabularies import getTerm, getTerms, getVocabulary
 from cirb.relex.i18n import _
@@ -26,6 +27,9 @@ class TreeView(BrowserView):
             })
         return projects
 
+    def canManageRelex(self):
+        return checkPermission('cirb.relex.ManageRelex', self.context)
+
 
 def getProjectKey(fun, view, project):
     """ Key for ram.cache().  60 * 30 = 30 minutes """
@@ -43,6 +47,9 @@ class SearchView(BrowserView):
         portal_state = getMultiAdapter((context, self.request),
                                        name=u'plone_portal_state')
         self.current_language = portal_state.language()
+
+    def canManageRelex(self):
+        return checkPermission('cirb.relex.ManageRelex', self.context)
 
     def getProjects(self):
         return self.catalog(portal_type="Project")
