@@ -1,13 +1,17 @@
 import json
+import logging
 
 from AccessControl import ClassSecurityInfo
 from DateTime import DateTime
 from Products.Archetypes import public as atapi
 from Products.ATContentTypes import atct
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from Products.CMFPlone.utils import getToolByName
 from zope.interface import implements
 
 from cirb.relex.interfaces import IProject
+
+logger = logging.getLogger('cirb.relex')
 
 
 ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
@@ -66,14 +70,6 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
             'url',
             widget=atapi.StringWidget(
                 label=u'URL',
-                i18n_domain='cirb.relex',
-            ),
-        ),
-
-        atapi.StringField(
-            'status',
-            widget=atapi.StringWidget(
-                label=u'Status',
                 i18n_domain='cirb.relex',
             ),
         ),
@@ -187,6 +183,27 @@ class Project(atct.ATCTOrderedFolder):
         self.reindexObject(idxs=["Title"])
 
     security.declarePublic("getJSON")
+
+    def getStatus(self):
+        wtool = getToolByName(self, 'portal_workflow')
+        status = wtool.getStatusOf('cirb_relex_project_workflow', self)
+        if status is None:
+            return ''
+        return status['review_state']
+
+    def setStatus(self, status):
+        TRANSITION = {
+            'active': 'activate',
+            'inactive': 'deactivate',
+            'archive': 'archive',
+        }
+        if status not in TRANSITION.keys():
+            logger.warn('Unknown status {0}'.format(status))
+            return
+        if self.getStatus() == status:
+            return
+        wtool = getToolByName(self, 'portal_workflow')
+        wtool.doActionFor(self, TRANSITION[status])
 
     def getJSON(self):
         project_json = {}

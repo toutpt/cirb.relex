@@ -285,6 +285,14 @@ angular.module('relex.services').factory('projectsService', [
                 });
                 return deferred.promise;
             },
+            getStatus: function(){
+                var deferred = $q.defer();
+                $http.get('/relex_web/relex_project/status').then(function(data){
+                    var status = data.data;
+                    deferred.resolve(status);
+                });
+                return deferred.promise;
+            },
 			createProject: function(project){
                 var deferred = $q.defer();
                 $http.post('/relex_web/relex_project', project).then(function(data){
@@ -331,6 +339,7 @@ angular.module('relex.controllers').controller('ProjectsController', [
             vocabularyService, messagesService){
 		//model
 		$scope.projects = [];
+		$scope.status = [];
 		$scope.currentProject;
         $scope.organisationTypesVocabulary = [];
         $scope.citiesVocabulary = [];
@@ -372,6 +381,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
             projectsService.getProjects().then(function(projects){
                 $scope.projects = projects;
                 checkCurrentProject();
+            });
+            projectsService.getStatus().then(function(status){
+                $scope.status = status;
             });
 
             vocabularyService.get('city').then(function(vocab){

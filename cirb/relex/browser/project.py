@@ -143,6 +143,7 @@ class ProjectJSON(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.status = False
         self.projectId = None
         self.project = None
         self._action = request['REQUEST_METHOD']
@@ -151,7 +152,9 @@ class ProjectJSON(BrowserView):
 
     def publishTraverse(self, request, name):
         logger.info('publishTraverse ' + name)
-        if self.projectId is None:
+        if self._action == "GET" and name == 'status':
+            self.status = True
+        elif self.projectId is None:
             self.projectId = name
         elif self._action == "POST" and name == "update":
             self._action = "PUT"
@@ -164,6 +167,10 @@ class ProjectJSON(BrowserView):
         return self.index()
 
     def update(self):
+        if self.status:
+            self._getStatus()
+            return
+
         if self.projectId is not None:
             reference_catalog = getToolByName(
                 self.context, 'reference_catalog'
@@ -198,6 +205,16 @@ class ProjectJSON(BrowserView):
 
     def _updatePayload(self):
         self.payload = self.request._file.read()
+
+    def _getStatus(self):
+        """ Return state of the cirb_relex_project_workflow workflow """
+        wtool = getToolByName(self.context, 'portal_workflow')
+        workflow = wtool.getWorkflowById('cirb_relex_project_workflow')
+        states = {
+            state_id: state.title
+            for state_id, state in workflow.states.items()
+        }
+        self._index = json.dumps(states)
 
     def _getProjects(self):
         """

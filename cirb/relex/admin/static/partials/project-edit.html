@@ -29,10 +29,8 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" translate>Status</label>
         <div class="col-sm-10">
-          <select class="form-control" ng-model="currentProject.status">
-            <option value="active" translate>Active</option>
-            <option value="inactive" translate>Inactive</option>
-            <option value="archive" translate>Archive</option>
+          <select class="form-control" ng-model="currentProject.status"
+                  ng-options="status_id as status_name for (status_id, status_name) in status">
           </select>
         </div>
       </div>
