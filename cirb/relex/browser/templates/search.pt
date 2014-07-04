@@ -23,9 +23,9 @@
           <dd>
             <select id="filter-status" data-column="2">
               <option value=""></option>
-              <option value="active" i18n:translate="">Active</option>
-              <option value="inactive" i18n:translate="">Inactive</option>
-              <option value="archive" i18n:translate="">Archive</option>
+              <option tal:repeat="status python:view.getAllStatus().items()"
+                      tal:attributes="value python:status[0]" tal:content="python:status[1]"
+                      i18n:translate="">Status</option>
             </select>
           </dd>
         </dl>

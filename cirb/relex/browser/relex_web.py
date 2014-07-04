@@ -54,6 +54,15 @@ class SearchView(BrowserView):
     def getProjects(self):
         return self.catalog(portal_type="Project")
 
+    def getAllStatus(self):
+        wtool = getToolByName(self.context, 'portal_workflow')
+        workflow = wtool.getWorkflowById('cirb_relex_project_workflow')
+        states = {
+            state_id: state.title
+            for state_id, state in workflow.states.items()
+        }
+        return states
+
     def getAllTermsName(self, vocabulary_id):
         terms = [t['name'].get(self.current_language, None)
                  for t in getVocabulary(vocabulary_id)]
