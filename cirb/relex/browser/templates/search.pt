@@ -50,6 +50,26 @@
           </dd>
         </dl>
         <dl>
+          <dt><label for="filter-theme" i18n:translate="">Theme</label></dt>
+          <dd>
+            <select id="filter-theme" data-column="10" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('theme')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
+          <dt><label for="filter-keyword" i18n:translate="">Keyword</label></dt>
+          <dd>
+            <select id="filter-keyword" data-column="11" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('keywords')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
+        <dl>
           <dt><label for="filter-country" i18n:translate="">Country</label></dt>
           <dd>
             <select id="filter-country" data-column="5" data-multiple>
@@ -115,6 +135,8 @@
             <th><span i18n:translate="">City</span></th>
             <th><span i18n:translate="">Contact</span></th>
             <th><span i18n:translate="">Partenaire</span></th>
+            <th><span i18n:translate="">Theme</span></th>
+            <th><span i18n:translate="">Keyword</span></th>
           </tr>
         </thead>
 
@@ -131,6 +153,8 @@
             <td tal:content="python:view.getCities(project)"></td>
             <td tal:content="python:view.getContacts(project)"></td>
             <td tal:content="python:view.getPartners(project)"></td>
+            <td tal:content="python:view.getThemes(project)"></td>
+            <td tal:content="python:view.getKeywords(project)"></td>
           </tr>
         </tbody>
 
@@ -144,6 +168,8 @@
             "aoColumns": [
                 null,
                 null,
+                {"bVisible": false},
+                {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},

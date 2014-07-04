@@ -116,6 +116,26 @@ class SearchView(BrowserView):
         return organisation['name'].get(self.current_language, None)
 
     @ram.cache(getProjectKey)
+    def getThemes(self, project):
+        project = project.getObject()
+        ids = project.getThemes()
+        terms = getTerms('theme', ids)
+        return [
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ]
+
+    @ram.cache(getProjectKey)
+    def getKeywords(self, project):
+        project = project.getObject()
+        ids = project.getKeywords()
+        terms = getTerms('keywords', ids)
+        return [
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ]
+
+    @ram.cache(getProjectKey)
     def getCountries(self, project):
         project = project.getObject()
         ids = project.getCountries()
