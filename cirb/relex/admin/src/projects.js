@@ -81,6 +81,8 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.relationTypesVocabulary = [];
         $scope.organisationTypesVocabulary = [];
         $scope.citiesVocabulary = [];
+        $scope.themesVocabulary = [];
+        $scope.keywordsVocabulary = [];
         $scope.regionsVocabulary = [];
         $scope.countriesVocabulary = [];
         $scope.brusselsPartnersVocabulary = [];
@@ -132,6 +134,12 @@ angular.module('relex.controllers').controller('ProjectsController', [
             });
             vocabularyService.get('organisationtype').then(function(vocab){
                 $scope.organisationTypesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('theme').then(function(vocab){
+                $scope.themesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('keywords').then(function(vocab){
+                $scope.keywordsVocabulary = vocab.terms;
             });
             vocabularyService.get('region').then(function(vocab){
                 $scope.regionsVocabulary = vocab.terms;

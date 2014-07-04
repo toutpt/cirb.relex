@@ -123,6 +123,22 @@ ProjectSchema = atct.ATContentTypeSchema.copy() + atapi.Schema(
         ),
 
         atapi.LinesField(
+            'themes',
+            widget=atapi.LinesWidget(
+                label=u"Themes",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
+            'keywords',
+            widget=atapi.LinesWidget(
+                label=u"Keywords",
+                i18n_domain="cirb.relex",
+            ),
+        ),
+
+        atapi.LinesField(
             'brusselspartners',
             widget=atapi.LinesWidget(
                 label=u"Brussels partners",
@@ -235,6 +251,8 @@ class Project(atct.ATCTOrderedFolder):
         project_json['relationtype'] = self.getRelationtype()
         project_json['organisationtype'] = self.getOrganisationtype()
         project_json['comments'] = self.getComments()
+        project_json['theme'] = self.getThemes()
+        project_json['keywords'] = self.getKeywords()
         project_json['brusselspartners'] = self.getBrusselspartners()
         project_json['country'] = self.getCountries()
         project_json['region'] = self.getRegions()
@@ -266,6 +284,12 @@ class Project(atct.ATCTOrderedFolder):
         self.setRelationtype(project_json.get('relationtype', ''))
         self.setOrganisationtype(project_json.get('organisationtype', ''))
         self.setComments(project_json.get('comments', ''))
+        self.setThemes([
+            t['id'] for t in project_json.get('theme', tuple())
+        ])
+        self.setKeywords([
+            t['id'] for t in project_json.get('keywords', tuple())
+        ])
         self.setBrusselspartners([
             t['id'] for t in project_json.get('brusselspartners', tuple())
         ])

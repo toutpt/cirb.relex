@@ -54,6 +54,28 @@
         <dd tal:content="value"></dd>
       </dl>
 
+      <dl tal:define="values view/getThemes" tal:condition="values">
+        <dt i18n:translate="">Themes</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
+      <dl tal:define="values view/getKeywords" tal:condition="values">
+        <dt i18n:translate="">Keywords</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li tal:condition="value" tal:content="value"></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
       <dl tal:define="values view/getBrusselsPartners" tal:condition="values">
         <dt i18n:translate="">Brussels partners</dt>
         <dd>

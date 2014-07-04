@@ -88,6 +88,22 @@ class ProjectView(BrowserView):
     def getComments(self):
         return self.context.getComments()
 
+    def getThemes(self):
+        ids = self.context.getThemes()
+        terms = getTerms('theme', ids)
+        return sorted([
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ])
+
+    def getKeywords(self):
+        ids = self.context.getKeywords()
+        terms = getTerms('keywords', ids)
+        return sorted([
+            term['name'].get(self.current_language, None)
+            for term in terms if term is not None
+        ])
+
     def getBrusselsPartners(self):
         ids = self.context.getBrusselspartners()
         terms = getTerms('brusselspartners', ids)
@@ -248,6 +264,8 @@ class ProjectJSON(BrowserView):
         "relationtype": "",
         "organisationtype": "",
         "comments": "",
+        "theme": [],
+        "keywords": [],
         "brusselspartners": [],
         "country": [],
         "region": [],

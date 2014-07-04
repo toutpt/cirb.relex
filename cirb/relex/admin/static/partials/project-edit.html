@@ -62,7 +62,27 @@
         </div>
       </div>
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" translate>Keywords</div>
+      <div class="panel-body">
+        <div select-multiple
+             label="'Themes'"
+             vocabulary="themesVocabulary"
+             display="'_(term.name)'"
+             legend="'Theme'"
+             target="currentProject.theme"></div>
+        <div select-multiple
+             label="'Keywords'"
+             vocabulary="keywordsVocabulary"
+             display="'_(term.name)'"
+             legend="'Keyword'"
+             target="currentProject.keywords"></div>
+      </div>
+    </div>
+
   </tab>
+
   <tab heading="{{'Second part' | translate}}">
     <div class="panel panel-default">
       <div class="panel-heading" translate>Brussels partners</div>
