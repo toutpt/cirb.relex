@@ -197,6 +197,8 @@ class Project(atct.ATCTOrderedFolder):
             'inactive': 'deactivate',
             'archive': 'archive',
         }
+        if not status:
+            return
         if status not in TRANSITION.keys():
             logger.warn('Unknown status {0}'.format(status))
             return

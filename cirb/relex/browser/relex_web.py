@@ -98,7 +98,12 @@ class SearchView(BrowserView):
     @ram.cache(getProjectKey)
     def getRelationType(self, project):
         project = project.getObject()
-        return project.getRelationtype()
+        relation = getTerm(
+            'relationtype', project.getRelationtype()
+        )
+        if relation is None:
+            return None
+        return relation['name'].get(self.current_language, None)
 
     @ram.cache(getProjectKey)
     def getOrganisationType(self, project):

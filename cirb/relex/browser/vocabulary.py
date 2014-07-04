@@ -177,6 +177,14 @@ VOCABULARIES = {
             "terms":[]
         },
         {
+            "name": "Relation type", "id": "relationtype", "model": {
+                "id": "",
+                "code": {"fr": "", "en": "", "nl": ""},
+                "name": {"fr": "", "en": "", "nl": ""}
+            },
+            "terms":[]
+        },
+        {
             "name": "Organisation type", "id": "organisationtype", "model": {
                 "id": "",
                 "code": {"fr": "", "en": "", "nl": ""},

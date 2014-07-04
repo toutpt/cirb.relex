@@ -37,9 +37,10 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" translate>Relation type</label>
         <div class="col-sm-4">
-          <select class="form-control" ng-model="currentProject.relationtype">
-            <option value="bilateral" translate>Bilateral</option>
-            <option value="multilateral" translate>Multilateral</option>
+          <select class="form-control"
+                  name="relationtype"
+                  ng-model="currentProject.relationtype"
+                  ng-options="type.id as t(type.name) for type in relationTypesVocabulary">
           </select>
         </div>
         <label class="col-sm-2 control-label" translate>Organisation type</label>

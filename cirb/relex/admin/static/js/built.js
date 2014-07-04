@@ -341,6 +341,7 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		$scope.projects = [];
 		$scope.status = [];
 		$scope.currentProject;
+        $scope.relationTypesVocabulary = [];
         $scope.organisationTypesVocabulary = [];
         $scope.citiesVocabulary = [];
         $scope.regionsVocabulary = [];
@@ -388,6 +389,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
 
             vocabularyService.get('city').then(function(vocab){
                 $scope.citiesVocabulary = vocab.terms;
+            });
+            vocabularyService.get('relationtype').then(function(vocab){
+                $scope.relationTypesVocabulary = vocab.terms;
             });
             vocabularyService.get('organisationtype').then(function(vocab){
                 $scope.organisationTypesVocabulary = vocab.terms;
@@ -680,18 +684,21 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.addTerm = function(){
             vocabularyService.post(VOCAB, $scope.currentTerm).then(function(data){
                 messagesService.addInfo('Term added', 2000);
-                $location.path('/vocabulary/' + VOCAB + '/' + data);
+                vocabularyService.purge();
+                $location.path('/vocabulary/' + VOCAB + '/' + data.id);
             }, onError);
         };
         $scope.saveTerm = function(){
             vocabularyService.put(VOCAB, $scope.currentTerm).then(function(){
                 messagesService.addInfo('Term updated', 2000);
+                vocabularyService.purge();
                 $location.path('/vocabulary/' + VOCAB);
             }, onError);
         };
         $scope.removeTerm = function(){
             vocabularyService.remove(VOCAB, $scope.currentTerm).then(function(){
                 messagesService.addInfo('Term removed', 2000);
+                vocabularyService.purge();
                 $location.path('/vocabulary/' + VOCAB);
             });
         };

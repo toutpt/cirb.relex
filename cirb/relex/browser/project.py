@@ -62,11 +62,12 @@ class ProjectView(BrowserView):
         return STATUS.get(self.context.getStatus(), '')
 
     def getRelationType(self):
-        RTYPE = {
-            'bilateral': _('Bilateral'),
-            'multilateral': _('Multilateral'),
-        }
-        return RTYPE.get(self.context.getRelationtype(), '')
+        relation = getTerm(
+            'relationtype', self.context.getRelationtype()
+        )
+        if relation is None:
+            return None
+        return relation['name'].get(self.current_language, None)
 
     def getOrganisationType(self):
         organisation = getTerm(

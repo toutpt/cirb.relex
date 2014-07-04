@@ -134,7 +134,7 @@ def _import_cities(cells, relex_web):
     print('Imported cities.')
 
 
-# ================= CELLS ORGANIZATIONS FUNCTIONS CONTACTS  =================
+# ========= CELLS ORGANIZATIONS RELATION FUNCTIONS CONTACTS  =================
 
 def _import_cells(cells, relex_web):
     terms = []
@@ -156,6 +156,28 @@ def _import_cells(cells, relex_web):
     key = KEY_STORAGE + '.cell'
     setattr(relex_web, key, json.dumps(terms))
     print('Imported cells.')
+
+
+def _import_relation_types(cells, relex_web):
+    terms = []
+    for cell in cells:
+        term = {
+            "id": cell[0].decode('latin-1'),
+            "code": {
+                "fr": cell[1].decode('latin-1'),
+                "en": cell[3].decode('latin-1'),
+                "nl": cell[2].decode('latin-1'),
+                },
+            "name": {
+                "fr": cell[4].decode('latin-1'),
+                "en": cell[6].decode('latin-1'),
+                "nl": cell[5].decode('latin-1'),
+                }
+            }
+        terms.append(term)
+    key = KEY_STORAGE + '.relationtype'
+    setattr(relex_web, key, json.dumps(terms))
+    print('Imported relation types.')
 
 
 def _import_organisation_types(cells, relex_web):
@@ -392,7 +414,6 @@ def _create_projects(countries, regions, cities, contacts, brusselspartners,
 
 def _create_project(cell, context):
     STATUS = {'17': 'active', '18': 'inactive', '19': 'archive'}
-    RTYPE = {'17': 'bilateral', '18': 'multilateral'}
     chooser = INameChooser(context)
     project_id = chooser.chooseName(cell[2].decode('latin-1'), context)
 
@@ -412,7 +433,7 @@ def _create_project(cell, context):
     project.setUrl(cell[6].decode('latin-1'))
     project.setOrganisationtype(cell[5].decode('latin-1'))
     project.setStatus(STATUS.get(cell[18].decode('latin-1'), ''))
-    project.setRelationtype(RTYPE.get(cell[19].decode('latin-1'), ''))
+    project.setRelationtype(cell[19].decode('latin-1'))
     project.setStart(_get_datetime(cell[10].decode('latin-1')))
     project.setEnd(_get_datetime(cell[15].decode('latin-1')))
 
@@ -442,6 +463,7 @@ def import_csv(relex_web, folder):
     _import_cities(csv_dict['CITIES'], relex_web)
 
     _import_cells(csv_dict['CELLS'], relex_web)
+    _import_relation_types(csv_dict['RELATIONTYPES'], relex_web)
     _import_organisation_types(csv_dict['ORGANIZATIONTYPES'], relex_web)
     _import_organisations(
         csv_dict['ORGANIZATIONS'], csv_dict['CELLS_ORAGANIZATIONS'], relex_web

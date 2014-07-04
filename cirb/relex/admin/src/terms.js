@@ -233,18 +233,21 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.addTerm = function(){
             vocabularyService.post(VOCAB, $scope.currentTerm).then(function(data){
                 messagesService.addInfo('Term added', 2000);
-                $location.path('/vocabulary/' + VOCAB + '/' + data);
+                vocabularyService.purge();
+                $location.path('/vocabulary/' + VOCAB + '/' + data.id);
             }, onError);
         };
         $scope.saveTerm = function(){
             vocabularyService.put(VOCAB, $scope.currentTerm).then(function(){
                 messagesService.addInfo('Term updated', 2000);
+                vocabularyService.purge();
                 $location.path('/vocabulary/' + VOCAB);
             }, onError);
         };
         $scope.removeTerm = function(){
             vocabularyService.remove(VOCAB, $scope.currentTerm).then(function(){
                 messagesService.addInfo('Term removed', 2000);
+                vocabularyService.purge();
                 $location.path('/vocabulary/' + VOCAB);
             });
         };
