@@ -51,7 +51,10 @@ class ProjectView(BrowserView):
         return self.context.getEnd()
 
     def getUrl(self):
-        return self.context.getUrl()
+        url = self.context.getUrl()
+        if not url.startswith('http'):
+            url = 'http://{0}'.format(url)
+        return url
 
     def getStatus(self):
         STATUS = {

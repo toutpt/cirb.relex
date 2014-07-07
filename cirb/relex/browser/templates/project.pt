@@ -8,7 +8,6 @@
   <head></head>
   <body>
     <metal:content-core fill-slot="content-core">
-
       <dl tal:define="value view/getName" tal:condition="value">
         <dt i18n:translate="">Name</dt>
         <dd tal:content="value"></dd>
@@ -143,6 +142,8 @@
           </ul>
         </dd>
       </dl>
+
+      <a tal:attributes="href string:${context/absolute_url}/print_view" i18n:translate="">Print</a>
 
     </metal:content-core>
   </body>
