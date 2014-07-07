@@ -144,6 +144,9 @@ class ProjectView(BrowserView):
             for term in terms if term is not None
         ])
 
+    def getFiles(self):
+        return self.context.getFolderContents()
+
 
 def add_json_header(response):
     response.setHeader(
@@ -254,6 +257,7 @@ class ProjectJSON(BrowserView):
         """
         Return a specific project as json:
         {
+        "absolute_url": "",
         "id": "",
         "name": {"fr": "", "en": "", "nl": ""},
         "content": {"fr": "", "en": "", "nl": ""},
@@ -271,6 +275,7 @@ class ProjectJSON(BrowserView):
         "region": [],
         "city": [],
         "contact": [],
+        "files": [{'name': '', 'url': ''}, {...}],
         }
         """
         self._index = self.project.getJSON()

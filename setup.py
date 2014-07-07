@@ -37,6 +37,7 @@ setup(
         'setuptools',
         # -*- Extra requirements: -*-
         'collective.js.datatables',
+        'collective.quickupload',
     ],
     extras_require=dict(
         test=['plone.app.testing', 'plone.app.robotframework'],

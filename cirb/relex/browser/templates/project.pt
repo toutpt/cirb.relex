@@ -131,6 +131,19 @@
         </dd>
       </dl>
 
+      <dl tal:define="values view/getFiles" tal:condition="values">
+        <dt i18n:translate="">Files</dt>
+        <dd>
+          <ul>
+            <tal:block tal:repeat="value values">
+              <li><a tal:content="value/Title"
+                     tal:attributes="href value/getURL"
+                     tal:condition="python:value.portal_type == 'File'"></a></li>
+            </tal:block>
+          </ul>
+        </dd>
+      </dl>
+
     </metal:content-core>
   </body>
 </html>

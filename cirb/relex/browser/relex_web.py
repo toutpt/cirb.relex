@@ -20,6 +20,7 @@ class TreeView(BrowserView):
         for brain in self.catalog(
                 path={'query': path, "depth": 1},
                 sort_on='sortable_title',
+                portal_type="Project",
         ):
             projects.append({
                 'obj': brain,

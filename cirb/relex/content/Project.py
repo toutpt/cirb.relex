@@ -223,6 +223,14 @@ class Project(atct.ATCTOrderedFolder):
         wtool = getToolByName(self, 'portal_workflow')
         wtool.doActionFor(self, TRANSITION[status])
 
+    def getFiles(self):
+        brains = self.getFolderContents()
+        files = [
+            {'name': brain.Title, 'url': brain.getURL()}
+            for brain in brains if brain.portal_type == 'File'
+        ]
+        return files
+
     def getJSON(self):
         project_json = {}
         project_json['id'] = self.UID()
@@ -258,6 +266,8 @@ class Project(atct.ATCTOrderedFolder):
         project_json['region'] = self.getRegions()
         project_json['city'] = self.getCities()
         project_json['contact'] = self.getContacts()
+        project_json['absolute_url'] = self.absolute_url()
+        project_json['files'] = self.getFiles()
         return json.dumps(project_json)
 
     security.declarePublic("setFromJSON")
