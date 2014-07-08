@@ -2,276 +2,395 @@ msgid ""
 msgstr ""
 "Project-Id-Version: carteeco\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-05-28 14:26+0100\n"
-"Last-Translator: jmf <jmf@makina-corpus.com>\n"
+"PO-Revision-Date: 2014-07-08 16:00+0100\n"
+"Last-Translator: Gagaro <gagaro42@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Add"
 msgstr "Ajouter"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
 msgid "Add a project"
 msgstr "Ajouter un projet"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+msgid "Add new file"
+msgstr "Ajouter un nouveau fichier"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "All"
+msgstr "Tous"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
 msgid "Brussels Partners"
 msgstr "Partenaires bruxellois"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Brussels partners"
 msgstr "Partenaires bruxellois"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Cancel"
 msgstr "Annuler"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Cell"
 msgstr "Cellule"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+msgid "Cells"
+msgstr "Cellules"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Cities"
 msgstr "Villes"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "City"
 msgstr "Ville"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "City - Country - Region"
 msgstr "VIlle - Pays - Région"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Code"
 msgstr "Code"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
 msgid "Code continent"
 msgstr "Code continent"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 msgid "Code index"
 msgstr "Code index"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Comments"
 msgstr "Commentaires"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Contact"
 msgstr "Contact"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Contacts"
 msgstr "Contacts"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Content"
 msgstr "Contenu"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Continent"
 msgstr "Continent"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
 msgid "Countries"
 msgstr "Pays"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Country"
 msgstr "Pays"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Country - Region"
 msgstr "Pays - Région"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Delete"
 msgstr "Supprimer"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
 msgid "Description"
 msgstr "Description"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "EMail"
+msgstr "EMail"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+msgid "Edit cell"
+msgstr "Modifier la cellule"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Edit city"
 msgstr "Modifier la ville"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Edit contact"
+msgstr "Modifier le contact"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 msgid "Edit continent"
 msgstr "Modifier le continent"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
 msgid "Edit country"
 msgstr "Modifier le pays"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+msgid "Edit function"
+msgstr "Modifier la fonction"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "Edit organisation"
 msgstr "Modifier l'organisation"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Edit region"
 msgstr "Modifier la région"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "End"
 msgstr "Fin"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+msgid "Files"
+msgstr "Fichiers"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "First part"
 msgstr "Première partie"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Firstname"
+msgstr "Prénom"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Function"
 msgstr "Fonction"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+msgid "Functions"
+msgstr "Fonctions"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "International partners"
 msgstr "Partenaires étrangers"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+msgid "Keyword"
+msgstr "Mots-clés"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/select-multiple.html
-msgid "Limit terms"
-msgstr "Limiter les termes"
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Lastname"
+msgstr "Nom"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Name"
 msgstr "Nom"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Name - Firstname - organisation - cell"
 msgstr "Nom - Prénom - Organisation - Cellule"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
+msgid "No projects"
+msgstr "Pas de projets"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Organisation"
 msgstr "Organisation"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 msgid "Organisation type"
 msgstr "Type d'organisation"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "Organisations"
 msgstr "Organisations"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabularies.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Phone"
+msgstr "Téléphone"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabularies.html
 msgid "Please select the vocabulary you want to manage"
 msgstr "Veuillez selectionner le vocabulaire que vous souhaitez modifier"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
 msgid "Project"
 msgstr "Projet"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/projects.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
 msgid "Projects"
 msgstr "Projets"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Region"
 msgstr "Région"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Regions"
 msgstr "Régions"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Relation type"
 msgstr "Type de relation"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/index.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
 msgid "Relex"
 msgstr "Relex"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/index.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
 msgid "Relex Backoffice"
 msgstr "Gestion de Relex"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_city.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_continent.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_country.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_country.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Save"
 msgstr "Enregistrer"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Second part"
 msgstr "Deuxième partie"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/index.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "Selected first"
+msgstr "Sélectionnés en premier"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
 msgid "Settings"
 msgstr "Configuration"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Start"
 msgstr "Début"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Status"
 msgstr "Statut"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Theme"
 msgstr "Thème"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
+msgid "Themes"
+msgstr "Thèmes"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "Type"
 msgstr "Type"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/project-edit.html
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 msgid "URL"
 msgstr "URL"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/partials/vocabularies.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabularies.html
 msgid "Vocabularies"
 msgstr "Vocabulaires"
 
-#: /Users/toutpt/makina/cirb/cirb.relex/cirb/relex/admin/static/index.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
 msgid "You are not loggedin"
 msgstr "Vous n'êtes pas connecté"
 
-#~ msgid "name"
-#~ msgstr "Nom"
+#~ msgid "Limit terms"
+#~ msgstr "Limiter les termes"

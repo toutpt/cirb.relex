@@ -3,10 +3,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Active"
-msgstr ""
-
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
@@ -18,6 +14,7 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Add"
 msgstr ""
@@ -27,11 +24,11 @@ msgid "Add a project"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Archive"
+msgid "Add new file"
 msgstr ""
 
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Bilateral"
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "All"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
@@ -55,6 +52,7 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Cancel"
 msgstr ""
@@ -91,6 +89,7 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Code"
 msgstr ""
 
@@ -150,6 +149,7 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Delete"
 msgstr ""
@@ -203,6 +203,10 @@ msgid "End"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+msgid "Files"
+msgstr ""
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "First part"
 msgstr ""
 
@@ -221,35 +225,22 @@ msgid "Functions"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Inactive"
-msgstr ""
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "International partners"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 msgid "Keyword"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_keywords.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 msgid "Keywords"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Lastname"
-msgstr ""
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
-msgid "Limit terms"
-msgstr ""
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Multilateral"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
@@ -259,11 +250,16 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Name"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 msgid "Name - Firstname - organisation - cell"
+msgstr ""
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/projects.html
+msgid "No projects"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
@@ -273,6 +269,7 @@ msgid "Organisation"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 msgid "Organisation type"
 msgstr ""
 
@@ -310,6 +307,7 @@ msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 msgid "Relation type"
 msgstr ""
 
@@ -333,12 +331,17 @@ msgstr ""
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_relationtype.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_theme.html
 msgid "Save"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Second part"
+msgstr ""
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "Selected first"
 msgstr ""
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
