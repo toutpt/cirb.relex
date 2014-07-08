@@ -34,3 +34,7 @@
     padding: 4px 6px 5px 6px;
     border-bottom: none;
 }
+
+.clear {
+    clear: both;
+}

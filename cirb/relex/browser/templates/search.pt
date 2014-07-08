@@ -8,6 +8,11 @@
   <head><title></title>
     <metal:block fill-slot="style_slot">
       <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/TableTools.css">
+    </metal:block>
+    <metal:block fill-slot="javascript_head_slot">
+      <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+      <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/TableTools.js"></script>
     </metal:block>
   </head>
   <body>
@@ -178,6 +183,7 @@
 
       <script>
         var table = $('#projects_table').dataTable({
+            "sDom": 'T<"clear">lfrtip',
             "bLengthChange": false,
             // "sPaginationType": "full_numbers",
             "iDisplayLength": -1,
@@ -195,6 +201,31 @@
                 {"bVisible": false},
                 {"bVisible": false},
             ],
+            "oTableTools": {
+                "sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf",
+                "aButtons": [
+                    {
+                        "sExtends": "copy",
+                        "mColumns": "visible",
+                    },
+                    {
+                        "sExtends": "csv",
+                        "mColumns": "visible",
+                    },
+                    {
+                        "sExtends": "xls",
+                        "mColumns": "visible",
+                    },
+                    {
+                        "sExtends": "pdf",
+                        "mColumns": "visible",
+                    },
+                    {
+                        "sExtends": "print",
+                        "mColumns": "visible",
+                    },
+                ],
+            },
         });
         $('#filters_table input').keyup(function(i){
             var col = $(this).attr('data-column');
