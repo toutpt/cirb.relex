@@ -37,9 +37,13 @@
 <div class="panel panel-default">
 	<div class="panel-heading" translate>Keywords</div>
 	<div class="panel-body">
+        <div class="input-group margin-bottom-sm">
+          <input type="search" class="form-control" ng-model="queryVocabulary"/>
+          <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+        </div>
         <div class="list-group">
           <a class="list-group-item"
-             ng-repeat="term in terms | orderBy:orderByName"
+             ng-repeat="term in terms | filter:queryVocabulary | orderBy:orderByName"
              ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
               {{t(term.name)}}

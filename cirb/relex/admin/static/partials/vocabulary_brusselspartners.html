@@ -67,9 +67,13 @@
 <div class="panel panel-default">
 	<div class="panel-heading" translate>Brussels Partners</div>
 	<div class="panel-body">
+        <div class="input-group margin-bottom-sm">
+          <input type="search" class="form-control" ng-model="queryVocabulary"/>
+          <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+        </div>
         <div class="list-group">
           <a class="list-group-item"
-             ng-repeat="term in terms | orderBy:'lastname'"
+             ng-repeat="term in terms | filter:queryVocabulary | orderBy:'lastname'"
              ng-class="{'active': currentTerm.id === term.id}"
              ng-click="setCurrentTerm(term)">
               {{term.lastname}} {{term.firstname}} {{term.email}}</a>

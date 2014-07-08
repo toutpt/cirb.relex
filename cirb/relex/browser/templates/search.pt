@@ -247,7 +247,6 @@
             }
         });
 
-
         // Chosen
         $('#filters_table select').chosen({
             allow_single_deselect: true,
