@@ -38,3 +38,6 @@
 .clear {
     clear: both;
 }
+#filters_table select {
+    min-width: 200px;
+}

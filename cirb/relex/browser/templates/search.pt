@@ -8,11 +8,13 @@
   <head><title></title>
     <metal:block fill-slot="style_slot">
       <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
+      <link href="++resource++cirb.relex/chosen/chosen.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/TableTools.css">
     </metal:block>
     <metal:block fill-slot="javascript_head_slot">
       <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
       <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/TableTools.js"></script>
+      <script type="text/javascript" src="++resource++cirb.relex/chosen/chosen.jquery.js"></script>
     </metal:block>
   </head>
   <body>
@@ -182,6 +184,7 @@
       </table>
 
       <script>
+        // DataTable
         var table = $('#projects_table').dataTable({
             "sDom": 'T<"clear">lfrtip',
             "bLengthChange": false,
@@ -243,6 +246,10 @@
                 table.fnFilter(value, col, true, false);
             }
         });
+
+
+        // Chosen
+        $('#filters_table select').chosen();
       </script>
 
     </metal:content-core>
