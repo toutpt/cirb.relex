@@ -249,7 +249,16 @@
 
 
         // Chosen
-        $('#filters_table select').chosen();
+        $('#filters_table select').chosen({
+            allow_single_deselect: true,
+        });
+        $('.chosen-container-single').keyup(function(event){
+            if (event.keyCode == 46) {
+                event.preventDefault();
+                $(this).siblings('select').data('chosen').results_reset();
+            }
+        });
+
       </script>
 
     </metal:content-core>
