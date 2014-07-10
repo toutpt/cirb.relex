@@ -480,7 +480,7 @@ def import_csv(relex_web, folder):
 
 if 'app' in locals():
     relex_web = app.restrictedTraverse('Plone').restrictedTraverse('relex_web')
-    folder = len(sys.argv) > 1 and sys.argv[1] or '.'
+    folder = 'Relex'
     setSite(app.restrictedTraverse('Plone'))
     import_csv(relex_web, folder)
 
