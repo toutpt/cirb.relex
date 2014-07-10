@@ -16,11 +16,11 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('vocabularyService', [
-    '$http', '$q', '$cacheFactory', 'langService',
-    function($http, $q, $cacheFactory, langService){
+    '$http', '$q', '$cacheFactory', 'langService', 'settingsService',
+    function($http, $q, $cacheFactory, langService, settingsService){
         var _ = langService.createNewTranslatedValue;
         var cache = $cacheFactory('vocabularyService');
-
+        var BASE_URL = settingsService.BASE_URL;
         return {
             getVocabularies: function(){
                 var deferred = $q.defer();
@@ -73,7 +73,7 @@ angular.module('relex.services').factory('vocabularyService', [
 
                 /* Get all vocabularies from backend */
                 var promises = [];
-                $http.get('/relex_web/relex_vocabulary').then(function(data){
+                $http.get(BASE_URL + '/relex_vocabulary').then(function(data){
                     var vocabularies = data.data;
                     var ids = [];
                     angular.forEach(vocabularies, function(vocabulary){
@@ -134,7 +134,7 @@ angular.module('relex.services').factory('vocabularyService', [
             },
             post: function(vocabularyID, term){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID, term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID, term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });
@@ -143,7 +143,7 @@ angular.module('relex.services').factory('vocabularyService', [
             put: function(vocabularyID, term){
                 var deferred = $q.defer();
                 //rest api with Plone doesn't work with publishTraverse put -> post /update
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });
@@ -152,7 +152,7 @@ angular.module('relex.services').factory('vocabularyService', [
             remove: function(vocabularyID, term){
                 var deferred = $q.defer();
                 //rest api with Plone doesn't work with publishTraverse delete -> post /delete
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/delete', term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID + '/' + term.id + '/delete', term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });

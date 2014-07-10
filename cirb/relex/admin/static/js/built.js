@@ -275,19 +275,22 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('projectsService', [
-	'$http', '$q', function($http, $q){
+	'$http', '$q', 'settingsService', function($http, $q, settingsService){
+        var BASE_URL = settingsService.BASE_URL;
         return {
             getProjects: function(){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project').then(function(data){
+                $http.get(BASE_URL + '/relex_project').then(function(data){
                     var projects = data.data;
                     deferred.resolve(projects);
+                }, function(error){
+                    deferred.reject(error);
                 });
                 return deferred.promise;
             },
             getStatus: function(){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project/status').then(function(data){
+                $http.get(BASE_URL + '/relex_project/status').then(function(data){
                     var status = data.data;
                     deferred.resolve(status);
                 });
@@ -295,7 +298,7 @@ angular.module('relex.services').factory('projectsService', [
             },
 			createProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project', project).then(function(data){
+                $http.post(BASE_URL + '/relex_project', project).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
                 });
@@ -303,7 +306,7 @@ angular.module('relex.services').factory('projectsService', [
 			},
             getProject: function(id){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project/'+ id).then(function(data){
+                $http.get(BASE_URL + '/relex_project/'+ id).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
                 });
@@ -311,7 +314,7 @@ angular.module('relex.services').factory('projectsService', [
             },
 			updateProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project/'+ project.id +'/update',
+                $http.post(BASE_URL + '/relex_project/'+ project.id +'/update',
                            project).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
@@ -320,7 +323,7 @@ angular.module('relex.services').factory('projectsService', [
 			},
 			deleteProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project/'+ project.id +'/delete').then(function(data){
+                $http.post(BASE_URL + '/relex_project/'+ project.id +'/delete').then(function(data){
                     if (data.data === 'deleted') {
                         deferred.resolve();
                     } else {
@@ -456,6 +459,19 @@ angular.module('relex.controllers').controller('ProjectsController', [
 	}
 ]);
 
+/*jshint strict:false */
+/*global angular:false */
+
+angular.module('relex.services').factory('settingsService',
+    [function(){
+        var pathSplited = window.location.pathname.split('/');
+        var index = pathSplited.indexOf('relex_web');
+        var BASE_URL = pathSplited.slice(0, index+1).join('/');
+        return {
+            BASE_URL: BASE_URL
+        };
+    }]
+);
 
 /*global angular:false */
 /*jshint strict: false*/
@@ -475,11 +491,11 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('vocabularyService', [
-    '$http', '$q', '$cacheFactory', 'langService',
-    function($http, $q, $cacheFactory, langService){
+    '$http', '$q', '$cacheFactory', 'langService', 'settingsService',
+    function($http, $q, $cacheFactory, langService, settingsService){
         var _ = langService.createNewTranslatedValue;
         var cache = $cacheFactory('vocabularyService');
-
+        var BASE_URL = settingsService.BASE_URL;
         return {
             getVocabularies: function(){
                 var deferred = $q.defer();
@@ -532,7 +548,7 @@ angular.module('relex.services').factory('vocabularyService', [
 
                 /* Get all vocabularies from backend */
                 var promises = [];
-                $http.get('/relex_web/relex_vocabulary').then(function(data){
+                $http.get(BASE_URL + '/relex_vocabulary').then(function(data){
                     var vocabularies = data.data;
                     var ids = [];
                     angular.forEach(vocabularies, function(vocabulary){
@@ -593,7 +609,7 @@ angular.module('relex.services').factory('vocabularyService', [
             },
             post: function(vocabularyID, term){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID, term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID, term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });
@@ -602,7 +618,7 @@ angular.module('relex.services').factory('vocabularyService', [
             put: function(vocabularyID, term){
                 var deferred = $q.defer();
                 //rest api with Plone doesn't work with publishTraverse put -> post /update
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });
@@ -611,7 +627,7 @@ angular.module('relex.services').factory('vocabularyService', [
             remove: function(vocabularyID, term){
                 var deferred = $q.defer();
                 //rest api with Plone doesn't work with publishTraverse delete -> post /delete
-                $http.post('/relex_web/relex_vocabulary/'+vocabularyID + '/' + term.id + '/delete', term)
+                $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID + '/' + term.id + '/delete', term)
                 .then(function(data){
                     deferred.resolve(data.data);
                 });

@@ -12,19 +12,22 @@ angular.module('relex').config(['$routeProvider', function($routeProvider) {
     });
 }]);
 angular.module('relex.services').factory('projectsService', [
-	'$http', '$q', function($http, $q){
+	'$http', '$q', 'settingsService', function($http, $q, settingsService){
+        var BASE_URL = settingsService.BASE_URL;
         return {
             getProjects: function(){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project').then(function(data){
+                $http.get(BASE_URL + '/relex_project').then(function(data){
                     var projects = data.data;
                     deferred.resolve(projects);
+                }, function(error){
+                    deferred.reject(error);
                 });
                 return deferred.promise;
             },
             getStatus: function(){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project/status').then(function(data){
+                $http.get(BASE_URL + '/relex_project/status').then(function(data){
                     var status = data.data;
                     deferred.resolve(status);
                 });
@@ -32,7 +35,7 @@ angular.module('relex.services').factory('projectsService', [
             },
 			createProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project', project).then(function(data){
+                $http.post(BASE_URL + '/relex_project', project).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
                 });
@@ -40,7 +43,7 @@ angular.module('relex.services').factory('projectsService', [
 			},
             getProject: function(id){
                 var deferred = $q.defer();
-                $http.get('/relex_web/relex_project/'+ id).then(function(data){
+                $http.get(BASE_URL + '/relex_project/'+ id).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
                 });
@@ -48,7 +51,7 @@ angular.module('relex.services').factory('projectsService', [
             },
 			updateProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project/'+ project.id +'/update',
+                $http.post(BASE_URL + '/relex_project/'+ project.id +'/update',
                            project).then(function(data){
                     var project = data.data;
                     deferred.resolve(project);
@@ -57,7 +60,7 @@ angular.module('relex.services').factory('projectsService', [
 			},
 			deleteProject: function(project){
                 var deferred = $q.defer();
-                $http.post('/relex_web/relex_project/'+ project.id +'/delete').then(function(data){
+                $http.post(BASE_URL + '/relex_project/'+ project.id +'/delete').then(function(data){
                     if (data.data === 'deleted') {
                         deferred.resolve();
                     } else {

@@ -25,6 +25,11 @@
       directory="resources"
       />
 
+  <browser:resourceDirectory
+      name="cirb.relex.admin"
+      directory="admin/static"
+      />
+
   <permission
       id="cirb.relex.addProject"
       title="cirb.relex: Add Project"
