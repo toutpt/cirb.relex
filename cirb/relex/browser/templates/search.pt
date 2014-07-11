@@ -230,20 +230,28 @@
                 ],
             },
         });
+        var escapeSC = function(value){
+          return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        };
         $('#filters_table input').keyup(function(i){
             var col = $(this).attr('data-column');
-            table.fnFilter(this.value, col);
+            table.fnFilter(escapeSC(this.value), col);
+            console.log('filter on '+escapeSC(this.value));
         });
         $('#filters_table select').change(function(i){
             var col = $(this).attr('data-column');
             var multiple = $(this).attr('data-multiple');
-            if (!this.value) {
+            var value = escapeSC(this.value);
+            if (!value) {
                 table.fnFilter('', col);
+                console.log('reset filter');
             } else if (multiple !== undefined && multiple !== false) {
-                table.fnFilter(this.value, col);
+                table.fnFilter(value, col);
+                console.log('filter on '+value);
             } else {
-                var value = '^' + this.value + '$';
+                value = '^' + value + '$';
                 table.fnFilter(value, col, true, false);
+                console.log('filter on ' +value);
             }
         });
 
