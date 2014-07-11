@@ -1,2 +1,14 @@
 recursive-include cirb *
 global-exclude *pyc
+include *.py
+include *.txt
+include .coveragerc
+include .travis.yml
+include base.cfg
+include buildout.cfg
+include travis.cfg
+include yfo.cfg
+recursive-include Relex *.csv
+recursive-include docs *.GPL
+recursive-include docs *.txt
+recursive-include scripts *.py
