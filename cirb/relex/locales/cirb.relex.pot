@@ -1,16 +1,227 @@
-# Gettext Message File for cirb.relex
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: cirb.relex\n"
-"POT-Creation-Date: 2010-11-10 11:05+0000\n"
-"PO-Revision-Date: 2008-02-04 18:00+0000\n"
-"Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
-"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-07-11 09:58+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: cirb.relex\n"
+
+#: ./profiles/default/types/Project.xml
+msgid "A project"
+msgstr ""
+
+#: ./browser/project.py:61
+msgid "Active"
+msgstr ""
+
+#: ./browser/templates/search.pt:33
+#: ./browser/templates/tree.pt:31
+msgid "Admin"
+msgstr ""
+
+#: ./browser/project.py:63
+msgid "Archive"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:79
+#: ./browser/templates/project.pt:79
+#: ./browser/templates/search.pt:137
+msgid "Brussels partners"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:112
+#: ./browser/templates/project.pt:112
+#: ./content/Project.py:169
+msgid "Cities"
+msgstr ""
+
+#: ./browser/templates/search.pt:116
+msgid "City"
+msgstr ""
+
+#: ./browser/templates/search.pt:41
+#: ./content/Project.py:23
+msgid "Code"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:52
+#: ./browser/templates/project.pt:52
+#: ./content/Project.py:121
+msgid "Comments"
+msgstr ""
+
+#: ./browser/templates/search.pt:127
+msgid "Contact"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:123
+#: ./browser/templates/project.pt:123
+#: ./content/Project.py:177
+msgid "Contacts"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:47
+#: ./browser/templates/project.pt:47
+msgid "Content"
+msgstr ""
+
+#: ./content/Project.py:105
+msgid "Content EN"
+msgstr ""
+
+#: ./content/Project.py:97
+msgid "Content FR"
+msgstr ""
+
+#: ./content/Project.py:113
+msgid "Content NL"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:90
+#: ./browser/templates/project.pt:90
+#: ./content/Project.py:153
+msgid "Countries"
+msgstr ""
+
+#: ./browser/templates/search.pt:96
+msgid "Country"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:22
+#: ./browser/templates/project.pt:22
+#: ./content/Project.py:64
+msgid "End"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:134
+#: ./browser/templates/project.pt:134
+msgid "Files"
+msgstr ""
+
+#: ./browser/project.py:62
+msgid "Inactive"
+msgstr ""
+
+#: ./browser/templates/search.pt:86
+msgid "Keyword"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:68
+#: ./browser/templates/project.pt:68
+#: ./content/Project.py:137
+msgid "Keywords"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:12
+#: ./browser/templates/project.pt:12
+#: ./browser/templates/search.pt:152
+msgid "Name"
+msgstr ""
+
+#: ./content/Project.py:39
+msgid "Name EN"
+msgstr ""
+
+#: ./content/Project.py:31
+msgid "Name FR"
+msgstr ""
+
+#: ./content/Project.py:47
+msgid "Name NL"
+msgstr ""
+
+#: ./browser/templates/search.pt:66
+msgid "Organisation Type"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:42
+#: ./browser/templates/project.pt:42
+#: ./browser/templates/search.pt:155
+msgid "Organisation type"
+msgstr ""
+
+#: ./browser/templates/search.pt:160
+msgid "Partenaire"
+msgstr ""
+
+#: ./browser/templates/project.pt:157
+msgid "Print"
+msgstr ""
+
+#: ./profiles/default/types/Project.xml
+msgid "Project"
+msgstr ""
+
+#: ./browser/templates/search.pt:25
+#: ./browser/templates/tree.pt:23
+msgid "Projects"
+msgstr ""
+
+#: ./browser/templates/search.pt:106
+msgid "Region"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:101
+#: ./browser/templates/project.pt:101
+#: ./content/Project.py:161
+msgid "Regions"
+msgstr ""
+
+#: ./browser/templates/search.pt:56
+msgid "Relation Type"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:37
+#: ./browser/templates/project.pt:37
+#: ./browser/templates/search.pt:154
+msgid "Relation type"
+msgstr ""
+
+#: ./browser/templates/search.pt:29
+#: ./browser/templates/tree.pt:27
+msgid "Search"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:17
+#: ./browser/templates/project.pt:17
+#: ./content/Project.py:55
+msgid "Start"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:32
+#: ./browser/templates/project.pt:32
+#: ./browser/templates/search.pt:45
+msgid "Status"
+msgstr ""
+
+#: ./browser/templates/project.pt:146
+msgid "Sub projects"
+msgstr ""
+
+#: ./browser/templates/search.pt:76
+msgid "Theme"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:57
+#: ./browser/templates/project.pt:57
+#: ./content/Project.py:129
+msgid "Themes"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:27
+#: ./browser/templates/project.pt:27
+#: ./content/Project.py:73
+msgid "URL"
+msgstr ""
+
