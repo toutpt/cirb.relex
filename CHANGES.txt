@@ -4,10 +4,11 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update styles to integrate product in the prb website.
+- Hide status filter on the search page when user is not logged in.
 
 
 1.0 (2014-07-11)
 ----------------
 
-- Initial release
+- Initial release.
