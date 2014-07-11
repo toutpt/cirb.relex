@@ -4,7 +4,7 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change translation files to utf-8.
 
 
 1.0.1 (2014-07-11)
