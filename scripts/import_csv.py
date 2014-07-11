@@ -420,6 +420,7 @@ def _create_project(cell, context):
     # Create project
     context.invokeFactory("Project", project_id)
     project = context[project_id]
+    project.setExcludeFromNav(True)
 
     # Set project attributes
     project.setCode(cell[2].decode('latin-1'))
