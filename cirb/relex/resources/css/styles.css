@@ -50,3 +50,7 @@
     overflow: visible;
     margin-left: 0;
 }
+
+.userrole-anonymous.section-relex_web #filter-status-wrapper {
+    display: none;
+}

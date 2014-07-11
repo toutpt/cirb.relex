@@ -41,7 +41,7 @@
           <dt><label for="filter-code" i18n:translate="">Code</label></dt>
           <dd><input type="text" id="filter-code" data-column="0" /></dd>
         </dl>
-        <dl>
+        <dl id="filter-status-wrapper">
           <dt><label for="filter-status" i18n:translate="">Status</label></dt>
           <dd>
             <select id="filter-status" data-column="2">
