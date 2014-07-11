@@ -1,13 +1,15 @@
-#tabs {
+.section-relex_web #tabs {
     list-style: none;
     padding: 5px 0 4px 0;
     margin: 0 0 0 10px;
     font: 0.75em arial;
+    float: none;
+    width: 100%;
 }
-#tabs li {
+.section-relex_web #tabs li {
     display: inline;
 }
-#tabs li a {
+.section-relex_web #tabs li a {
     border: 1px solid #ccc;
     padding: 4px 6px;
     text-decoration: none;
@@ -15,21 +17,22 @@
     border-bottom: none;
     outline: none;
     border-radius: 5px 5px 0 0;
+    width: auto;
     -moz-border-radius: 5px 5px 0 0;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
 }
-#tabs li a:hover {
+.section-relex_web #tabs li a:hover {
     background-color: #dddddd;
     padding: 4px 6px;
 }
-#tabs li.active a {
+.section-relex_web #tabs li.active a {
     border-bottom: 1px solid #fff;
     background-color: #fff;
     padding: 4px 6px 5px 6px;
     border-bottom: none;
 }
-#tabs li.active a:hover {
+.section-relex_web #tabs li.active a:hover {
     background-color: #eeeeee;
     padding: 4px 6px 5px 6px;
     border-bottom: none;
@@ -40,4 +43,9 @@
 }
 #filters_table select {
     min-width: 200px;
+}
+
+
+.section-relex_web ul.fancytree-container {
+    overflow: visible;
 }
