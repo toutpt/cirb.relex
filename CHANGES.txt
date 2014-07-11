@@ -6,6 +6,9 @@ Changelog
 
 - Update styles to integrate product in the prb website.
 - Hide status filter on the search page when user is not logged in.
+- Update translations.
+- Fix bug with search and special characters.
+- Add security check to admin interface.
 
 
 1.0 (2014-07-11)
