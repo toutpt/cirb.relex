@@ -46,11 +46,11 @@
         <div class="alert alert-danger" ng-show="!loggedin">
           <span translate>You are not loggedin</span>
         </div>
-    <ol class="breadcrumb" ng-controller="BreadcrumbController">
-      <li ng-repeat="crumb in crumbs">
-        <a href="{{'#' + crumb.path}}">{{crumb.name}}</a>
-      </li>
-    </ol>
+        <ol class="breadcrumb" ng-controller="BreadcrumbController">
+          <li ng-repeat="crumb in crumbs">
+            <a href="{{'#' + crumb.path}}">{{crumb.name}}</a>
+          </li>
+        </ol>
         <div ng-if="loggedin">
           <div class="myMessage">
             <div ng-include="'./partials/messages.html'"></div>

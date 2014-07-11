@@ -148,7 +148,12 @@ class ProjectView(BrowserView):
         ])
 
     def getFiles(self):
-        return self.context.getFolderContents()
+        contentFilter = {"portal_type" : "File"}
+        return self.context.getFolderContents(contentFilter)
+
+    def getSubProjects(self):
+        contentFilter = {"portal_type" : "Project"}
+        return self.context.getFolderContents(contentFilter)
 
 
 def add_json_header(response):
