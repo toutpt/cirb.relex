@@ -29,7 +29,7 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 		//$scope.loggedin = $cookies.__ac !== undefined;
 		//idea: hit the addform
 		var BASE_URL = settingsService.BASE_URL;
-		http://localhost:8080/Plone/relex_web/
+
 		var redirectedPattern = '/acl_users/credentials_cookie_auth/require_login?came_from=';
 		$http.get(BASE_URL + '/createObject?type_name=Project').then(
 			function(data){
