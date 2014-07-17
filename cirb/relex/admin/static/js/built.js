@@ -29,10 +29,12 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 		//$scope.loggedin = $cookies.__ac !== undefined;
 		//idea: hit the addform
 		var BASE_URL = settingsService.BASE_URL;
-
+		$scope.loggedin = true;
+/*
 		var redirectedPattern = '/acl_users/credentials_cookie_auth/require_login?came_from=';
 		$http.get(BASE_URL + '/createObject?type_name=Project').then(
 			function(data){
+				debugger;
 				if (data.headers('tm-finalurl').indexOf(redirectedPattern) >- 1){
 					$scope.loggedin = false;
 					window.location.replace(BASE_URL + '/login?came_from=' + encodeURIComponent(window.location.href));
@@ -43,6 +45,7 @@ angular.module('relex.controllers').controller('AuthorizedController', [
 				$scope.loggedin = false;
 				window.location.replace(BASE_URL + '/login');
 			});
+*/
 	}
 ]);
 /*global angular:false */
