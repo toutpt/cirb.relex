@@ -47,7 +47,7 @@ Contraintes:
 				<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
 			  </div>
 			  <a class="list-group-item"
-				 ng-repeat="term in vocabulary | orderBy:orderBy | filter:queryTerm | limitTo:getLimitTo()"
+				 ng-repeat="term in vocabulary | orderBy:orderBy | filter:filter | limitTo:getLimitTo()"
 				 ng-class="{'list-group-item-info': isSelected(term)}"
 				 ng-click="selectTerm(term)">
 				{{displayTerm(term)}}

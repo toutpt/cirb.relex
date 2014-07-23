@@ -189,6 +189,75 @@ angular.module('relex.controllers').controller('ProjectsController', [
             });
         };
 
+        $scope.filterCountries = function(country, project){
+            // Empty selects
+            if (project.city.length == 0 && project.region.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (country.id === project.country[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (country.id === project.city[i].country.id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (country.id === project.region[i].country.id)
+                    return true;
+            }
+            return false;
+        };
+        $scope.filterRegions = function(region, project){
+            // Empty selects
+            if (project.city.length == 0 && project.country.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (region.id === project.region[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (project.city[i].region === null)
+                    continue;
+                if (region.id === project.city[i].region.id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (region.country === null)
+                    continue;
+                if (region.country.id === project.country[i].id)
+                    return true;
+            }
+            return false;
+        };
+        $scope.filterCities = function(city, project){
+            // Empty selects
+            if (project.country.length == 0 && project.region.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (city.id === project.city[i].id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (city.country === null)
+                    continue;
+                if (city.country.id === project.country[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (city.region === null)
+                    continue;
+                if (city.region.id === project.region[i].id)
+                    return true;
+            }
+            return false;
+        };
+
 		//initialize
         $scope.t = langService.getTranslatedValue;
         $scope.getById = vocabularyService.getById;

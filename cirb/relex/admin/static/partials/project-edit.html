@@ -103,17 +103,25 @@
              vocabulary="countriesVocabulary"
              display="'\'[\' + term.code + \'] \' + _(term.name)'"
              legend="'[Code] Country'"
-             target="currentProject.country"></div>
+             target="currentProject.country"
+             filter-method="filterCountries"
+             filter-param="currentProject"></div>
         <div select-multiple
              label="'Regions'"
              vocabulary="regionsVocabulary"
              display="'_(term.name) + \' - \' + _(term.country.name)'"
-             legend="'Region - Country'" target="currentProject.region"></div>
+             legend="'Region - Country'"
+             target="currentProject.region"
+             filter-method="filterRegions"
+             filter-param="currentProject"></div>
         <div select-multiple
              label="'Cities'"
              vocabulary="citiesVocabulary"
              display="'_(term.name) + \' - \' + _(term.region.name) + \' - \' + _(term.country.name)'"
-             legend="'City - Region - Country'" target="currentProject.city"></div>
+             legend="'City - Region - Country'"
+             target="currentProject.city"
+             filter-method="filterCities"
+             filter-param="currentProject"></div>
       </div>
     </div>
     <div class="panel panel-default">

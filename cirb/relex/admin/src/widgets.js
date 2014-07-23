@@ -2,7 +2,7 @@
 /*jshint strict: false*/
 
 angular.module('relex.directives').directive('selectMultiple',
-    ['langService', 'vocabularyService', function(langService, vocabularyService){
+    ['$filter', 'langService', 'vocabularyService', function($filter, langService, vocabularyService){
         return {
             restrict: 'A',
             templateUrl: 'partials/select-multiple.html',
@@ -12,6 +12,8 @@ angular.module('relex.directives').directive('selectMultiple',
                 display: '=',
                 target: '=',
                 legend: '=',
+                filterMethod: '=',
+                filterParam: '='
             },
             link: function(scope, elem, attrs){
                 scope.limitTo = 5;
@@ -60,6 +62,17 @@ angular.module('relex.directives').directive('selectMultiple',
                     if (term.hasOwnProperty('id'))
                         return selected + scope._(term.id)
                     return selected
+                };
+                scope.filter = function(term){
+                    if (scope.queryTerm !== undefined && scope.queryTerm.length !== 0) {
+                        if ($filter('filter')([term], scope.queryTerm).length === 0)
+                            return false;
+                        return true;
+                    }
+                    if (scope.filterMethod !== undefined) {
+                        return scope.filterMethod(term, scope.filterParam);
+                    }
+                    return true;
                 };
             }
         };

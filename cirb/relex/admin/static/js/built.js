@@ -466,6 +466,75 @@ angular.module('relex.controllers').controller('ProjectsController', [
             });
         };
 
+        $scope.filterCountries = function(country, project){
+            // Empty selects
+            if (project.city.length == 0 && project.region.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (country.id === project.country[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (country.id === project.city[i].country.id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (country.id === project.region[i].country.id)
+                    return true;
+            }
+            return false;
+        };
+        $scope.filterRegions = function(region, project){
+            // Empty selects
+            if (project.city.length == 0 && project.country.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (region.id === project.region[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (project.city[i].region === null)
+                    continue;
+                if (region.id === project.city[i].region.id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (region.country === null)
+                    continue;
+                if (region.country.id === project.country[i].id)
+                    return true;
+            }
+            return false;
+        };
+        $scope.filterCities = function(city, project){
+            // Empty selects
+            if (project.country.length == 0 && project.region.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.city.length ; i++) {
+                if (city.id === project.city[i].id)
+                    return true;
+            }
+            for (var i = 0 ; i < project.country.length ; i++) {
+                if (city.country === null)
+                    continue;
+                if (city.country.id === project.country[i].id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.region.length ; i++) {
+                if (city.region === null)
+                    continue;
+                if (city.region.id === project.region[i].id)
+                    return true;
+            }
+            return false;
+        };
+
 		//initialize
         $scope.t = langService.getTranslatedValue;
         $scope.getById = vocabularyService.getById;
@@ -752,7 +821,7 @@ angular.module('relex.controllers').controller('VocabularyController',[
 /*jshint strict: false*/
 
 angular.module('relex.directives').directive('selectMultiple',
-    ['langService', 'vocabularyService', function(langService, vocabularyService){
+    ['$filter', 'langService', 'vocabularyService', function($filter, langService, vocabularyService){
         return {
             restrict: 'A',
             templateUrl: 'partials/select-multiple.html',
@@ -762,6 +831,8 @@ angular.module('relex.directives').directive('selectMultiple',
                 display: '=',
                 target: '=',
                 legend: '=',
+                filterMethod: '=',
+                filterParam: '='
             },
             link: function(scope, elem, attrs){
                 scope.limitTo = 5;
@@ -810,6 +881,17 @@ angular.module('relex.directives').directive('selectMultiple',
                     if (term.hasOwnProperty('id'))
                         return selected + scope._(term.id)
                     return selected
+                };
+                scope.filter = function(term){
+                    if (scope.queryTerm !== undefined && scope.queryTerm.length !== 0) {
+                        if ($filter('filter')([term], scope.queryTerm).length === 0)
+                            return false;
+                        return true;
+                    }
+                    if (scope.filterMethod !== undefined) {
+                        return scope.filterMethod(term, scope.filterParam);
+                    }
+                    return true;
                 };
             }
         };
