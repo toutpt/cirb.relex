@@ -26,7 +26,7 @@
 					<select class="form-control"
                             name="region"
                             ng-model="currentTerm.region.id"
-                            ng-options="region as t(region.name)
+                            ng-options="region.id as t(region.name)
                                         for region in vocabularies.region | orderBy:orderByName"
                             required>
 					</select>
@@ -38,7 +38,7 @@
 					<select class="form-control"
                             name="country"
                             ng-model="currentTerm.country.id"
-                            ng-options="country as '[' + country.code + '] ' + t(country.name)
+                            ng-options="country.id as '[' + country.code + '] ' + t(country.name)
                                         for country in vocabularies.country | orderBy:orderByName"
                             required>
 					</select>
