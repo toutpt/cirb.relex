@@ -5,6 +5,14 @@
 
     <!-- -*- extra stuff goes here -*- -->
   <browser:page
+      for="*"
+      name="check_auth"
+      class=".authentication.CheckView"
+      layer="cirb.relex.interfaces.ILayer"
+      permission="zope2.View"
+      />
+
+  <browser:page
       for="cirb.relex.interfaces.IRelexBackend"
       name="relex_vocabulary"
       class=".vocabulary.VocabularyJSON"
