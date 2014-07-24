@@ -206,6 +206,10 @@ msgstr ""
 msgid "Files"
 msgstr ""
 
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "Filter"
+msgstr ""
+
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "First part"
 msgstr ""

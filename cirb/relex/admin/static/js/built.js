@@ -882,6 +882,7 @@ angular.module('relex.directives').directive('selectMultiple',
             link: function(scope, elem, attrs){
                 scope.limitTo = 5;
                 scope.selected = true;
+                scope.showFilter = true;
                 scope.getLimitTo = function(){
                     if (parseInt(scope.limitTo) <= 0)
                         return scope.vocabulary.length;
@@ -931,9 +932,8 @@ angular.module('relex.directives').directive('selectMultiple',
                     if (scope.queryTerm !== undefined && scope.queryTerm.length !== 0) {
                         if ($filter('filter')([term], scope.queryTerm).length === 0)
                             return false;
-                        return true;
                     }
-                    if (scope.filterMethod !== undefined) {
+                    if (scope.showFilter && scope.filterMethod !== undefined) {
                         return scope.filterMethod(term, scope.filterParam);
                     }
                     return true;

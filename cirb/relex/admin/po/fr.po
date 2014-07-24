@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: carteeco\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-07-08 16:00+0100\n"
+"PO-Revision-Date: 2014-07-24 15:05+0100\n"
 "Last-Translator: Gagaro <gagaro42@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -215,6 +215,10 @@ msgstr "Fin"
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "Files"
 msgstr "Fichiers"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "Filter"
+msgstr "Filtrer"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
 msgid "First part"
