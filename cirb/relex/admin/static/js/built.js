@@ -545,6 +545,23 @@ angular.module('relex.controllers').controller('ProjectsController', [
             return false;
         };
 
+        $scope.filterThemes = function(theme, project) {
+            // Empty selects
+            if (project.keywords.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.theme.length ; i++) {
+                if (project.theme[i].id == theme.id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.keywords.length ; i++) {
+                for (var j = 0 ; j < theme.keywords.length ; j++)
+                    if (project.keywords[i].id == theme.keywords[j].id)
+                        return true;
+            }
+            return false;
+        };
         $scope.filterKeywords = function(keyword, project) {
             // Empty selects
             if (project.theme.length == 0)
