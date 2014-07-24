@@ -392,6 +392,14 @@ angular.module('relex.controllers').controller('ProjectsController', [
                         .then(function(terms){
                             project.contact = terms;
                         });
+                    vocabularyService.getByIds('theme', project.theme)
+                        .then(function(terms){
+                            project.theme = terms;
+                        });
+                    vocabularyService.getByIds('keywords', project.keywords)
+                        .then(function(terms){
+                            project.keywords = terms;
+                        });
                     $scope.currentProject = project;
                 });
 		    }
@@ -466,6 +474,8 @@ angular.module('relex.controllers').controller('ProjectsController', [
             });
         };
 
+        // Filters
+
         $scope.filterCountries = function(country, project){
             // Empty selects
             if (project.city.length == 0 && project.region.length == 0)
@@ -519,18 +529,36 @@ angular.module('relex.controllers').controller('ProjectsController', [
                 if (city.id === project.city[i].id)
                     return true;
             }
+            // Filter from other terms
             for (var i = 0 ; i < project.country.length ; i++) {
                 if (city.country === null)
                     continue;
                 if (city.country.id === project.country[i].id)
                     return true;
             }
-            // Filter from other terms
             for (var i = 0 ; i < project.region.length ; i++) {
                 if (city.region === null)
                     continue;
                 if (city.region.id === project.region[i].id)
                     return true;
+            }
+            return false;
+        };
+
+        $scope.filterKeywords = function(keyword, project) {
+            // Empty selects
+            if (project.theme.length == 0)
+                return true;
+            // Always show terms in project
+            for (var i = 0 ; i < project.keywords.length ; i++) {
+                if (project.keywords[i].id == keyword.id)
+                    return true;
+            }
+            // Filter from other terms
+            for (var i = 0 ; i < project.theme.length ; i++) {
+                for (var j = 0 ; j < project.theme[i].keywords.length ; j++)
+                    if (project.theme[i].keywords[j].id == keyword.id)
+                        return true;
             }
             return false;
         };

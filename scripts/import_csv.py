@@ -307,7 +307,7 @@ def _import_themes(cells, cells_keywords, relex_web):
         if row[1] not in cells_keywords_dict.keys():
             cells_keywords_dict[row[1]] = [row[0]]
         else:
-            cells_keywords_dict[row[1]].append([row[0]])
+            cells_keywords_dict[row[1]].append(row[0])
     terms = []
     for cell in cells:
         term = {
