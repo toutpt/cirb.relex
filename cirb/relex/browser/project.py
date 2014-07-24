@@ -142,17 +142,24 @@ class ProjectView(BrowserView):
     def getContacts(self):
         ids = self.context.getContacts()
         terms = getTerms('contact', ids)
-        return sorted([
-            u'{0} {1}'.format(term['lastname'], term['firstname'])
-            for term in terms if term is not None
-        ])
+        terms = [term for term in terms if term is not None]
+        for term in terms:
+            for id in ('organisation', 'cell', 'function'):
+                term[id] = getTerm(id, term[id])
+            term['organisation'] = term['organisation']['name']\
+                .get(self.current_language, '')
+            term['cell'] = term['cell']['description']\
+                .get(self.current_language, '')
+            term['function'] = term['function']['code']\
+                .get(self.current_language, '')
+        return terms
 
     def getFiles(self):
-        contentFilter = {"portal_type" : "File"}
+        contentFilter = {"portal_type": "File"}
         return self.context.getFolderContents(contentFilter)
 
     def getSubProjects(self):
-        contentFilter = {"portal_type" : "Project"}
+        contentFilter = {"portal_type": "Project"}
         return self.context.getFolderContents(contentFilter)
 
 

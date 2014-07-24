@@ -5,7 +5,11 @@
       xml:lang="en" lang="en"
       i18n:domain="cirb.relex"
       metal:use-macro="here/main_template/macros/master">
-  <head></head>
+  <head>
+    <metal:block fill-slot="style_slot">
+      <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
+    </metal:block>
+  </head>
   <body>
     <metal:content-core fill-slot="content-core">
       <dl tal:define="value view/getName" tal:condition="value">
@@ -122,11 +126,22 @@
       <dl tal:define="values view/getContacts" tal:condition="values">
         <dt i18n:translate="">Contacts</dt>
         <dd>
-          <ul>
-            <tal:block tal:repeat="value values">
-              <li tal:condition="value" tal:content="value"></li>
-            </tal:block>
-          </ul>
+          <tal:block tal:repeat="value values">
+            <table class="project_contact" tal:condition="value">
+              <tr>
+                <td i18n:translate="">Organisation : <span i18n:name="organistaion" tal:content="value/organisation"></span></td>
+                <td i18n:translate="">Cell : <span i18n:name="cell" tal:content="value/cell"></span></td>
+              </tr>
+              <tr>
+                <td i18n:translate="">Function : <span i18n:name="function" tal:content="value/function"></span></td>
+                <td><span tal:content="value/lastname"></span> <span tal:content="value/firstname"></span></td>
+              </tr>
+              <tr>
+                <td tal:content="value/email"></td>
+                <td tal:content="value/phone"></td>
+              </tr>
+            </table>
+          </tal:block>
         </dd>
       </dl>
 

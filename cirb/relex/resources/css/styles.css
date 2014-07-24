@@ -54,3 +54,7 @@
 .userrole-anonymous.section-relex_web #filter-status-wrapper {
     display: none;
 }
+table.project_contact td {
+    border: 1px solid black;
+    padding: 5px;
+}
