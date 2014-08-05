@@ -20,8 +20,8 @@ msgid "A project"
 msgstr "Un projet"
 
 #: ./browser/project.py:61
-msgid "Active"
-msgstr "Actif"
+msgid "Active project"
+msgstr "Projet actif"
 
 #: ./browser/templates/search.pt:33
 #: ./browser/templates/tree.pt:31
@@ -29,8 +29,8 @@ msgid "Admin"
 msgstr "Administration"
 
 #: ./browser/project.py:63
-msgid "Archive"
-msgstr "Archive"
+msgid "Archived project"
+msgstr "Projet archivé"
 
 #: ./browser/templates/project-print.pt:79
 #: ./browser/templates/project.pt:79
@@ -108,8 +108,8 @@ msgid "Files"
 msgstr "Fichiers"
 
 #: ./browser/project.py:62
-msgid "Inactive"
-msgstr "Inactif"
+msgid "Inactive project"
+msgstr "Projet inactif"
 
 #: ./browser/templates/search.pt:86
 msgid "Keyword"

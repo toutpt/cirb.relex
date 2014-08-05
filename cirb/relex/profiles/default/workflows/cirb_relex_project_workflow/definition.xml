@@ -10,7 +10,7 @@
  <!-- State -->
 
  <state state_id="inactive"
-        title="Inactive">
+        title="Inactive project">
   <exit-transition transition_id="activate"/>
   <exit-transition transition_id="archive"/>
   <permission-map name="Access contents information"
@@ -30,7 +30,7 @@
  </state>
 
  <state state_id="active"
-        title="Active">
+        title="Active project">
   <exit-transition transition_id="deactivate"/>
   <exit-transition transition_id="archive"/>
   <permission-map name="Access contents information"
@@ -50,7 +50,7 @@
  </state>
 
  <state state_id="archive"
-        title="Archive">
+        title="Archived project">
   <exit-transition transition_id="activate"/>
   <exit-transition transition_id="deactivate"/>
   <permission-map name="Access contents information"

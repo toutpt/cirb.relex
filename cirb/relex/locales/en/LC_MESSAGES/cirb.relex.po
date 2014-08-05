@@ -21,7 +21,7 @@ msgstr ""
 
 #: ./browser/project.py:61
 msgid "Active"
-msgstr ""
+msgstr "Active project"
 
 #: ./browser/templates/search.pt:33
 #: ./browser/templates/tree.pt:31
@@ -30,7 +30,7 @@ msgstr ""
 
 #: ./browser/project.py:63
 msgid "Archive"
-msgstr ""
+msgstr "Archived project"
 
 #: ./browser/templates/project-print.pt:79
 #: ./browser/templates/project.pt:79
@@ -109,7 +109,7 @@ msgstr ""
 
 #: ./browser/project.py:62
 msgid "Inactive"
-msgstr ""
+msgstr "Inactive project"
 
 #: ./browser/templates/search.pt:86
 msgid "Keyword"
