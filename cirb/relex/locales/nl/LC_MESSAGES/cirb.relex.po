@@ -17,209 +17,209 @@ msgstr ""
 
 #: ./profiles/default/types/Project.xml
 msgid "A project"
-msgstr ""
+msgstr "Een project"
 
 #: ./browser/project.py:61
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #: ./browser/templates/search.pt:33
 #: ./browser/templates/tree.pt:31
 msgid "Admin"
-msgstr ""
+msgstr "Administratie"
 
 #: ./browser/project.py:63
 msgid "Archive"
-msgstr ""
+msgstr "Archief"
 
 #: ./browser/templates/project-print.pt:79
 #: ./browser/templates/project.pt:79
 #: ./browser/templates/search.pt:137
 msgid "Brussels partners"
-msgstr ""
+msgstr "Partneradministratie"
 
 #: ./browser/templates/project-print.pt:112
 #: ./browser/templates/project.pt:112
 #: ./content/Project.py:169
 msgid "Cities"
-msgstr ""
+msgstr "Steden"
 
 #: ./browser/templates/search.pt:116
 msgid "City"
-msgstr ""
+msgstr "Stad"
 
 #: ./browser/templates/search.pt:41
 #: ./content/Project.py:23
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: ./browser/templates/project-print.pt:52
 #: ./browser/templates/project.pt:52
 #: ./content/Project.py:121
 msgid "Comments"
-msgstr ""
+msgstr "Opmerkingen"
 
 #: ./browser/templates/search.pt:127
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: ./browser/templates/project-print.pt:123
 #: ./browser/templates/project.pt:123
 #: ./content/Project.py:177
 msgid "Contacts"
-msgstr ""
+msgstr "Contacten"
 
 #: ./browser/templates/project-print.pt:47
 #: ./browser/templates/project.pt:47
 msgid "Content"
-msgstr ""
+msgstr "Inhoud"
 
 #: ./content/Project.py:105
 msgid "Content EN"
-msgstr ""
+msgstr "Inhoud EN"
 
 #: ./content/Project.py:97
 msgid "Content FR"
-msgstr ""
+msgstr "Inhoud FR"
 
 #: ./content/Project.py:113
 msgid "Content NL"
-msgstr ""
+msgstr "Inhoud NL"
 
 #: ./browser/templates/project-print.pt:90
 #: ./browser/templates/project.pt:90
 #: ./content/Project.py:153
 msgid "Countries"
-msgstr ""
+msgstr "Landen"
 
 #: ./browser/templates/search.pt:96
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: ./browser/templates/project-print.pt:22
 #: ./browser/templates/project.pt:22
 #: ./content/Project.py:64
 msgid "End"
-msgstr ""
+msgstr "Einde"
 
 #: ./browser/templates/project-print.pt:134
 #: ./browser/templates/project.pt:134
 msgid "Files"
-msgstr ""
+msgstr "Bestanden"
 
 #: ./browser/project.py:62
 msgid "Inactive"
-msgstr ""
+msgstr "Inactief"
 
 #: ./browser/templates/search.pt:86
 msgid "Keyword"
-msgstr ""
+msgstr "Sleutelwoord"
 
 #: ./browser/templates/project-print.pt:68
 #: ./browser/templates/project.pt:68
 #: ./content/Project.py:137
 msgid "Keywords"
-msgstr ""
+msgstr "Sleutelwoorden"
 
 #: ./browser/templates/project-print.pt:12
 #: ./browser/templates/project.pt:12
 #: ./browser/templates/search.pt:152
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: ./content/Project.py:39
 msgid "Name EN"
-msgstr ""
+msgstr "Naam EN"
 
 #: ./content/Project.py:31
 msgid "Name FR"
-msgstr ""
+msgstr "Naam FR"
 
 #: ./content/Project.py:47
 msgid "Name NL"
-msgstr ""
+msgstr "Naam NL"
 
 #: ./browser/templates/search.pt:66
 msgid "Organisation Type"
-msgstr ""
+msgstr "Organisatietype"
 
 #: ./browser/templates/project-print.pt:42
 #: ./browser/templates/project.pt:42
 #: ./browser/templates/search.pt:155
 msgid "Organisation type"
-msgstr ""
+msgstr "Organisatietype"
 
 #: ./browser/templates/search.pt:160
 msgid "Partenaire"
-msgstr ""
+msgstr "Partner"
 
 #: ./browser/templates/project.pt:157
 msgid "Print"
-msgstr ""
+msgstr "Print"
 
 #: ./profiles/default/types/Project.xml
 msgid "Project"
-msgstr ""
+msgstr "Project"
 
 #: ./browser/templates/search.pt:25
 #: ./browser/templates/tree.pt:23
 msgid "Projects"
-msgstr ""
+msgstr "Projecten"
 
 #: ./browser/templates/search.pt:106
 msgid "Region"
-msgstr ""
+msgstr "Regio"
 
 #: ./browser/templates/project-print.pt:101
 #: ./browser/templates/project.pt:101
 #: ./content/Project.py:161
 msgid "Regions"
-msgstr ""
+msgstr "Regio's"
 
 #: ./browser/templates/search.pt:56
 msgid "Relation Type"
-msgstr ""
+msgstr "Relatietype"
 
 #: ./browser/templates/project-print.pt:37
 #: ./browser/templates/project.pt:37
 #: ./browser/templates/search.pt:154
 msgid "Relation type"
-msgstr ""
+msgstr "Relatietype"
 
 #: ./browser/templates/search.pt:29
 #: ./browser/templates/tree.pt:27
 msgid "Search"
-msgstr ""
+msgstr "Opzoeken"
 
 #: ./browser/templates/project-print.pt:17
 #: ./browser/templates/project.pt:17
 #: ./content/Project.py:55
 msgid "Start"
-msgstr ""
+msgstr "Begin"
 
 #: ./browser/templates/project-print.pt:32
 #: ./browser/templates/project.pt:32
 #: ./browser/templates/search.pt:45
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ./browser/templates/project.pt:146
 msgid "Sub projects"
-msgstr ""
+msgstr "Deelprojecten"
 
 #: ./browser/templates/search.pt:76
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #: ./browser/templates/project-print.pt:57
 #: ./browser/templates/project.pt:57
 #: ./content/Project.py:129
 msgid "Themes"
-msgstr ""
+msgstr "Thema's"
 
 #: ./browser/templates/project-print.pt:27
 #: ./browser/templates/project.pt:27
 #: ./content/Project.py:73
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
