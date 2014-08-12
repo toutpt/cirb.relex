@@ -4,7 +4,9 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add multi-selects on the search page for country, region and city.
+- Fix contact layout on project detail print page.
+- Add dutch translations.
 
 
 1.0.3 (2014-08-07)
