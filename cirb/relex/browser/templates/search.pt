@@ -95,7 +95,7 @@
         <dl>
           <dt><label for="filter-country" i18n:translate="">Country</label></dt>
           <dd>
-            <select id="filter-country" data-column="5" data-multiple>
+            <select id="filter-country" data-column="5" multiple>
               <option value=""></option>
               <option tal:repeat="term python:view.getAllTermsName('country')"
                       tal:attributes="value term" tal:content="term"></option>
@@ -105,7 +105,7 @@
         <dl>
           <dt><label for="filter-region" i18n:translate="">Region</label></dt>
           <dd>
-            <select id="filter-region" data-column="6" data-multiple>
+            <select id="filter-region" data-column="6" multiple>
               <option value=""></option>
               <option tal:repeat="term python:view.getAllTermsName('region')"
                       tal:attributes="value term" tal:content="term"></option>
@@ -115,7 +115,7 @@
         <dl>
           <dt><label for="filter-city" i18n:translate="">City</label></dt>
           <dd>
-            <select id="filter-city" data-column="7" data-multiple>
+            <select id="filter-city" data-column="7" multiple>
               <option value=""></option>
               <option tal:repeat="term python:view.getAllTermsName('city')"
                       tal:attributes="value term" tal:content="term"></option>
@@ -241,13 +241,20 @@
         $('#filters_table select').change(function(i){
             var col = $(this).attr('data-column');
             var multiple = $(this).attr('data-multiple');
+            var isMultiselect = $(this).attr('multiple');
             var value = escapeSC(this.value);
+
             if (!value) {
                 table.fnFilter('', col);
                 console.log('reset filter');
             } else if (multiple !== undefined && multiple !== false) {
                 table.fnFilter(value, col);
                 console.log('filter on '+value);
+	    } else if (isMultiselect !== undefined && isMultiselect !== false) {
+                var valueArray = $(this).val();
+                value = valueArray.map(escapeSC).join("|");
+                table.fnFilter(value, col, true, false);
+                console.log('filter on ' +value);
             } else {
                 value = '^' + value + '$';
                 table.fnFilter(value, col, true, false);
