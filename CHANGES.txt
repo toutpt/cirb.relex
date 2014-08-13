@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.4 (unreleased)
+1.0.4 (2014-08-13)
 ------------------
 
 - Add multi-selects on the search page for country, region and city.
