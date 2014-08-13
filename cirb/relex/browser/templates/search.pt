@@ -143,6 +143,8 @@
             </select>
           </dd>
         </dl>
+
+        <p class="discreet" i18n:translate="search_warning">Warning</p>
       </div>
 
       <table id="projects_table">
