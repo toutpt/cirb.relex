@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cirb.relex\n"
-"POT-Creation-Date: 2014-07-11 09:58+0000\n"
+"POT-Creation-Date: 2014-08-13 12:52+0000\n"
 "PO-Revision-Date: 2008-02-04 18:00+0000\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -33,13 +33,18 @@ msgid "Archive"
 msgstr "Archived project"
 
 #: ./browser/templates/project-print.pt:79
-#: ./browser/templates/project.pt:79
+#: ./browser/templates/project.pt:83
 #: ./browser/templates/search.pt:137
 msgid "Brussels partners"
 msgstr ""
 
+#: ./browser/templates/project-print.pt:129
+#: ./browser/templates/project.pt:133
+msgid "Cell : ${cell}"
+msgstr ""
+
 #: ./browser/templates/project-print.pt:112
-#: ./browser/templates/project.pt:112
+#: ./browser/templates/project.pt:116
 #: ./content/Project.py:169
 msgid "Cities"
 msgstr ""
@@ -54,7 +59,7 @@ msgid "Code"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:52
-#: ./browser/templates/project.pt:52
+#: ./browser/templates/project.pt:56
 #: ./content/Project.py:121
 msgid "Comments"
 msgstr ""
@@ -64,13 +69,13 @@ msgid "Contact"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:123
-#: ./browser/templates/project.pt:123
+#: ./browser/templates/project.pt:127
 #: ./content/Project.py:177
 msgid "Contacts"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:47
-#: ./browser/templates/project.pt:47
+#: ./browser/templates/project.pt:51
 msgid "Content"
 msgstr ""
 
@@ -87,7 +92,7 @@ msgid "Content NL"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:90
-#: ./browser/templates/project.pt:90
+#: ./browser/templates/project.pt:94
 #: ./content/Project.py:153
 msgid "Countries"
 msgstr ""
@@ -97,14 +102,19 @@ msgid "Country"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:22
-#: ./browser/templates/project.pt:22
+#: ./browser/templates/project.pt:26
 #: ./content/Project.py:64
 msgid "End"
 msgstr ""
 
-#: ./browser/templates/project-print.pt:134
-#: ./browser/templates/project.pt:134
+#: ./browser/templates/project-print.pt:145
+#: ./browser/templates/project.pt:149
 msgid "Files"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:132
+#: ./browser/templates/project.pt:136
+msgid "Function : ${function}"
 msgstr ""
 
 #: ./browser/project.py:62
@@ -116,14 +126,14 @@ msgid "Keyword"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:68
-#: ./browser/templates/project.pt:68
+#: ./browser/templates/project.pt:72
 #: ./content/Project.py:137
 msgid "Keywords"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:12
-#: ./browser/templates/project.pt:12
-#: ./browser/templates/search.pt:152
+#: ./browser/templates/project.pt:16
+#: ./browser/templates/search.pt:154
 msgid "Name"
 msgstr ""
 
@@ -139,21 +149,26 @@ msgstr ""
 msgid "Name NL"
 msgstr ""
 
+#: ./browser/templates/project-print.pt:128
+#: ./browser/templates/project.pt:132
+msgid "Organisation : ${organistaion}"
+msgstr ""
+
 #: ./browser/templates/search.pt:66
 msgid "Organisation Type"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:42
-#: ./browser/templates/project.pt:42
-#: ./browser/templates/search.pt:155
+#: ./browser/templates/project.pt:46
+#: ./browser/templates/search.pt:157
 msgid "Organisation type"
 msgstr ""
 
-#: ./browser/templates/search.pt:160
+#: ./browser/templates/search.pt:162
 msgid "Partenaire"
 msgstr ""
 
-#: ./browser/templates/project.pt:157
+#: ./browser/templates/project.pt:172
 msgid "Print"
 msgstr ""
 
@@ -171,7 +186,7 @@ msgid "Region"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:101
-#: ./browser/templates/project.pt:101
+#: ./browser/templates/project.pt:105
 #: ./content/Project.py:161
 msgid "Regions"
 msgstr ""
@@ -181,8 +196,8 @@ msgid "Relation Type"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:37
-#: ./browser/templates/project.pt:37
-#: ./browser/templates/search.pt:154
+#: ./browser/templates/project.pt:41
+#: ./browser/templates/search.pt:156
 msgid "Relation type"
 msgstr ""
 
@@ -192,18 +207,18 @@ msgid "Search"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:17
-#: ./browser/templates/project.pt:17
+#: ./browser/templates/project.pt:21
 #: ./content/Project.py:55
 msgid "Start"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:32
-#: ./browser/templates/project.pt:32
+#: ./browser/templates/project.pt:36
 #: ./browser/templates/search.pt:45
 msgid "Status"
 msgstr ""
 
-#: ./browser/templates/project.pt:146
+#: ./browser/templates/project.pt:161
 msgid "Sub projects"
 msgstr ""
 
@@ -212,14 +227,19 @@ msgid "Theme"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:57
-#: ./browser/templates/project.pt:57
+#: ./browser/templates/project.pt:61
 #: ./content/Project.py:129
 msgid "Themes"
 msgstr ""
 
 #: ./browser/templates/project-print.pt:27
-#: ./browser/templates/project.pt:27
+#: ./browser/templates/project.pt:31
 #: ./content/Project.py:73
 msgid "URL"
+msgstr ""
+
+#. Default: "Warning"
+#: ./browser/templates/search.pt:147
+msgid "search_warning"
 msgstr ""
 
