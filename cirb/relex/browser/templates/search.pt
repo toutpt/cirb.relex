@@ -7,9 +7,9 @@
       metal:use-macro="here/main_template/macros/master">
   <head><title></title>
     <metal:block fill-slot="style_slot">
-      <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
       <link href="++resource++cirb.relex/chosen/chosen.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" type="text/css" media="screen" href="++resource++jquery.datatables/extras/TableTools/media/css/TableTools.css">
+      <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
     </metal:block>
     <metal:block fill-slot="javascript_head_slot">
       <script type="text/javascript" src="++resource++jquery.datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>

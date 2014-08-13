@@ -7,8 +7,8 @@
       metal:use-macro="here/main_template/macros/master">
   <head><title></title>
     <metal:block fill-slot="style_slot">
-      <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
       <link href="++resource++cirb.relex/fancytree/skin-win8/ui.fancytree.min.css" rel="stylesheet" type="text/css" />
+      <link href="++resource++cirb.relex/css/styles.css" rel="stylesheet" type="text/css" />
     </metal:block>
     <metal:block fill-slot="javascript_head_slot">
       <script src="++resource++cirb.relex/fancytree/lib/jquery-ui.custom.js"></script>
