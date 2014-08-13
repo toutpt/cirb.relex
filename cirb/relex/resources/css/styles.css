@@ -1,8 +1,8 @@
 .section-relex_web #tabs {
     list-style: none;
     padding: 5px 0 4px 0;
-    margin: 0 0 10px 10px;
-    font: 0.75em arial;
+    margin: 10px 0 0 10px;
+    font: 1em arial;
     float: none;
     width: 100%;
 }
@@ -57,4 +57,39 @@
 table.project_contact td {
     border: 1px solid black;
     padding: 5px;
+}
+span.fancytree-node:hover{
+  background: #FFF202;
+  border-color: #0900BD;
+}
+span.fancytree-node .fancytree-title, span.fancytree-node a{
+  display: inline-block;
+  width: auto;
+}
+span.fancytree-node a:link, span.fancytree-node a:visited{
+  border: 0;
+}
+
+#filters_table{
+  clear: both;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  margin-bottom: 10px;
+}
+#filters_table dt{
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}
+#filters_table dl{
+  margin-bottom: 25px;
+}
+#filter-code, .chosen-container{
+  min-width: 400px !important;
+}
+#content .chosen-results{
+  margin-left: 2px;
+}
+#content .chosen-choices{
+  margin-left: 2px;
 }
