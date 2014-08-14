@@ -4,7 +4,7 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve css for projects detail and print page.
 
 
 1.0.4 (2014-08-13)
