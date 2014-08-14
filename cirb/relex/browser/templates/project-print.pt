@@ -4,7 +4,10 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xml:lang="en" lang="en"
       i18n:domain="cirb.relex">
-  <head><title tal:content="context/Title"></title></head>
+  <head>
+    <title tal:content="context/Title"></title>
+    <link href="++resource++cirb.relex/css/print.css" rel="stylesheet" type="text/css" />
+  </head>
   <body>
     <h1 tal:content="context/Title"></h1>
 
@@ -123,20 +126,40 @@
       <dt i18n:translate="">Contacts</dt>
       <dd>
         <tal:block tal:repeat="value values">
-          <table class="project_contact" tal:condition="value">
-            <tr>
-              <td i18n:translate="">Organisation : <span i18n:name="organistaion" tal:content="value/organisation"></span></td>
-	      <td i18n:translate="">Cell : <span i18n:name="cell" tal:content="value/cell"></span></td>
-            </tr>
-	    <tr>
-              <td i18n:translate="">Function : <span i18n:name="function" tal:content="value/function"></span></td>
-	      <td><span tal:content="value/lastname"></span> <span tal:content="value/firstname"></span></td>
-            </tr>
-	    <tr>
-              <td tal:content="value/email"></td>
-	      <td tal:content="value/phone"></td>
-            </tr>
-	  </table>
+            <table class="table table-bordered" tal:condition="value">
+              <tr>
+                <th>
+                  Organisation&nbsp;
+                </th>
+                <td>
+                  <span tal:content="value/organisation"></span>
+                </td>
+                <th>
+                  Contact&nbsp;
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Cell&nbsp;
+                </th>
+                <td>
+                  <span tal:content="value/cell"></span>
+                </td>
+                <td rowspan="2">
+                  <span tal:content="value/lastname"></span>&nbsp;<span tal:content="value/firstname"></span><br />
+                  <span tal:content="value/phone"></span><br />
+                  <span tal:content="value/email"></span>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Function&nbsp;
+                </th>
+                <td>
+                  <span tal:content="value/function"></span>
+                </td>
+              </tr>
+            </table>
 	</tal:block>
       </dd>
     </dl>

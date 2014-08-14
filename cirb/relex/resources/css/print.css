@@ -1,0 +1,25 @@
+body{
+  font-family: Arial, Verdana, sans-serif;
+  margin: 30px;
+}
+h1{
+  text-align: center;
+  border-bottom: 1px solid #CCC;
+}
+table, table tr td, table, tr th{
+  border: 1px solid #141414;
+  border-collapse: collapse;
+  padding: 10px;
+}
+table tr th{
+  font-weight: bold;
+}
+dt{
+  font-weight: bold;
+}
+ul, ol{
+  margin: 0 0 0 -20px;
+}
+dd{
+  padding: 10px;
+}
