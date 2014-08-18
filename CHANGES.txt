@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.6 (unreleased)
+1.0.6 (2014-08-18)
 ------------------
 
 - Make setuphandler.
