@@ -50,5 +50,11 @@
   <include file="upgrades.zcml" />
 
   <!-- -*- extra stuff goes here -*- -->
+  <genericsetup:importStep
+    name="cirb.relex.various"
+    title="cirb.relex: various import steps"
+    description="Various import steps"
+    handler="cirb.relex.setuphandlers.setupVarious"
+    />
 
 </configure>
