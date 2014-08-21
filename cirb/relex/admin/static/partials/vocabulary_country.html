@@ -31,7 +31,7 @@
 				<div class="col-md-10">
 					<select class="form-control" name="continent"
                             ng-model="currentTerm.continent.id"
-                            ng-options="continent.id as continent.code for continent in vocabularies.continent" required>
+                            ng-options="continent.id as t(continent.description) for continent in vocabularies.continent | orderBy:'code'" required>
 					</select>
 				</div>
 			</div>
