@@ -37,7 +37,7 @@
       </div>
 
       <div id="filters_table">
-        <dl>
+        <dl tal:condition="not:context/@@plone_portal_state/anonymous">
           <dt><label for="filter-code" i18n:translate="">Code</label></dt>
           <dd><input type="text" id="filter-code" data-column="0" /></dd>
         </dl>
