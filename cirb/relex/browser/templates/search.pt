@@ -129,7 +129,7 @@
             <select id="filter-contact" data-column="8" data-multiple>
               <option value=""></option>
               <option tal:repeat="term python:view.getAllTermsContact('contact')"
-                      tal:attributes="value term" tal:content="term"></option>
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>

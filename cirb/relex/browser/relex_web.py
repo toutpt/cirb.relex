@@ -43,6 +43,7 @@ class SearchView(BrowserView):
         return self.index()
 
     def update(self):
+        self._cache_orgnisation = None
         self.catalog = getToolByName(self.context, 'portal_catalog')
         context = self.context.aq_inner
         portal_state = getMultiAdapter((context, self.request),
@@ -71,10 +72,24 @@ class SearchView(BrowserView):
         return terms
 
     def getAllTermsContact(self, vocabulary_id):
-        terms = [u'{0} {1}'.format(t['lastname'], t['firstname'])
+        terms = [(
+            u'{0} {1}'.format(t['lastname'], t['firstname']),
+            self.getContactOrganisation(t)
+            )
                  for t in getVocabulary(vocabulary_id)]
-        terms = sorted(list(set(terms)))
+#        terms = sorted(list(set(terms)))
         return terms
+
+    def getContactOrganisation(self, contact):
+        if self._cache_orgnisation is None:
+            vocab = getVocabulary('organisation')
+            self._cache_orgnisation = {}
+            for term in vocab:
+                self._cache_orgnisation[term['id']] = term
+        if contact['organisation']:
+            orga = self._cache_orgnisation[contact['organisation']]
+            return orga['name'][self.current_language]
+
 
     @ram.cache(getProjectKey)
     def getCode(self, project):
