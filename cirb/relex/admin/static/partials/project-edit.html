@@ -160,7 +160,12 @@
 </tabset>
 <div class="form-group">
   <div class="pull-right">
-    <button class="btn btn-primary" ng-click="saveCurrentProject()" translate>Save</button>
+    <button class="btn btn-primary" ng-click="saveCurrentProject()">
+      <i class="fa fa-save"></i> {{'Save' | translate}}
+      <i class="fa fa-refresh fa-spin ng-hide" ng-show="loading.saveCurrentProject.loading"></i>
+      <i class="fa fa-times ng-hide" ng-show="loading.saveCurrentProject.ko"></i>
+      <i class="fa fa-check ng-hide" ng-show="loading.saveCurrentProject.ok"></i>
+    </button>
     <button class="btn btn-default" ng-click="cancelCurrentProject()" translate>Cancel</button>
     <button class="btn btn-danger" ng-click="deleteCurrentProject()" translate>Delete</button>
   </div>

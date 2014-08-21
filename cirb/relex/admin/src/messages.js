@@ -76,6 +76,22 @@ angular.module('relex.services').factory('messagesService',
             if (msg){
                 this.addError(msg);
             }
+        },
+        loading: function(data, newStatus){
+            if (newStatus === undefined){
+                data.loading = true;
+                data.ok = false;
+                data.ko = false;
+            }else if (newStatus === 'ok'){
+                data.loading = false;
+                data.ko = false;
+                data.ok = true;
+                $timeout(function(){data.ok = false;}, 2000);
+            }else{
+                data.loading = false;
+                data.ok = false;
+                data.ko = true;
+            }
         }
     };
 }]);

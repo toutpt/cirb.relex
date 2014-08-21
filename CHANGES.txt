@@ -14,6 +14,7 @@ Changelog
 - Fix (admin) IHM BrusselsPatners: Il faut remplir les listes Organisation et cellule avec la description pas le code.
 
 - Feature(admin) : Pour tous les champs de type texte ont doit forcer la mise en majuscule
+- Fix(admin): add feedback on save project button
 
 1.0.6 (2014-08-18)
 ------------------

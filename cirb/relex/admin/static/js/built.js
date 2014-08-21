@@ -245,6 +245,22 @@ angular.module('relex.services').factory('messagesService',
             if (msg){
                 this.addError(msg);
             }
+        },
+        loading: function(data, newStatus){
+            if (newStatus === undefined){
+                data.loading = true;
+                data.ok = false;
+                data.ko = false;
+            }else if (newStatus === 'ok'){
+                data.loading = false;
+                data.ko = false;
+                data.ok = true;
+                $timeout(function(){data.ok = false;}, 2000);
+            }else{
+                data.loading = false;
+                data.ok = false;
+                data.ko = true;
+            }
         }
     };
 }]);
@@ -367,7 +383,9 @@ angular.module('relex.controllers').controller('ProjectsController', [
         $scope.countriesVocabulary = [];
         $scope.brusselsPartnersVocabulary = [];
         $scope.contactsVocabulary = [];
-
+        $scope.loading = {
+            saveCurrentProject: {loading:false,ok:false,ko:false}
+        };
 		//methods
         var checkCurrentProject = function(){
 		    if ($routeParams.id !== undefined){
@@ -449,17 +467,20 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		$scope.addNewProject = function(code){
             var project = {code: code};
             projectsService.createProject(project).then(function(project){
-                messagesService.addInfo("Project created succesfully", 3000);
+                messagesService.addInfo('Project created succesfully', 3000);
                 $scope.projects.push(project);
             }, function(){
-                messagesService.addError("Error while creating the project");
+                messagesService.addError('Error while creating the project');
             });
 		};
 		$scope.saveCurrentProject = function(){
+            messagesService.loading($scope.loading.saveCurrentProject);
             projectsService.updateProject($scope.currentProject).then(function(){
-                messagesService.addInfo("Project updated succesfully", 3000);
+                messagesService.loading($scope.loading.saveCurrentProject, 'ok');
+                messagesService.addInfo('Project updated succesfully', 3000);
             }, function(){
-                messagesService.addError("Error while updating the project");
+                messagesService.loading($scope.loading.saveCurrentProject, 'ko');
+                messagesService.addError('Error while updating the project');
             });
         };
 		$scope.cancelCurrentProject = function(){
@@ -467,10 +488,10 @@ angular.module('relex.controllers').controller('ProjectsController', [
 		};
 		$scope.deleteCurrentProject = function(){
             projectsService.deleteProject($scope.currentProject).then(function(){
-                messagesService.addInfo("Project deleted succesfully", 3000);
+                messagesService.addInfo('Project deleted succesfully', 3000);
                 $location.path('project');
             }, function(){
-                messagesService.addError("Error while deleting the project");
+                messagesService.addError('Error while deleting the project');
             });
         };
 
@@ -478,104 +499,111 @@ angular.module('relex.controllers').controller('ProjectsController', [
 
         $scope.filterCountries = function(country, project){
             // Empty selects
-            if (project.city.length == 0 && project.region.length == 0)
-                return true;
+            if (project.city.length === 0 && project.region.length === 0)
+                {return true;}
             // Always show terms in project
-            for (var i = 0 ; i < project.country.length ; i++) {
+            var i = 0;
+            for (i = 0 ; i < project.country.length ; i++) {
                 if (country.id === project.country[i].id)
-                    return true;
+                    {return true;}
             }
             // Filter from other terms
-            for (var i = 0 ; i < project.city.length ; i++) {
+            for (i = 0 ; i < project.city.length ; i++) {
                 if (country.id === project.city[i].country.id)
-                    return true;
+                    {return true;}
             }
-            for (var i = 0 ; i < project.region.length ; i++) {
+            for (i = 0 ; i < project.region.length ; i++) {
                 if (country.id === project.region[i].country.id)
-                    return true;
+                    {return true;}
             }
             return false;
         };
         $scope.filterRegions = function(region, project){
             // Empty selects
-            if (project.city.length == 0 && project.country.length == 0)
-                return true;
+            if (project.city.length === 0 && project.country.length === 0)
+                {return true;}
             // Always show terms in project
-            for (var i = 0 ; i < project.region.length ; i++) {
+            var i = 0;
+            for (i = 0 ; i < project.region.length ; i++) {
                 if (region.id === project.region[i].id)
-                    return true;
+                    {return true;}
             }
             // Filter from other terms
-            for (var i = 0 ; i < project.city.length ; i++) {
+            for (i = 0 ; i < project.city.length ; i++) {
                 if (project.city[i].region === null)
-                    continue;
+                    {continue;}
                 if (region.id === project.city[i].region.id)
-                    return true;
+                    {return true;}
             }
-            for (var i = 0 ; i < project.country.length ; i++) {
+            for (i = 0 ; i < project.country.length ; i++) {
                 if (region.country === null)
-                    continue;
+                    {continue;}
                 if (region.country.id === project.country[i].id)
-                    return true;
+                    {return true;}
             }
             return false;
         };
         $scope.filterCities = function(city, project){
             // Empty selects
-            if (project.country.length == 0 && project.region.length == 0)
-                return true;
+            if (project.country.length === 0 && project.region.length === 0)
+                {return true;}
             // Always show terms in project
-            for (var i = 0 ; i < project.city.length ; i++) {
+            var i = 0;
+            for (i = 0 ; i < project.city.length ; i++) {
                 if (city.id === project.city[i].id)
-                    return true;
+                    {return true;}
             }
             // Filter from other terms
-            for (var i = 0 ; i < project.country.length ; i++) {
+            for (i = 0 ; i < project.country.length ; i++) {
                 if (city.country === null)
-                    continue;
+                    {continue;}
                 if (city.country.id === project.country[i].id)
-                    return true;
+                    {return true;}
             }
-            for (var i = 0 ; i < project.region.length ; i++) {
+            for (i = 0 ; i < project.region.length ; i++) {
                 if (city.region === null)
-                    continue;
+                    {continue;}
                 if (city.region.id === project.region[i].id)
-                    return true;
+                    {return true;}
             }
             return false;
         };
 
         $scope.filterThemes = function(theme, project) {
             // Empty selects
-            if (project.keywords.length == 0)
-                return true;
+            if (project.keywords.length === 0)
+                {return true;}
             // Always show terms in project
-            for (var i = 0 ; i < project.theme.length ; i++) {
-                if (project.theme[i].id == theme.id)
-                    return true;
+            var i = 0;
+            for (i = 0 ; i < project.theme.length ; i++) {
+                if (project.theme[i].id === theme.id)
+                    {return true;}
             }
             // Filter from other terms
-            for (var i = 0 ; i < project.keywords.length ; i++) {
-                for (var j = 0 ; j < theme.keywords.length ; j++)
-                    if (project.keywords[i].id == theme.keywords[j].id)
-                        return true;
+            for (i = 0 ; i < project.keywords.length ; i++) {
+                for (var j = 0 ; j < theme.keywords.length ; j++){
+                    if (project.keywords[i].id === theme.keywords[j].id)
+                        {return true;}
+                }
             }
             return false;
         };
         $scope.filterKeywords = function(keyword, project) {
             // Empty selects
-            if (project.theme.length == 0)
-                return true;
+            if (project.theme.length === 0)
+                {return true;}
             // Always show terms in project
-            for (var i = 0 ; i < project.keywords.length ; i++) {
-                if (project.keywords[i].id == keyword.id)
-                    return true;
+            var i = 0;
+            for (i = 0 ; i < project.keywords.length ; i++) {
+                if (project.keywords[i].id === keyword.id)
+                    {return true;}
             }
             // Filter from other terms
-            for (var i = 0 ; i < project.theme.length ; i++) {
-                for (var j = 0 ; j < project.theme[i].keywords.length ; j++)
-                    if (project.theme[i].keywords[j].id == keyword.id)
-                        return true;
+            for (i = 0 ; i < project.theme.length ; i++) {
+                for (var j = 0 ; j < project.theme[i].keywords.length ; j++){
+                    if (project.theme[i].keywords[j].id === keyword.id)
+                        {return true;}
+                }
             }
             return false;
         };
