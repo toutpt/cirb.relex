@@ -5,19 +5,19 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" required/>
+					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" required force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" required/>
+					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" required force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" required/>
+					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" required force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,7 +38,7 @@
 	<div class="panel-heading" translate>Keywords</div>
 	<div class="panel-body">
         <div class="input-group margin-bottom-sm">
-          <input type="search" class="form-control" ng-model="queryVocabulary"/>
+          <input type="search" class="form-control" ng-model="queryVocabulary" force-upper-case/>
           <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
         </div>
         <div class="list-group">

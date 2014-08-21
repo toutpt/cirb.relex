@@ -10,7 +10,10 @@ Changelog
 - Fix(admin) IHM Organisation : Liste type d'organisation, il faut la remplir avec la description et pas le code du type d’organisation
 - Fix(admin) IHM Contact :Liste Organisation, Cellule et fonction sont vides ? -> Non
 - Fix (admin) IHM Contact: Il faut remplir les listes Organisation, cellule et fonction avec la description pas le code. -> ATTENTION BCP DE FONCTION N ONT PAS DE DESCRIPTION
+- Fix (admin) IHM BrusselsPatners: Liste Organisation et cellule sont vides
+- Fix (admin) IHM BrusselsPatners: Il faut remplir les listes Organisation et cellule avec la description pas le code.
 
+- Feature(admin) : Pour tous les champs de type texte ont doit forcer la mise en majuscule
 
 1.0.6 (2014-08-18)
 ------------------

@@ -5,19 +5,19 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.en"/>
+					<input type="text" class="form-control" ng-model="currentTerm.name.en" force-upper-case required/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.fr"/>
+					<input type="text" class="form-control" ng-model="currentTerm.name.fr" force-upper-case required/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.name.nl"/>
+					<input type="text" class="form-control" ng-model="currentTerm.name.nl" force-upper-case required/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -62,7 +62,7 @@
 	<div class="panel-heading" translate>Cities</div>
 	<div class="panel-body">
         <div class="input-group margin-bottom-sm">
-          <input type="search" class="form-control" ng-model="queryVocabulary"/>
+          <input type="search" class="form-control" ng-model="queryVocabulary" force-upper-case required/>
           <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
         </div>
         <div class="list-group">

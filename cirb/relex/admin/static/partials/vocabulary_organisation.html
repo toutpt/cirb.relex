@@ -5,37 +5,37 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeEn" ng-model="currentTerm.code.en"/>
+					<input type="text" class="form-control" name="codeEn" ng-model="currentTerm.code.en" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeFR" ng-model="currentTerm.code.fr"/>
+					<input type="text" class="form-control" name="codeFR" ng-model="currentTerm.code.fr" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Code'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeNL" ng-model="currentTerm.code.nl"/>
+					<input type="text" class="form-control" name="codeNL" ng-model="currentTerm.code.nl" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en"/>
+					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr"/>
+					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
 				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl"/>
+					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" force-upper-case/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -81,7 +81,7 @@
 	<div class="panel-heading" translate>Organisations</div>
 	<div class="panel-body">
         <div class="input-group margin-bottom-sm">
-          <input type="search" class="form-control" ng-model="queryVocabulary"/>
+          <input type="search" class="form-control" ng-model="queryVocabulary" force-upper-case/>
           <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
         </div>
         <div class="list-group">
