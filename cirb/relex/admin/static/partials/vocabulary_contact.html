@@ -44,7 +44,7 @@
 					<select class="form-control"
                             name="cell"
                             ng-model="currentTerm.cell.id"
-                            ng-options="cell.id as t(cell.code)
+                            ng-options="cell.id as t(cell.description)
                                         for cell in vocabularies.cell | orderBy:orderByCode"
                             required>
 					</select>
@@ -56,7 +56,7 @@
 					<select class="form-control"
                             name="function"
                             ng-model="currentTerm.function.id"
-                            ng-options="function.id as t(function.code)
+                            ng-options="function.id as t(function.description)
                                         for function in vocabularies.function | orderBy:orderByCode"
                             required>
 					</select>
