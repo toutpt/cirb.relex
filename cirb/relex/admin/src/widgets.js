@@ -26,9 +26,23 @@ angular.module('relex.directives').directive('selectMultiple',
                 };
                 scope.isSelected = function(term){
                     for (var i = 0; i < scope.target.length; i++) {
-                        if (term.id === scope.target[i].id){
-                            term._selected = 1;
-                            return true;
+                        if (scope.target[i] !== null){
+                            if (term.id === scope.target[i].id){
+                                term._selected = 1;
+                                return true;
+                            }
+                        }else{
+                            console.error('null term in select-multiple');
+                            /*
+                    > term
+                    Object {code: Object, id: "59", description: Object}
+                    > scope.target
+                    [Object, null, null]
+                    > scope.target[0]
+                    Object {code: Object, id: "32", description: Object}
+                    > scope.target[0].code
+                    Object {fr: "CEX", en: "CEX", nl: "CEX"}
+                             */
                         }
                     }
                     term._selected = 0;
