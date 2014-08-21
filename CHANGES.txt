@@ -4,7 +4,10 @@ Changelog
 1.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix(admin): IHM Continent : Titre de la table à corriger par Continent en lieu et place de région.
+- Fix(admin): IHM Country : La liste des continents, remplir la liste avec la description en lieu et place du code
+- Fix(admin) IHM Organisation : Si je sélectionne l'organisation suivante : [AEE] ADMINISTRATION DE L'ECONOMIE ET DE L'EMPLOI (MINISTERE DE LA REGION DE BRUXELLES-CAPITALE), il est impossible d'ajouter des cellules pour une organisation qui n'en possédait pas avant ??
+- Fix(admin) IHM Organisation : Liste type d'organisation, il faut la remplir avec la description et pas le code du type d’organisation
 
 
 1.0.6 (2014-08-18)
