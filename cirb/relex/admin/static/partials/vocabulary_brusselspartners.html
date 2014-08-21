@@ -32,7 +32,7 @@
 					<select class="form-control"
                             name="organisation"
                             ng-model="currentTerm.organisation.id"
-                            ng-options="organisation as t(organisation.code)
+                            ng-options="organisation.id as t(organisation.name)
                                         for organisation in vocabularies.organisation | orderBy:orderByCode"
                             required>
 					</select>
@@ -44,7 +44,7 @@
 					<select class="form-control"
                             name="cell"
                             ng-model="currentTerm.cell.id"
-                            ng-options="cell as t(cell.code)
+                            ng-options="cell.id as t(cell.description)
                                         for cell in vocabularies.cell | orderBy:orderByCode"
                             required>
 					</select>
