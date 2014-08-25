@@ -830,6 +830,7 @@ angular.module('relex.controllers').controller('VocabularyController',[
                 for (var i = 0; i < vocabularies.length; i++) {
                     $scope.vocabularies[vocabularies[i].id] = vocabularies[i].terms;
                 }
+                $scope.originaleVocabularies = angular.copy($scope.vocabularies);
             });
         };
         var initializeVocabularies = function(){
@@ -893,8 +894,35 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.reset = function(){
             $location.path('/vocabulary/' + VOCAB);
         };
+        var getTermById = function(vocabulary, id){
+            var vocab = $scope.vocabularies[vocabulary];
+            for (var i = 0; i < vocab.length; i++) {
+                if (vocab[i].id === id){
+                    return vocab[i];
+                }
+            }
+        };
         initializeData();
         initializeVocabularies();
+        if (VOCAB === 'contact'){
+            $scope.$watch('currentTerm.organisation.id', function(newValue, oldValue){
+                if (!newValue)
+                    {return;}
+                $scope.vocabularies.cell = angular.copy($scope.originaleVocabularies.cell);
+                var organisation = getTermById('organisation', newValue);
+                $scope.vocabularies.cell = $scope.vocabularies.cell.filter(function(el){
+                    for (var i = 0; i < organisation.cell.length; i++) {
+                        if (organisation.cell[i] === null){
+                            continue;
+                        }
+                        if (el.id === organisation.cell[i].id){
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            });
+        }
     }
 ]);
 

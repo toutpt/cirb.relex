@@ -17,7 +17,7 @@ Changelog
 - Fix(admin): add feedback on save project button
 - Fix(search): hide code input to anonymous
 - Feature(search): add search by organisation (remove search by contact)
-
+- feature(admin/contact): add filter of cells based on selected orgnisation
 
 1.0.6 (2014-08-18)
 ------------------
