@@ -122,13 +122,12 @@
             </select>
           </dd>
         </dl>
-
         <dl>
-          <dt><label for="filter-contact" i18n:translate="">Contact</label></dt>
+          <dt><label for="filter-organisation" i18n:translate="">Organisation</label></dt>
           <dd>
-            <select id="filter-contact" data-column="8" data-multiple>
+            <select id="filter-organisation" data-column="12" data-multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsContact('contact')"
+              <option tal:repeat="term python:view.getAllTermsName('organisation')"
                       tal:attributes="value term" tal:content="term"></option>
             </select>
           </dd>
@@ -158,10 +157,10 @@
             <th><span i18n:translate="">Country</span></th>
             <th><span i18n:translate="">Region</span></th>
             <th><span i18n:translate="">City</span></th>
-            <th><span i18n:translate="">Contact</span></th>
             <th><span i18n:translate="">Partenaire</span></th>
             <th><span i18n:translate="">Theme</span></th>
             <th><span i18n:translate="">Keyword</span></th>
+            <th><span i18n:translate="">Organisation</span></th>
           </tr>
         </thead>
 
@@ -176,10 +175,10 @@
             <td tal:content="python:view.getCountries(project)"></td>
             <td tal:content="python:view.getRegions(project)"></td>
             <td tal:content="python:view.getCities(project)"></td>
-            <td tal:content="python:view.getContacts(project)"></td>
             <td tal:content="python:view.getPartners(project)"></td>
             <td tal:content="python:view.getThemes(project)"></td>
             <td tal:content="python:view.getKeywords(project)"></td>
+            <td tal:content="python:view.getOrganisations(project)"></td>
           </tr>
         </tbody>
 
@@ -204,7 +203,7 @@
                 {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},
-                {"bVisible": false},
+                {"bVisible": false}
             ],
             "oTableTools": {
                 "sSwfPath": "++resource++jquery.datatables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf",
@@ -233,7 +232,7 @@
             },
         });
         var escapeSC = function(value){
-          return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+          return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&").replace(/\\[\ |(|)|-]/g,' ');
         };
         $('#filters_table input').keyup(function(i){
             var col = $(this).attr('data-column');
@@ -245,7 +244,6 @@
             var multiple = $(this).attr('data-multiple');
             var isMultiselect = $(this).attr('multiple');
             var value = escapeSC(this.value);
-
             if (!value) {
                 table.fnFilter('', col);
                 console.log('reset filter');

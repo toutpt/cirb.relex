@@ -16,6 +16,8 @@ Changelog
 - Feature(admin) : Pour tous les champs de type texte ont doit forcer la mise en majuscule
 - Fix(admin): add feedback on save project button
 - Fix(search): hide code input to anonymous
+- Feature(search): add search by organisation (remove search by contact)
+
 
 1.0.6 (2014-08-18)
 ------------------

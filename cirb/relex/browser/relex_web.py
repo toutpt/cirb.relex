@@ -43,11 +43,25 @@ class SearchView(BrowserView):
         return self.index()
 
     def update(self):
+        self._cache_orgnisation = None
+        self._project = None
         self.catalog = getToolByName(self.context, 'portal_catalog')
         context = self.context.aq_inner
         portal_state = getMultiAdapter((context, self.request),
                                        name=u'plone_portal_state')
         self.current_language = portal_state.language()
+
+    def getContactOrganisation(self, contact):
+        if self._cache_orgnisation is None:
+            vocab = getVocabulary('organisation')
+            self._cache_orgnisation = {}
+            for term in vocab:
+                self._cache_orgnisation[term['id']] = term
+        if contact['organisation']:
+            orga = self._cache_orgnisation[contact['organisation']]
+            return orga['name'][self.current_language]
+
+
 
     def canManageRelex(self):
         return checkPermission('cirb.relex.ManageRelex', self.context)
@@ -78,12 +92,12 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getCode(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         return project.getCode()
 
     @ram.cache(getProjectKey)
     def getName(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         if self.current_language == 'fr':
             return project.getName_fr()
         if self.current_language == 'en':
@@ -93,12 +107,12 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getStatus(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         return project.getStatus()
 
     @ram.cache(getProjectKey)
     def getRelationType(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         relation = getTerm(
             'relationtype', project.getRelationtype()
         )
@@ -108,7 +122,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getOrganisationType(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         organisation = getTerm(
             'organisationtype', project.getOrganisationtype()
         )
@@ -118,7 +132,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getThemes(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getThemes()
         terms = getTerms('theme', ids)
         return [
@@ -128,7 +142,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getKeywords(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getKeywords()
         terms = getTerms('keywords', ids)
         return [
@@ -138,7 +152,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getCountries(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getCountries()
         terms = getTerms('country', ids)
         return [
@@ -148,7 +162,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getRegions(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getRegions()
         terms = getTerms('region', ids)
         return [
@@ -158,7 +172,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getCities(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getCities()
         terms = getTerms('city', ids)
         return [
@@ -168,7 +182,7 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getContacts(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getContacts()
         terms = getTerms('contact', ids)
         return [
@@ -178,10 +192,31 @@ class SearchView(BrowserView):
 
     @ram.cache(getProjectKey)
     def getPartners(self, project):
-        project = project.getObject()
+        project = self.getFullProject(project)
         ids = project.getBrusselspartners()
         terms = getTerms('brusselspartners', ids)
         return sorted([
             u'{0} {1}'.format(term['lastname'], term['firstname'])
             for term in terms if term is not None
         ])
+
+    @ram.cache(getProjectKey)
+    def getOrganisations(self, project):
+        project = self.getFullProject(project)
+        ids = project.getContacts()
+        contacts = getTerms('contact', ids)
+        organisations = []
+        for contact in contacts:
+            orga = self.getContactOrganisation(contact)
+            if orga and orga not in organisations:
+                organisations.append(orga)
+        #remove duplicates
+        organisations = list(set(organisations))
+        return ", ".join(organisations)
+
+    def getFullProject(self, project):
+        if self._project is None or self._project.getId() != project.getId:
+            self._project = project.getObject()
+        if self._project is None:
+            import pdb; pdb.set_trace()
+        return self._project
