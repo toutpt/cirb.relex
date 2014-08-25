@@ -34,7 +34,7 @@ class TreeView(BrowserView):
 
 def getProjectKey(fun, view, project):
     """ Key for ram.cache().  60 * 30 = 30 minutes """
-    return '{0}{1}'.format(project.UID, time() // (60 * 30))
+    return '{0}{1}'.format(project.UID, project.modified.ISO())
 
 
 class SearchView(BrowserView):
@@ -206,6 +206,12 @@ class SearchView(BrowserView):
         ids = project.getContacts()
         contacts = getTerms('contact', ids)
         organisations = []
+        for contact in contacts:
+            orga = self.getContactOrganisation(contact)
+            if orga and orga not in organisations:
+                organisations.append(orga)
+        ids = project.getBrusselspartners()
+        contacts = getTerms('brusselspartners', ids)
         for contact in contacts:
             orga = self.getContactOrganisation(contact)
             if orga and orga not in organisations:
