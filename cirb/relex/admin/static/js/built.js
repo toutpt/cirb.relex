@@ -509,12 +509,16 @@ angular.module('relex.controllers').controller('ProjectsController', [
             }
             // Filter from other terms
             for (i = 0 ; i < project.city.length ; i++) {
-                if (country.id === project.city[i].country.id)
-                    {return true;}
+                if (project.city[i].country !== null){
+                    if (country.id === project.city[i].country.id)
+                        {return true;}
+                }
             }
             for (i = 0 ; i < project.region.length ; i++) {
-                if (country.id === project.region[i].country.id)
-                    {return true;}
+                if (project.region[i].country !== null){
+                    if (country.id === project.region[i].country.id)
+                        {return true;}
+                }
             }
             return false;
         };
@@ -582,6 +586,8 @@ angular.module('relex.controllers').controller('ProjectsController', [
             // Filter from other terms
             for (i = 0 ; i < project.keywords.length ; i++) {
                 for (var j = 0 ; j < theme.keywords.length ; j++){
+                    if (theme.keywords[j] === null)
+                        {continue;}
                     if (project.keywords[i].id === theme.keywords[j].id)
                         {return true;}
                 }
@@ -601,6 +607,8 @@ angular.module('relex.controllers').controller('ProjectsController', [
             // Filter from other terms
             for (i = 0 ; i < project.theme.length ; i++) {
                 for (var j = 0 ; j < project.theme[i].keywords.length ; j++){
+                    if (project.theme[i].keywords[j] === null)
+                        {continue;}
                     if (project.theme[i].keywords[j].id === keyword.id)
                         {return true;}
                 }
