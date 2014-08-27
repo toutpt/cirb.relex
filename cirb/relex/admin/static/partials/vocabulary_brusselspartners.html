@@ -53,7 +53,12 @@
 		</form>
 		<div class="form-group">
 		  <div class="pull-right ng-hide" ng-show="currentTerm.id">
-		    <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Save</button>
+		    <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)">
+		    	<span translate>Save</span>
+		    	<i class="fa fa-refresh fa-spin ng-hide" ng-show="loading.saveTerm.loading"></i>
+				<i class="fa fa-times ng-hide" ng-show="loading.saveTerm.ko"></i>
+				<i class="fa fa-check ng-hide" ng-show="loading.saveTerm.ok"></i>
+			</button>
 		    <button class="btn btn-default" ng-click="reset()" translate>Cancel</button>
 		    <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
 		  </div>

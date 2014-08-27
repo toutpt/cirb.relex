@@ -184,6 +184,10 @@ angular.module('relex.controllers').controller('VocabularyController',[
         $scope.currentTerm; $scope.originalTerm;
         $scope.t = langService.getTranslatedValue;
         $scope.terms;
+        $scope.loading = {
+            'saveTerm': {loading:false,ok:false,ko:false},
+            'removeTerm': {loading:false,ok:false,ko:false}
+        };
 
         var initializeData = function(){
             vocabularyService.getVocabularies().then(function(vocabularies){
@@ -201,7 +205,7 @@ angular.module('relex.controllers').controller('VocabularyController',[
                     var found = false;
                     for (var i = 0; i < $scope.terms.length; i++) {
                         if ($scope.terms[i].id === $routeParams.id){
-                            found = true
+                            found = true;
                             $scope.currentTerm = $scope.terms[i];
                             $scope.originalTerm = angular.copy($scope.terms[i]);
                         }
@@ -216,6 +220,10 @@ angular.module('relex.controllers').controller('VocabularyController',[
                 }
             });
         };
+        var initialize = function(){
+            initializeData();
+            initializeVocabularies();
+        }
         var onError = function(error){
             messagesService.addError(error);
         };
@@ -235,27 +243,39 @@ angular.module('relex.controllers').controller('VocabularyController',[
             vocabularyService.post(VOCAB, $scope.currentTerm).then(function(data){
                 messagesService.addInfo('Term added', 2000);
                 vocabularyService.purge();
+                initialize();
                 $location.path('/vocabulary/' + VOCAB + '/' + data.id);
             }, onError);
         };
         $scope.saveTerm = function(){
+            messagesService.loading($scope.loading.saveTerm);
             vocabularyService.put(VOCAB, $scope.currentTerm).then(function(){
                 messagesService.addInfo('Term updated', 2000);
+                messagesService.loading($scope.loading.saveTerm, 'ok');
                 vocabularyService.purge();
-                $location.path('/vocabulary/' + VOCAB);
-            }, onError);
+                initialize();
+//                $location.path('/vocabulary/' + VOCAB);
+            }, function(error){
+                messagesService.loading($scope.loading.saveTerm, 'ko');
+                onError(error);
+            });
         };
         $scope.removeTerm = function(){
+            messagesService.loading($scope.loading.removeTerm);
             vocabularyService.remove(VOCAB, $scope.currentTerm).then(function(){
-                messagesService.addInfo('Term removed', 2000);
                 vocabularyService.purge();
                 $location.path('/vocabulary/' + VOCAB);
+                messagesService.addInfo('Term removed', 2000);
+                messagesService.loading($scope.loading.removeTerm, 'ok');
+            }, function(error){
+                messagesService.loading($scope.loading.removeTerm, 'ko');
+                onError(error);
             });
         };
         $scope.reset = function(){
             $location.path('/vocabulary/' + VOCAB);
         };
-        var getTermById = function(vocabulary, id){
+        $scope.getTermById = function(vocabulary, id){
             var vocab = $scope.vocabularies[vocabulary];
             for (var i = 0; i < vocab.length; i++) {
                 if (vocab[i].id === id){
@@ -263,14 +283,13 @@ angular.module('relex.controllers').controller('VocabularyController',[
                 }
             }
         };
-        initializeData();
-        initializeVocabularies();
+        initialize();
         if (VOCAB === 'contact'){
-            $scope.$watch('currentTerm.organisation.id', function(newValue, oldValue){
+            $scope.$watch('currentTerm.organisation.id', function(newValue){
                 if (!newValue)
                     {return;}
                 $scope.vocabularies.cell = angular.copy($scope.originaleVocabularies.cell);
-                var organisation = getTermById('organisation', newValue);
+                var organisation = $scope.getTermById('organisation', newValue);
                 $scope.vocabularies.cell = $scope.vocabularies.cell.filter(function(el){
                     for (var i = 0; i < organisation.cell.length; i++) {
                         if (organisation.cell[i] === null){
@@ -284,5 +303,41 @@ angular.module('relex.controllers').controller('VocabularyController',[
                 });
             });
         }
+    }
+]);
+
+angular.module('relex.controllers').controller('Cell2OrganisationController',[
+    '$scope', '$routeParams',  '$location', 'vocabularyService', 'messagesService',
+    function($scope, $routeParams, $location, vocabularyService, messagesService){
+        console.log('init Cell2OrganisationController');
+        var VOCAB = $routeParams.vocabulary;
+        $scope.hasCurrentCell = Boolean($routeParams.id);
+        $scope.organisationId = '';
+        $scope.loading = {
+            'organisation': {loading:false,ok:false,ko:false}
+        };
+        var onError = function(error){
+            messagesService.addError(error);
+        };
+
+        $scope.addOrganisationToCell = function(){
+            var orga = $scope.getTermById('organisation', $scope.organisationId);
+            var cells = orga.cell;
+            if (cells.indexOf($scope.currentTerm.id) !== -1){
+                console.log('already in');
+                return;
+            }
+            console.log('add cell to orga');
+            messagesService.loading($scope.loading.organisation);
+            orga.cell.push($scope.currentTerm.id);
+            vocabularyService.put('organisation', orga).then(function(){
+                messagesService.loading($scope.loading.organisation, 'ok');
+                vocabularyService.purge();
+//                $location.path('/vocabulary/' + VOCAB + '/' + $routeParams.id);
+            }, function(error){
+                messagesService.loading($scope.loading.organisation, 'ko');
+                onError(error);
+            });
+        };
     }
 ]);

@@ -1,5 +1,8 @@
+/*jshint strict:false */
+/*global angular:false */
+
 angular.module('relex.services').factory('messagesService',
-    ['$timeout', function($timeout, $modal){
+    ['$timeout', function($timeout){
     var messages = [];
     return {
         intervalID: undefined,
@@ -86,7 +89,7 @@ angular.module('relex.services').factory('messagesService',
                 data.loading = false;
                 data.ko = false;
                 data.ok = true;
-                $timeout(function(){data.ok = false;}, 2000);
+                $timeout(function(){data.ok = false;}, 4000);
             }else{
                 data.loading = false;
                 data.ok = false;

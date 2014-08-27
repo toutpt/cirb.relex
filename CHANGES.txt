@@ -18,6 +18,8 @@ Changelog
 - Fix(search): hide code input to anonymous
 - Feature(search): add search by organisation (remove search by contact)
 - feature(admin/contact): add filter of cells based on selected orgnisation
+- feature(admin/cells): Associate an organisation with a cell from here
+- feature(admin/settings): add feedback on all save buttons
 
 1.0.6 (2014-08-18)
 ------------------
