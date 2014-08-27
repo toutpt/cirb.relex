@@ -10,5 +10,13 @@
         profile="cirb.relex:default"
         handler=".upgrades.common"
         />
+    <upgradeStep
+        source="1002"
+        destination="1003"
+        title="Upgrade"
+        description=""
+        profile="cirb.relex:default"
+        handler=".upgrades.fixOrganisationAndThemeRelation"
+        />
 
 </configure>

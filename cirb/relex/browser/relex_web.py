@@ -221,6 +221,4 @@ class SearchView(BrowserView):
     def getFullProject(self, project):
         if self._project is None or self._project.getId() != project.getId:
             self._project = project.getObject()
-        if self._project is None:
-            import pdb; pdb.set_trace()
         return self._project

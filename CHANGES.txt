@@ -22,6 +22,7 @@ Changelog
 - feature(admin/settings): add feedback on all save buttons
 - fix(admin/settings/*): cancel button on new vocab term
 - feature(search): add search by partner's organisation
+- fix(data): relations data should not have list in their values
 
 1.0.6 (2014-08-18)
 ------------------

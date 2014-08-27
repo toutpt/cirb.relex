@@ -33,12 +33,12 @@ angular.module('relex.services').factory('vocabularyService', [
                 }
 
                 /* Get a term by its id and its vocabulary's id */
-                var getTermById = function(vocabularies, vocab_id, term_id){
+                var getTermById = function(vocabularies, vocabId, termId){
                     var obj = null;
                     angular.forEach(vocabularies, function(vocabulary){
-                        if (vocabulary.id === vocab_id) {
+                        if (vocabulary.id === vocabId) {
                             angular.forEach(vocabulary.terms, function(term){
-                                if (term.id === term_id) {
+                                if (term.id === termId) {
                                     obj = term;
                                     return ;
                                 }
@@ -50,7 +50,8 @@ angular.module('relex.services').factory('vocabularyService', [
                 };
 
                 /* Find attributes with related object and replace the ids by these objects */
-                var processTerms = function(vocabularies, ids, terms){
+                var processTerms = function(vocabularies, ids, vocabulary){
+                    var terms = vocabulary.terms;
                     var deferred = $q.defer();
                     angular.forEach(terms, function(term){
                         angular.forEach(term, function(value, key){
@@ -58,7 +59,23 @@ angular.module('relex.services').factory('vocabularyService', [
                                 if (value instanceof Array) {
                                     var values = [];
                                     angular.forEach(value, function(val){
-                                        values.push(getTermById(vocabularies, key, val));
+                                        if (val instanceof Array){
+                                            var hostname = location.origin + BASE_URL + '/++resource++cirb.relex.admin/index.html#/vocabulary/';
+                                            console.log('<value array detected> '+ hostname + vocabulary.id + '/' + term.id + ' ' + key);
+                                            //bug. don't know why but we have array in array
+                                            if (val.length === 1){
+                                                console.log('</value array fixed>');
+                                                values.push(getTermById(vocabularies, key, val[0]));
+                                            }else{
+                                                values.push(val);
+                                            }
+                                        }else if (typeof val === 'object'){
+                                            values.push(val);
+                                        }else if (typeof val === 'string'){
+                                            values.push(getTermById(vocabularies, key, val));
+                                        }else{
+                                            console.error('term\'s value should not be null');
+                                        }
                                     });
                                     term[key] = values;
                                 } else {
@@ -81,7 +98,7 @@ angular.module('relex.services').factory('vocabularyService', [
                     });
 
                     angular.forEach(vocabularies, function(vocabulary){
-                        promises.push(processTerms(vocabularies, ids, vocabulary.terms));
+                        promises.push(processTerms(vocabularies, ids, vocabulary));
                     });
                     /* Resolve the promise only when all terms have been processed */
                     $q.all(promises).then(function(){
