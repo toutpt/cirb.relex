@@ -36,7 +36,7 @@ angular.module('relex.services').factory('vocabularyService', [
                 var getTermById = function(vocabularies, vocab_id, term_id){
                     var obj = null;
                     angular.forEach(vocabularies, function(vocabulary){
-                        if (vocabulary['id'] === vocab_id) {
+                        if (vocabulary.id === vocab_id) {
                             angular.forEach(vocabulary.terms, function(term){
                                 if (term.id === term_id) {
                                     obj = term;

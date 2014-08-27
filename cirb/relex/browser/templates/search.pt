@@ -132,6 +132,16 @@
             </select>
           </dd>
         </dl>
+        <dl>
+          <dt><label for="filter-organisation" i18n:translate="">Brussels partners</label></dt>
+          <dd>
+            <select id="filter-organisation" data-column="11" data-multiple>
+              <option value=""></option>
+              <option tal:repeat="term python:view.getAllTermsName('organisation')"
+                      tal:attributes="value term" tal:content="term"></option>
+            </select>
+          </dd>
+        </dl>
         <p class="discreet" i18n:translate="search_warning">Warning</p>
       </div>
 
@@ -149,6 +159,7 @@
             <th><span i18n:translate="">Organisation</span></th>
             <th><span i18n:translate="">Theme</span></th>
             <th><span i18n:translate="">Keyword</span></th>
+            <th><span>Brussels partners</span></th>
           </tr>
         </thead>
 
@@ -166,6 +177,7 @@
             <td tal:content="python:view.getOrganisations(project)"></td>
             <td tal:content="python:view.getThemes(project)"></td>
             <td tal:content="python:view.getKeywords(project)"></td>
+            <td tal:content="python:view.getPartners(project)"></td>
           </tr>
         </tbody>
 
@@ -181,6 +193,7 @@
             "aoColumns": [
                 null,
                 null,
+                {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},
                 {"bVisible": false},
@@ -234,8 +247,8 @@
                 table.fnFilter('', col);
                 console.log('reset filter');
             } else if (multiple !== undefined && multiple !== false) {
-                table.fnFilter(value, col);
-                console.log('filter on '+value);
+                table.fnFilter("'"+value+"'", col);
+                console.log('filter on '+ "'"+value+"'");
 	    } else if (isMultiselect !== undefined && isMultiselect !== false) {
                 var valueArray = $(this).val();
                 value = valueArray.map(escapeSC).join("|");

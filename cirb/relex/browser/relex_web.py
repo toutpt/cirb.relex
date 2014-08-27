@@ -191,16 +191,6 @@ class SearchView(BrowserView):
         ]
 
     @ram.cache(getProjectKey)
-    def getPartners(self, project):
-        project = self.getFullProject(project)
-        ids = project.getBrusselspartners()
-        terms = getTerms('brusselspartners', ids)
-        return sorted([
-            u'{0} {1}'.format(term['lastname'], term['firstname'])
-            for term in terms if term is not None
-        ])
-
-    @ram.cache(getProjectKey)
     def getOrganisations(self, project):
         project = self.getFullProject(project)
         ids = project.getContacts()
@@ -210,15 +200,23 @@ class SearchView(BrowserView):
             orga = self.getContactOrganisation(contact)
             if orga and orga not in organisations:
                 organisations.append(orga)
+        #remove duplicates
+        organisations = list(set(organisations))
+        return organisations
+
+    @ram.cache(getProjectKey)
+    def getPartners(self, project):
+        project = self.getFullProject(project)
         ids = project.getBrusselspartners()
         contacts = getTerms('brusselspartners', ids)
+        organisations = []
         for contact in contacts:
             orga = self.getContactOrganisation(contact)
             if orga and orga not in organisations:
                 organisations.append(orga)
         #remove duplicates
         organisations = list(set(organisations))
-        return ", ".join(organisations)
+        return organisations
 
     def getFullProject(self, project):
         if self._project is None or self._project.getId() != project.getId:

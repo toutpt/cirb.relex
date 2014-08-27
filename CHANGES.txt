@@ -21,6 +21,7 @@ Changelog
 - feature(admin/cells): Associate an organisation with a cell from here
 - feature(admin/settings): add feedback on all save buttons
 - fix(admin/settings/*): cancel button on new vocab term
+- feature(search): add search by partner's organisation
 
 1.0.6 (2014-08-18)
 ------------------
