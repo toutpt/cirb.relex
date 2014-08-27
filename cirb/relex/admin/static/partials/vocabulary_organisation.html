@@ -1,90 +1,90 @@
 <div class="panel panel-default">
-	<div class="panel-heading" translate>Edit organisation</div>
-	<div class="panel-body">
-		<form novalidate  name="vocabularyForm" class="form-css form-horizontal">
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Code'|translate}} EN</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeEn" ng-model="currentTerm.code.en" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Code'|translate}} FR</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeFR" ng-model="currentTerm.code.fr" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Code'|translate}} NL</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="codeNL" ng-model="currentTerm.code.nl" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" force-upper-case/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'Type'|translate}}</label>
-				<div class="col-md-10">
-				  <select class="form-control"
+    <div class="panel-heading" translate>Edit organisation</div>
+    <div class="panel-body">
+        <form novalidate  name="vocabularyForm" class="form-css form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Code'|translate}} EN</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="codeEn" ng-model="currentTerm.code.en" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Code'|translate}} FR</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="codeFR" ng-model="currentTerm.code.fr" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Code'|translate}} NL</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="codeNL" ng-model="currentTerm.code.nl" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Name'|translate}} EN</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="nameEN" ng-model="currentTerm.name.en" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Name'|translate}} FR</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="nameFR" ng-model="currentTerm.name.fr" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Name'|translate}} NL</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" name="nameNL" ng-model="currentTerm.name.nl" force-upper-case/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'Type'|translate}}</label>
+                <div class="col-md-10">
+                  <select class="form-control"
                           name="type"
                           ng-model="currentTerm.type"
                           ng-options="type.id as t(type.name) for type in vocabularies.organisationtype"
                           required>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-md-2 control-label">{{'URL'|translate}}</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" ng-model="currentTerm.url"/>
-				</div>
-			</div>
-	        <div select-multiple
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">{{'URL'|translate}}</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" ng-model="currentTerm.url"/>
+                </div>
+            </div>
+            <div select-multiple
                  label="'Cells'"
                  vocabulary="vocabularies['cell']"
                  display="'\'[\'+ _(term.code) +\'] \'+ _(term.description)'"
                  legend="'[Code] Name'"
                  target="currentTerm.cell">
             </div>
-		</form>
-		<div class="form-group">
-  		  <div class="pull-right ng-hide" ng-show="currentTerm.id">
-		    <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)">
-		    	<span translate>Save</span>
-		    	<i class="fa fa-refresh fa-spin ng-hide" ng-show="loading.saveTerm.loading"></i>
-				<i class="fa fa-times ng-hide" ng-show="loading.saveTerm.ko"></i>
-				<i class="fa fa-check ng-hide" ng-show="loading.saveTerm.ok"></i>
-		    </button>
-		    <button class="btn btn-default" ng-click="reset()" translate>Cancel</button>
-		    <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
-		  </div>
-		  <div class="pull-right ng-hide" ng-show="!currentTerm.id">
-		    <button class="btn btn-primary" ng-click="addTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Add</button>
-		    <button class="btn btn-default" translate>Cancel</button>
-		  </div>
+        </form>
+        <div class="form-group">
+          <div class="pull-right ng-hide" ng-show="currentTerm.id">
+            <button class="btn btn-primary" ng-click="saveTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)">
+                <span translate>Save</span>
+                <i class="fa fa-refresh fa-spin ng-hide" ng-show="loading.saveTerm.loading"></i>
+                <i class="fa fa-times ng-hide" ng-show="loading.saveTerm.ko"></i>
+                <i class="fa fa-check ng-hide" ng-show="loading.saveTerm.ok"></i>
+            </button>
+            <button class="btn btn-default" formnovalidate ng-click="reset()" translate>Cancel</button>
+            <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
+          </div>
+          <div class="pull-right ng-hide" ng-show="!currentTerm.id">
+            <button class="btn btn-primary" ng-click="addTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Add</button>
+            <button class="btn btn-default" formnovalidate ng-click="reset()" translate>Cancel</button>
+          </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="panel panel-default">
-	<div class="panel-heading" translate>Organisations</div>
-	<div class="panel-body">
+    <div class="panel-heading" translate>Organisations</div>
+    <div class="panel-body">
         <div class="input-group margin-bottom-sm">
           <input type="search" class="form-control" ng-model="queryVocabulary" force-upper-case/>
           <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
@@ -97,5 +97,5 @@
               [{{t(term.code)}}] {{t(term.name)}}</a>
         </div>
 
-	</div>
+    </div>
 </div>

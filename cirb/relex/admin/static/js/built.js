@@ -865,7 +865,7 @@ angular.module('relex.controllers').controller('VocabularyController',[
         var initialize = function(){
             initializeData();
             initializeVocabularies();
-        }
+        };
         var onError = function(error){
             messagesService.addError(error);
         };
@@ -915,6 +915,9 @@ angular.module('relex.controllers').controller('VocabularyController',[
             });
         };
         $scope.reset = function(){
+            if ($routeParams.id === undefined){
+                $scope.currentTerm = {};
+            }
             $location.path('/vocabulary/' + VOCAB);
         };
         $scope.getTermById = function(vocabulary, id){

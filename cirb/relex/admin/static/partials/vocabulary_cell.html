@@ -47,12 +47,12 @@
 				<i class="fa fa-times ng-hide" ng-show="loading.saveTerm.ko"></i>
 				<i class="fa fa-check ng-hide" ng-show="loading.saveTerm.ok"></i>
 		    </button>
-		    <button class="btn btn-default" ng-click="reset()" translate>Cancel</button>
-		    <button class="btn btn-danger" ng-click="removeTerm()" translate>Delete</button>
+		    <button class="btn btn-default" formnovalidate ng-click="reset()" translate>Cancel</button>
+		    <button class="btn btn-danger" formnovalidate ng-click="removeTerm()" translate>Delete</button>
 		  </div>
 		  <div class="pull-right ng-hide" ng-show="!currentTerm.id">
 		    <button class="btn btn-primary" ng-click="addTerm()" ng-disabled="vocabularyForm.$invalid || isUnchanged(currentTerm)" translate>Add</button>
-		    <button class="btn btn-default" translate>Cancel</button>
+		    <button class="btn btn-default" formnovalidate ng-click="reset()" translate>Cancel</button>
 		  </div>
 		</div>
 	</div>
