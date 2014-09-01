@@ -946,7 +946,8 @@ angular.module('relex.controllers').controller('VocabularyController',[
             }
         };
         initialize();
-        if (VOCAB === 'contact'){
+        debugger;
+        if (VOCAB === 'contact'  || VOCAB === 'brusselspartners'){
             $scope.$watch('currentTerm.organisation.id', function(newValue){
                 if (!newValue)
                     {return;}
@@ -972,7 +973,6 @@ angular.module('relex.controllers').controller('Cell2OrganisationController',[
     '$scope', '$routeParams',  '$location', 'vocabularyService', 'messagesService',
     function($scope, $routeParams, $location, vocabularyService, messagesService){
         console.log('init Cell2OrganisationController');
-        var VOCAB = $routeParams.vocabulary;
         $scope.hasCurrentCell = Boolean($routeParams.id);
         $scope.organisationId = '';
         $scope.loading = {
@@ -995,7 +995,6 @@ angular.module('relex.controllers').controller('Cell2OrganisationController',[
             vocabularyService.put('organisation', orga).then(function(){
                 messagesService.loading($scope.loading.organisation, 'ok');
                 vocabularyService.purge();
-//                $location.path('/vocabulary/' + VOCAB + '/' + $routeParams.id);
             }, function(error){
                 messagesService.loading($scope.loading.organisation, 'ko');
                 onError(error);
