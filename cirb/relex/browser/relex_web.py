@@ -59,7 +59,7 @@ class SearchView(BrowserView):
                 self._cache_orgnisation[term['id']] = term
         if contact['organisation']:
             orga = self._cache_orgnisation[contact['organisation']]
-            return orga['name'][self.current_language]
+            return orga['id']
 
 
 
@@ -80,6 +80,12 @@ class SearchView(BrowserView):
 
     def getAllTermsName(self, vocabulary_id):
         terms = [t['name'].get(self.current_language, None)
+                 for t in getVocabulary(vocabulary_id)]
+        terms = sorted(list(set(terms)))
+        return terms
+
+    def getAllTermsIdName(self, vocabulary_id):
+        terms = [(t['id'], t['name'].get(self.current_language, None))
                  for t in getVocabulary(vocabulary_id)]
         terms = sorted(list(set(terms)))
         return terms
@@ -118,7 +124,7 @@ class SearchView(BrowserView):
         )
         if relation is None:
             return None
-        return relation['name'].get(self.current_language, None)
+        return relation['id']
 
     @ram.cache(getProjectKey)
     def getOrganisationType(self, project):
@@ -128,7 +134,7 @@ class SearchView(BrowserView):
         )
         if organisation is None:
             return None
-        return organisation['name'].get(self.current_language, None)
+        return organisation['id']
 
     @ram.cache(getProjectKey)
     def getThemes(self, project):
@@ -136,7 +142,7 @@ class SearchView(BrowserView):
         ids = project.getThemes()
         terms = getTerms('theme', ids)
         return [
-            term['name'].get(self.current_language, None)
+            term['id']
             for term in terms if term is not None
         ]
 
@@ -146,7 +152,7 @@ class SearchView(BrowserView):
         ids = project.getKeywords()
         terms = getTerms('keywords', ids)
         return [
-            term['name'].get(self.current_language, None)
+            term['id']
             for term in terms if term is not None
         ]
 
@@ -156,7 +162,7 @@ class SearchView(BrowserView):
         ids = project.getCountries()
         terms = getTerms('country', ids)
         return [
-            term['name'].get(self.current_language, None)
+            term['id']
             for term in terms if term is not None
         ]
 
@@ -166,7 +172,7 @@ class SearchView(BrowserView):
         ids = project.getRegions()
         terms = getTerms('region', ids)
         return [
-            term['name'].get(self.current_language, None)
+            term['id']
             for term in terms if term is not None
         ]
 
@@ -176,7 +182,7 @@ class SearchView(BrowserView):
         ids = project.getCities()
         terms = getTerms('city', ids)
         return [
-            term['name'].get(self.current_language, None)
+            term['id']
             for term in terms if term is not None
         ]
 

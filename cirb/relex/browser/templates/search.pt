@@ -57,8 +57,8 @@
           <dd>
             <select id="filter-relationtype" data-column="3">
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('relationtype')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('relationtype')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -67,8 +67,8 @@
           <dd>
             <select id="filter-organisationtype" data-column="4">
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('organisationtype')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('organisationtype')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -77,8 +77,8 @@
           <dd>
             <select id="filter-theme" data-column="9" data-multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('theme')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('theme')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -87,8 +87,8 @@
           <dd>
             <select id="filter-keyword" data-column="10" data-multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('keywords')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('keywords')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -97,8 +97,8 @@
           <dd>
             <select id="filter-country" data-column="5" multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('country')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('country')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -107,8 +107,8 @@
           <dd>
             <select id="filter-region" data-column="6" multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('region')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('region')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -117,8 +117,8 @@
           <dd>
             <select id="filter-city" data-column="7" multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('city')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('city')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -127,8 +127,8 @@
           <dd>
             <select id="filter-organisation" data-column="8" data-multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('organisation')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('organisation')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -137,8 +137,8 @@
           <dd>
             <select id="filter-organisation" data-column="11" data-multiple>
               <option value=""></option>
-              <option tal:repeat="term python:view.getAllTermsName('organisation')"
-                      tal:attributes="value term" tal:content="term"></option>
+              <option tal:repeat="term python:view.getAllTermsIdName('organisation')"
+                      tal:attributes="value python:term[0]" tal:content="python:term[1]"></option>
             </select>
           </dd>
         </dl>
@@ -247,12 +247,12 @@
                 table.fnFilter('', col);
                 console.log('reset filter');
             } else if (multiple !== undefined && multiple !== false) {
-                table.fnFilter("'"+value+"'", col);
+                table.fnFilter("'" + value + "'", col);
                 console.log('filter on '+ "'"+value+"'");
-	    } else if (isMultiselect !== undefined && isMultiselect !== false) {
+	          } else if (isMultiselect !== undefined && isMultiselect !== false) {
                 var valueArray = $(this).val();
-                value = valueArray.map(escapeSC).join("|");
-                table.fnFilter(value, col, true, false);
+                value = valueArray.map(escapeSC).join("'|'");
+                table.fnFilter("'"+value+"'", col, true, false);
                 console.log('filter on ' +value);
             } else {
                 value = '^' + value + '$';

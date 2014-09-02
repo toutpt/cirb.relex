@@ -946,7 +946,6 @@ angular.module('relex.controllers').controller('VocabularyController',[
             }
         };
         initialize();
-        debugger;
         if (VOCAB === 'contact'  || VOCAB === 'brusselspartners'){
             $scope.$watch('currentTerm.organisation.id', function(newValue){
                 if (!newValue)
