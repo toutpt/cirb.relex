@@ -1089,7 +1089,8 @@ angular.module('relex.directives').directive('selectMultiple',
                 target: '=',
                 legend: '=',
                 filterMethod: '=',
-                filterParam: '='
+                filterParam: '=',
+                alertOnMultiple: '='
             },
             link: function(scope){
                 scope.limitTo = 5;
@@ -1163,6 +1164,15 @@ angular.module('relex.directives').directive('selectMultiple',
                     }
                     return true;
                 };
+                if (scope.alertOnMultiple){
+                    scope.$watch('target',function(newValue, oldValue){
+                        if (newValue && newValue.length > 1){
+                            scope.hasMultiple = true;
+                        }else{
+                            scope.hasMultiple = false;
+                        }
+                    }, true);
+                }
             }
         };
     }

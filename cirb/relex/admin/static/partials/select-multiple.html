@@ -47,6 +47,9 @@ Contraintes:
 		</div>
 		<div class="col-sm-10">
 			<div class="list-group">
+			  <alert type="danger" class="ng-hide" ng-show="hasMultiple">
+			  	<span translate>You should not select more than one item</span>
+			  </alert>
 			  <div class="input-group margin-bottom-sm select-header">
                 <span class="input-group-addon legend">{{legend | translate}}</span>
 				<input type="search" class="form-control" ng-model="queryTerm"/>
