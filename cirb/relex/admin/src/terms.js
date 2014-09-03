@@ -327,35 +327,84 @@ angular.module('relex.controllers').controller('VocabularyController',[
 ]);
 
 angular.module('relex.controllers').controller('Cell2OrganisationController',[
-    '$scope', '$routeParams',  '$location', 'vocabularyService', 'messagesService',
-    function($scope, $routeParams, $location, vocabularyService, messagesService){
+    '$scope', '$routeParams',  '$location', '$q', 'vocabularyService', 'messagesService',
+    function($scope, $routeParams, $location, $q, vocabularyService, messagesService){
         console.log('init Cell2OrganisationController');
         $scope.hasCurrentCell = Boolean($routeParams.id);
         $scope.organisationId = '';
         $scope.loading = {
-            'organisation': {loading:false,ok:false,ko:false}
+            'organisations': {loading:false,ok:false,ko:false}
         };
         var onError = function(error){
             messagesService.addError(error);
         };
-
-        $scope.addOrganisationToCell = function(){
-            var orga = $scope.getTermById('organisation', $scope.organisationId);
-            var cells = orga.cell;
+        $scope.removeCellFromOrganisation = function(organisation){
+            var cells = organisation.cell;
+            var index = -1;
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].id === $scope.currentTerm.id){
+                    index = i;
+                }
+            }
+            if (index === -1){
+                return;
+            }
+            organisation.cell.splice(index, 1);
+            return vocabularyService.put('organisation', organisation).then(function(){
+                vocabularyService.purge();
+            }, function(error){
+                onError(error);
+            });
+        };
+        $scope.addOrganisationToCell = function(organisation){
+            var cells = organisation.cell;
             if (cells.indexOf($scope.currentTerm.id) !== -1){
                 console.log('already in');
                 return;
             }
-            console.log('add cell to orga');
-            messagesService.loading($scope.loading.organisation);
-            orga.cell.push($scope.currentTerm.id);
-            vocabularyService.put('organisation', orga).then(function(){
-                messagesService.loading($scope.loading.organisation, 'ok');
+            organisation.cell.push($scope.currentTerm.id);
+            return vocabularyService.put('organisation', organisation).then(function(){
                 vocabularyService.purge();
             }, function(error){
-                messagesService.loading($scope.loading.organisation, 'ko');
                 onError(error);
             });
         };
+        $scope.addOrganisationsToCell = function(){
+            var promises = [];
+            for (var i = 0; i < $scope.organisations.length; i++) {
+                promises.push($scope.addOrganisationToCell($scope.organisations[i]));
+            }
+            messagesService.loading($scope.loading.organisations);
+            $q.all(promises).then(function(){
+                messagesService.loading($scope.loading.organisations, 'ok');
+            }, function(){
+                messagesService.loading($scope.loading.organisations, 'ko');
+            });
+            //find the one that has been removed
+            var orga;
+            for (i = 0; i < $scope.originalOrganisations.length; i++) {
+                orga = $scope.originalOrganisations[i];
+                if ($scope.organisations.indexOf(orga) === -1){
+                    $scope.removeCellFromOrganisation(orga);
+                }
+            }
+        };
+        $scope.organisations = [];
+        $scope.originalOrganisations = [];
+        var cell;
+        var orga;
+        for (var i = 0; i < $scope.vocabularies.organisation.length; i++) {
+            for (var j = 0; j < $scope.vocabularies.organisation[i].cell.length; j++) {
+                orga = $scope.vocabularies.organisation[i];
+                cell = orga.cell[j];
+                if (cell===null){
+                    continue;
+                }
+                if (cell.id === $routeParams.id && $scope.organisations.indexOf(orga) === -1){
+                    $scope.organisations.push(orga);
+                    $scope.originalOrganisations.push(orga);
+                }
+            }
+        }
     }
 ]);

@@ -24,6 +24,7 @@ Changelog
 - feature(search): add search by partner's organisation
 - fix(data): relations data should not have list in their values
 - feature(admin/brusselspartners): add filter of cells based on selected orgnisation
+- feature(admin/cell): add ability to see/remove/add organisations
 
 1.0.6 (2014-08-18)
 ------------------
