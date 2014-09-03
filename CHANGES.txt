@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.7 (unreleased)
+1.0.7 (2014-09-03)
 ------------------
 
 - Fix(admin): IHM Continent : Titre de la table à corriger par Continent en lieu et place de région.
