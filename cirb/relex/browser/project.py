@@ -146,12 +146,15 @@ class ProjectView(BrowserView):
         for term in terms:
             for id in ('organisation', 'cell', 'function'):
                 term[id] = getTerm(id, term[id])
-            term['organisation'] = term['organisation']['name']\
-                .get(self.current_language, '')
-            term['cell'] = term['cell']['description']\
-                .get(self.current_language, '')
-            term['function'] = term['function']['code']\
-                .get(self.current_language, '')
+            if term['organisation'] is not None:
+                term['organisation'] = term['organisation']['name']\
+                    .get(self.current_language, '')
+            if term['cell'] is not None:
+                term['cell'] = term['cell']['description']\
+                    .get(self.current_language, '')
+            if term['function'] is not None:
+                term['function'] = term['function']['code']\
+                    .get(self.current_language, '')
         return terms
 
     def getFiles(self):
