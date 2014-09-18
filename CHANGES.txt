@@ -4,7 +4,7 @@ Changelog
 1.0.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- fix: project broken.
 
 
 1.0.7 (2014-09-03)
