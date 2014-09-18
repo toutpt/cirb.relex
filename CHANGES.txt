@@ -4,7 +4,7 @@ Changelog
 1.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix some CSS due to collective.js.bootstrap
 
 
 1.0.8 (2014-09-18)
