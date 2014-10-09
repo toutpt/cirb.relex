@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cirb.relex\n"
-"POT-Creation-Date: 2014-08-13 12:52+0000\n"
+"POT-Creation-Date: 2014-10-09 14:57+0000\n"
 "PO-Revision-Date: 2008-02-04 18:00+0000\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -19,32 +19,63 @@ msgstr ""
 msgid "A project"
 msgstr "Een project"
 
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Activate"
+msgstr ""
+
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Activate a project"
+msgstr ""
+
 #: ./browser/project.py:61
 msgid "Active"
 msgstr "Actief"
+
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Active project"
+msgstr ""
 
 #: ./browser/templates/search.pt:33
 #: ./browser/templates/tree.pt:31
 msgid "Admin"
 msgstr "Administratie"
 
+#: ./browser/templates/search.pt:136
+msgid "Administration/Brussels partners"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:120
+#: ./browser/templates/project.pt:121
+#: ./browser/templates/search.pt:126
+msgid "Administration/Organisation"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:131
+#: ./browser/templates/project.pt:132
+msgid "Administrative Unit/Management"
+msgstr ""
+
 #: ./browser/project.py:63
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
 msgid "Archive"
 msgstr "Archief"
 
-#: ./browser/templates/project-print.pt:79
-#: ./browser/templates/project.pt:83
-#: ./browser/templates/search.pt:137
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Archive a project"
+msgstr ""
+
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Archived project"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:115
+#: ./browser/templates/project.pt:116
+#: ./content/Project.py:145
 msgid "Brussels partners"
 msgstr "Partneradministratie"
 
-#: ./browser/templates/project-print.pt:129
-#: ./browser/templates/project.pt:133
-msgid "Cell : ${cell}"
-msgstr ""
-
-#: ./browser/templates/project-print.pt:112
-#: ./browser/templates/project.pt:116
+#: ./browser/templates/project-print.pt:104
+#: ./browser/templates/project.pt:105
 #: ./content/Project.py:169
 msgid "Cities"
 msgstr "Steden"
@@ -58,23 +89,24 @@ msgstr "Stad"
 msgid "Code"
 msgstr "Code"
 
-#: ./browser/templates/project-print.pt:52
+#: ./browser/templates/project-print.pt:55
 #: ./browser/templates/project.pt:56
 #: ./content/Project.py:121
 msgid "Comments"
 msgstr "Opmerkingen"
 
-#: ./browser/templates/search.pt:127
+#: ./browser/templates/project-print.pt:126
+#: ./browser/templates/project.pt:127
 msgid "Contact"
 msgstr "Contact"
 
-#: ./browser/templates/project-print.pt:123
-#: ./browser/templates/project.pt:127
+#: ./browser/templates/project-print.pt:149
+#: ./browser/templates/project.pt:150
 #: ./content/Project.py:177
 msgid "Contacts"
 msgstr "Contacten"
 
-#: ./browser/templates/project-print.pt:47
+#: ./browser/templates/project-print.pt:50
 #: ./browser/templates/project.pt:51
 msgid "Content"
 msgstr "Inhoud"
@@ -91,8 +123,8 @@ msgstr "Inhoud FR"
 msgid "Content NL"
 msgstr "Inhoud NL"
 
-#: ./browser/templates/project-print.pt:90
-#: ./browser/templates/project.pt:94
+#: ./browser/templates/project-print.pt:82
+#: ./browser/templates/project.pt:83
 #: ./content/Project.py:153
 msgid "Countries"
 msgstr "Landen"
@@ -101,39 +133,51 @@ msgstr "Landen"
 msgid "Country"
 msgstr "Land"
 
-#: ./browser/templates/project-print.pt:22
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Deactivate"
+msgstr ""
+
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Deactivate a project"
+msgstr ""
+
+#: ./browser/templates/project-print.pt:25
 #: ./browser/templates/project.pt:26
 #: ./content/Project.py:64
 msgid "End"
 msgstr "Einde"
 
-#: ./browser/templates/project-print.pt:145
-#: ./browser/templates/project.pt:149
+#: ./browser/templates/project-print.pt:191
+#: ./browser/templates/project.pt:192
 msgid "Files"
 msgstr "Bestanden"
 
-#: ./browser/templates/project-print.pt:132
-#: ./browser/templates/project.pt:136
-msgid "Function : ${function}"
+#: ./browser/templates/project-print.pt:178
+#: ./browser/templates/project.pt:179
+msgid "Function"
 msgstr ""
 
 #: ./browser/project.py:62
 msgid "Inactive"
 msgstr "Inactief"
 
+#: ./profiles/default/workflows/cirb_relex_project_workflow/definition.xml
+msgid "Inactive project"
+msgstr ""
+
 #: ./browser/templates/search.pt:86
 msgid "Keyword"
 msgstr "Sleutelwoord"
 
-#: ./browser/templates/project-print.pt:68
+#: ./browser/templates/project-print.pt:71
 #: ./browser/templates/project.pt:72
 #: ./content/Project.py:137
 msgid "Keywords"
 msgstr "Sleutelwoorden"
 
-#: ./browser/templates/project-print.pt:12
+#: ./browser/templates/project-print.pt:15
 #: ./browser/templates/project.pt:16
-#: ./browser/templates/search.pt:154
+#: ./browser/templates/search.pt:152
 msgid "Name"
 msgstr "Naam"
 
@@ -149,26 +193,21 @@ msgstr "Naam FR"
 msgid "Name NL"
 msgstr "Naam NL"
 
-#: ./browser/templates/project-print.pt:128
-#: ./browser/templates/project.pt:132
-msgid "Organisation : ${organistaion}"
+#: ./browser/templates/search.pt:159
+msgid "Organisation"
 msgstr ""
 
 #: ./browser/templates/search.pt:66
 msgid "Organisation Type"
 msgstr "Organisatietype"
 
-#: ./browser/templates/project-print.pt:42
+#: ./browser/templates/project-print.pt:45
 #: ./browser/templates/project.pt:46
-#: ./browser/templates/search.pt:157
+#: ./browser/templates/search.pt:155
 msgid "Organisation type"
 msgstr "Organisatietype"
 
-#: ./browser/templates/search.pt:162
-msgid "Partenaire"
-msgstr "Partner"
-
-#: ./browser/templates/project.pt:172
+#: ./browser/templates/project.pt:215
 msgid "Print"
 msgstr "Print"
 
@@ -185,8 +224,8 @@ msgstr "Projecten"
 msgid "Region"
 msgstr "Regio"
 
-#: ./browser/templates/project-print.pt:101
-#: ./browser/templates/project.pt:105
+#: ./browser/templates/project-print.pt:93
+#: ./browser/templates/project.pt:94
 #: ./content/Project.py:161
 msgid "Regions"
 msgstr "Regio's"
@@ -195,9 +234,9 @@ msgstr "Regio's"
 msgid "Relation Type"
 msgstr "Relatietype"
 
-#: ./browser/templates/project-print.pt:37
+#: ./browser/templates/project-print.pt:40
 #: ./browser/templates/project.pt:41
-#: ./browser/templates/search.pt:156
+#: ./browser/templates/search.pt:154
 msgid "Relation type"
 msgstr "Relatietype"
 
@@ -206,19 +245,19 @@ msgstr "Relatietype"
 msgid "Search"
 msgstr "Opzoeken"
 
-#: ./browser/templates/project-print.pt:17
+#: ./browser/templates/project-print.pt:20
 #: ./browser/templates/project.pt:21
 #: ./content/Project.py:55
 msgid "Start"
 msgstr "Begin"
 
-#: ./browser/templates/project-print.pt:32
+#: ./browser/templates/project-print.pt:35
 #: ./browser/templates/project.pt:36
 #: ./browser/templates/search.pt:45
 msgid "Status"
 msgstr "Status"
 
-#: ./browser/templates/project.pt:161
+#: ./browser/templates/project.pt:204
 msgid "Sub projects"
 msgstr "Deelprojecten"
 
@@ -226,20 +265,20 @@ msgstr "Deelprojecten"
 msgid "Theme"
 msgstr "Thema"
 
-#: ./browser/templates/project-print.pt:57
+#: ./browser/templates/project-print.pt:60
 #: ./browser/templates/project.pt:61
 #: ./content/Project.py:129
 msgid "Themes"
 msgstr "Thema's"
 
-#: ./browser/templates/project-print.pt:27
+#: ./browser/templates/project-print.pt:30
 #: ./browser/templates/project.pt:31
 #: ./content/Project.py:73
 msgid "URL"
 msgstr "URL"
 
 #. Default: "Warning"
-#: ./browser/templates/search.pt:147
+#: ./browser/templates/search.pt:145
 msgid "search_warning"
 msgstr "De zoektocht op grond van de gekoppelde gegevens over land/regio/stad kan tot onvolledige resultaten leiden. Het onderlinge verband tussen deze gegevens kan niettemin nuttige geografische informatie opleveren."
 

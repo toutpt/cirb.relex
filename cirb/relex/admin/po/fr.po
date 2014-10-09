@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: carteeco\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-07-24 15:05+0100\n"
+"PO-Revision-Date: 2014-10-09 16:25+0100\n"
 "Last-Translator: Gagaro <gagaro42@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -37,17 +37,45 @@ msgstr "Ajouter un projet"
 msgid "Add new file"
 msgstr "Ajouter un nouveau fichier"
 
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+msgid "Administration/Brussels Partners"
+msgstr "Administration/Partenaires bruxellois"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Administration/Organisation"
+msgstr "Administration/Organisation"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
+msgid "Administrations/Brussels partners"
+msgstr "Administrations/Partenaires bruxellois"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+msgid "Administrations/Organisations"
+msgstr "Administrations/Organisation"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
+msgid "Administrative Unit/Management"
+msgstr "Unité administrative/Direction"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+msgid "Administrative Units/Managements"
+msgstr "Unités administratives/Directions"
+
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
 msgid "All"
 msgstr "Tous"
 
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
+msgid "Associate this cell to an organisation"
+msgstr ""
+"Associer cette Unité administrative/Direction a un(e) Administration/"
+"Organisme"
+
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
 msgid "Brussels Partners"
-msgstr "Partenaires bruxellois"
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
-msgid "Brussels partners"
 msgstr "Partenaires bruxellois"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/project-edit.html
@@ -67,16 +95,9 @@ msgstr "Partenaires bruxellois"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Cell"
 msgstr "Cellule"
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
-msgid "Cells"
-msgstr "Cellules"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
@@ -129,6 +150,7 @@ msgid "Content"
 msgstr "Contenu"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 msgid "Continent"
 msgstr "Continent"
 
@@ -175,9 +197,13 @@ msgstr "Description"
 msgid "EMail"
 msgstr "EMail"
 
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
+msgid "Edit Administration/Organisation"
+msgstr "Modifier l'Administration/Organisation"
+
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
-msgid "Edit cell"
-msgstr "Modifier la cellule"
+msgid "Edit Administrative Unit/Management"
+msgstr "Modifier l'Administration/Organisme"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Edit city"
@@ -199,10 +225,6 @@ msgstr "Modifier le pays"
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_function.html
 msgid "Edit function"
 msgstr "Modifier la fonction"
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-msgid "Edit organisation"
-msgstr "Modifier l'organisation"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Edit region"
@@ -276,9 +298,7 @@ msgstr "Nom - Prénom - Organisation - Cellule"
 msgid "No projects"
 msgstr "Pas de projets"
 
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -286,10 +306,6 @@ msgstr "Organisation"
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisationtype.html
 msgid "Organisation type"
 msgstr "Type d'organisation"
-
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_organisation.html
-msgid "Organisations"
-msgstr "Organisations"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_brusselspartners.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_contact.html
@@ -314,7 +330,6 @@ msgid "Region"
 msgstr "Région"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/extract.html
-#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_continent.html
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_region.html
 msgid "Regions"
 msgstr "Régions"
@@ -395,6 +410,19 @@ msgstr "Vocabulaires"
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/index.html
 msgid "You are not loggedin"
 msgstr "Vous n'êtes pas connecté"
+
+#: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/select-multiple.html
+msgid "You should not select more than one item"
+msgstr "Vous ne devriez pas selectionner plus d'un objet"
+
+#~ msgid "Cells"
+#~ msgstr "Cellules"
+
+#~ msgid "Edit cell"
+#~ msgstr "Modifier la cellule"
+
+#~ msgid "Organisations"
+#~ msgstr "Organisations"
 
 #~ msgid "Limit terms"
 #~ msgstr "Limiter les termes"

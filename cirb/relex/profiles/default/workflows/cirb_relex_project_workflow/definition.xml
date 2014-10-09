@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="cirb_relex_project_workflow"
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             workflow_id="cirb_relex_project_workflow"
              title="Project workflow"
              description="" state_variable="review_state"
-             initial_state="inactive" manager_bypass="False">
+             initial_state="inactive" manager_bypass="False"
+             i18n:domain="cirb.relex">
  <permission>Access contents information</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
@@ -10,7 +12,8 @@
  <!-- State -->
 
  <state state_id="inactive"
-        title="Inactive project">
+        title="Inactive project"
+        i18n:attributes="title">
   <exit-transition transition_id="activate"/>
   <exit-transition transition_id="archive"/>
   <permission-map name="Access contents information"
@@ -30,7 +33,8 @@
  </state>
 
  <state state_id="active"
-        title="Active project">
+        title="Active project"
+        i18n:attributes="title">
   <exit-transition transition_id="deactivate"/>
   <exit-transition transition_id="archive"/>
   <permission-map name="Access contents information"
@@ -50,7 +54,8 @@
  </state>
 
  <state state_id="archive"
-        title="Archived project">
+        title="Archived project"
+        i18n:attributes="title">
   <exit-transition transition_id="activate"/>
   <exit-transition transition_id="deactivate"/>
   <permission-map name="Access contents information"
@@ -74,10 +79,12 @@
  <transition transition_id="activate"
              title="Activate a project"
              new_state="active" trigger="USER"
-             before_script="" after_script="">
+             before_script="" after_script=""
+             i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=activate"
           category="workflow"
-          icon="%(portal_url)s/approve_icon.png">Activate</action>
+          icon="%(portal_url)s/approve_icon.png"
+          i18n:translate="">Activate</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
   </guard>
@@ -86,10 +93,12 @@
  <transition transition_id="deactivate"
              title="Deactivate a project"
              new_state="inactive" trigger="USER"
-             before_script="" after_script="">
+             before_script="" after_script=""
+             i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=deactivate"
           category="workflow"
-          icon="%(portal_url)s/reject_icon.png">Deactivate</action>
+          icon="%(portal_url)s/reject_icon.png"
+          i18n:translate="">Deactivate</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
   </guard>
@@ -98,10 +107,12 @@
  <transition transition_id="archive"
              title="Archive a project"
              new_state="archive" trigger="USER"
-             before_script="" after_script="">
+             before_script="" after_script=""
+             i18n:attributes="title">
   <action url="%(content_url)s/content_status_modify?workflow_action=archive"
           category="workflow"
-          icon="%(portal_url)s/retract_icon.png">Archive</action>
+          icon="%(portal_url)s/retract_icon.png"
+          i18n:translate="">Archive</action>
   <guard>
    <guard-permission>Request review</guard-permission>
   </guard>
