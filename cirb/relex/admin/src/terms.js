@@ -159,6 +159,14 @@ angular.module('relex.services').factory('vocabularyService', [
             },
             put: function(vocabularyID, term){
                 var deferred = $q.defer();
+                // Make a copy
+                term = JSON.parse(JSON.stringify(term));
+                // Transform attributes refering to other object to ids
+                angular.forEach(term, function(value, key){
+                    if (typeof value === 'object' && 'id' in value) {
+                        term[key] = value.id;
+                    }
+                });
                 //rest api with Plone doesn't work with publishTraverse put -> post /update
                 $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID + '/' + term.id + '/update', term)
                 .then(function(data){
