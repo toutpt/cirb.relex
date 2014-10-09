@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: carteeco\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-10-09 16:25+0100\n"
+"PO-Revision-Date: 2014-10-09 17:48+0100\n"
 "Last-Translator: Gagaro <gagaro42@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -203,7 +203,7 @@ msgstr "Modifier l'Administration/Organisation"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_cell.html
 msgid "Edit Administrative Unit/Management"
-msgstr "Modifier l'Administration/Organisme"
+msgstr "Modifier l'Unités administratives/Directions"
 
 #: /home/gagaro/plone/cirb/relex/cirb/relex/admin/static/partials/vocabulary_city.html
 msgid "Edit city"
