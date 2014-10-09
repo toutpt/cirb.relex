@@ -107,14 +107,6 @@ class ProjectView(BrowserView):
             for term in terms if term is not None
         ])
 
-    def getBrusselsPartners(self):
-        ids = self.context.getBrusselspartners()
-        terms = getTerms('brusselspartners', ids)
-        return sorted([
-            u'{0} {1}'.format(term['lastname'], term['firstname'])
-            for term in terms if term is not None
-        ])
-
     def getCountries(self):
         ids = self.context.getCountries()
         terms = getTerms('country', ids)
@@ -138,6 +130,21 @@ class ProjectView(BrowserView):
             term['name'].get(self.current_language, None)
             for term in terms if term is not None
         ])
+
+    def getBrusselsPartners(self):
+        ids = self.context.getBrusselspartners()
+        terms = getTerms('brusselspartners', ids)
+        terms = [term for term in terms if term is not None]
+        for term in terms:
+            for id in ('organisation', 'cell'):
+                term[id] = getTerm(id, term[id])
+            if term['organisation'] is not None:
+                term['organisation'] = term['organisation']['name']\
+                    .get(self.current_language, '')
+            if term['cell'] is not None:
+                term['cell'] = term['cell']['description']\
+                    .get(self.current_language, '')
+        return terms
 
     def getContacts(self):
         ids = self.context.getContacts()

@@ -79,17 +79,6 @@
         </dd>
       </dl>
 
-      <dl tal:define="values view/getBrusselsPartners" tal:condition="values">
-        <dt i18n:translate="">Brussels partners</dt>
-        <dd>
-          <ul>
-            <tal:block tal:repeat="value values">
-              <li tal:condition="value" tal:content="value"></li>
-            </tal:block>
-          </ul>
-        </dd>
-      </dl>
-
       <dl tal:define="values view/getCountries" tal:condition="values">
         <dt i18n:translate="">Countries</dt>
         <dd>
@@ -123,25 +112,59 @@
         </dd>
       </dl>
 
+      <dl tal:define="values view/getBrusselsPartners" tal:condition="values">
+        <dt i18n:translate="">Brussels partners</dt>
+        <dd>
+          <tal:block tal:repeat="value values">
+            <table class="table table-bordered" tal:condition="value">
+              <tr>
+                <th i18n:translate="">
+                  Administration/Organisation
+                </th>
+                <td>
+                  <span tal:content="value/organisation"></span>
+                </td>
+                <th i18n:translate="">
+                  Contact
+                </th>
+              </tr>
+              <tr>
+                <th i18n:translate="">
+                  Administrative Unit/Management
+                </th>
+                <td>
+                  <span tal:content="value/cell"></span>
+                </td>
+                <td>
+                  <span tal:content="value/lastname"></span>&nbsp;<span tal:content="value/firstname"></span><br />
+                  <span tal:content="value/phone"></span><br />
+                  <span tal:content="value/email"></span>
+                </td>
+              </tr>
+            </table>
+          </tal:block>
+        </dd>
+      </dl>
+
       <dl tal:define="values view/getContacts" tal:condition="values">
         <dt i18n:translate="">Contacts</dt>
         <dd>
           <tal:block tal:repeat="value values">
             <table class="table table-bordered" tal:condition="value">
               <tr>
-                <th>
-                  Organisation&nbsp;
+                <th i18n:translate="">
+                  Administration/Organisation
                 </th>
                 <td>
                   <span tal:content="value/organisation"></span>
                 </td>
-                <th>
-                  Contact&nbsp;
+                <th i18n:translate="">
+                  Contact
                 </th>
               </tr>
               <tr>
-                <th>
-                  Cell&nbsp;
+                <th i18n:translate="">
+                  Administrative Unit/Management
                 </th>
                 <td>
                   <span tal:content="value/cell"></span>
@@ -153,8 +176,8 @@
                 </td>
               </tr>
               <tr>
-                <th>
-                  Function&nbsp;
+                <th i18n:translate="">
+                  Function
                 </th>
                 <td>
                   <span tal:content="value/function"></span>

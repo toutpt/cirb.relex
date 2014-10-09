@@ -123,7 +123,7 @@
           </dd>
         </dl>
         <dl>
-          <dt><label for="filter-organisation" i18n:translate="">Organisation</label></dt>
+          <dt><label for="filter-organisation" i18n:translate="">Administration/Organisation</label></dt>
           <dd>
             <select id="filter-organisation" data-column="8" data-multiple>
               <option value=""></option>
@@ -133,7 +133,7 @@
           </dd>
         </dl>
         <dl>
-          <dt><label for="filter-organisation" i18n:translate="">Brussels partners</label></dt>
+          <dt><label for="filter-organisation" i18n:translate="">Administration/Brussels partners</label></dt>
           <dd>
             <select id="filter-organisation" data-column="11" data-multiple>
               <option value=""></option>

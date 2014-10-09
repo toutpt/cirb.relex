@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading" translate>Edit organisation</div>
+    <div class="panel-heading" translate>Edit Administration/Organisation</div>
     <div class="panel-body">
         <form novalidate  name="vocabularyForm" class="form-css form-horizontal">
             <div class="form-group">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div select-multiple
-                 label="'Cells'"
+                 label="'Administrative Unit/Management'"
                  vocabulary="vocabularies['cell']"
                  display="'\'[\'+ _(term.code) +\'] \'+ _(term.description)'"
                  legend="'[Code] Name'"
@@ -83,7 +83,7 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading" translate>Organisations</div>
+    <div class="panel-heading" translate>Administrations/Organisations</div>
     <div class="panel-body">
         <div class="input-group margin-bottom-sm">
           <input type="search" class="form-control" ng-model="queryVocabulary" force-upper-case/>

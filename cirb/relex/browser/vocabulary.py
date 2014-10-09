@@ -169,7 +169,7 @@ VOCABULARIES = {
         },
 
         {
-            "name": "Cell", "id": "cell", "model": {
+            "name": "Administrative Unit/Management", "id": "cell", "model": {
                 "id": "",
                 "code": {"fr": "", "en": "", "nl": ""},
                 "description": {"fr": "", "en": "", "nl": ""}
@@ -193,7 +193,7 @@ VOCABULARIES = {
             "terms":[]
         },
         {
-            "name": "Organisation", "id": "organisation", "model": {
+            "name": "Administration/Organisation", "id": "organisation", "model": {
                 "id": "",
                 "organisationtype": "",
                 "url": "",
@@ -226,7 +226,7 @@ VOCABULARIES = {
         },
 
         {
-            "name": "Brussels Partners", "id": "brusselspartners", "model": {
+            "name": "Administration/Brussels Partners", "id": "brusselspartners", "model": {
                 "id": "",
                 "lastname": "",
                 "firstname": "",

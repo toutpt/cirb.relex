@@ -161,7 +161,7 @@ angular.module('relex.services').factory('vocabularyService', [
                 var deferred = $q.defer();
                 // Make a copy
                 term = JSON.parse(JSON.stringify(term));
-                // Transform attributes refering to other object to ids
+                // Transform attributes refering to other objects to ids
                 angular.forEach(term, function(value, key){
                     if (typeof value === 'object' && 'id' in value) {
                         term[key] = value.id;
