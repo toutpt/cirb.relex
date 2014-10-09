@@ -4,6 +4,7 @@ from cirb.relex.interfaces import IRelexBackend
 from cirb.relex.import_csv import import_csv
 import os
 
+
 def setupVarious(context):
     if not context.isDirectory('Relex'):
         return
@@ -27,6 +28,6 @@ def setupVarious(context):
 
         relex_web.setLayout('@@relex_tree_view')
 
-    # Import data
-    dataFolder = os.path.join( context._profile_path, 'Relex' )
-    import_csv(relex_web, dataFolder)
+        # Import data
+        dataFolder = os.path.join( context._profile_path, 'Relex' )
+        import_csv(relex_web, dataFolder)
