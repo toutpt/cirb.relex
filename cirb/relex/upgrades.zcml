@@ -18,5 +18,13 @@
         profile="cirb.relex:default"
         handler=".upgrades.fixOrganisationAndThemeRelation"
         />
+    <upgradeStep
+        source="1003"
+        destination="1004"
+        title="Remove id in dict in terms attributes"
+        description=""
+        profile="cirb.relex:default"
+        handler=".upgrades.fixIdInDict"
+        />
 
 </configure>
