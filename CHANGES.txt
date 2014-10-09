@@ -4,8 +4,15 @@ Changelog
 1.0.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Fix: always store id directly for related objects.
+- Reword:
+  - Cell -> Unité administrative/Direction
+  - Organisation -> Administration/Organisme
+  - Partenaire bruxellois -> Administration/Partenaire bruxellois.
+- Fix: Show all info for brussels partners.
+- Fix: Sort select input in search page
+- Fix: Hide inactive projects in search page
+- Fix: Allow search by name of all languages for keywords/themes for global search in search page
 
 1.0.9 (2014-09-18)
 ------------------

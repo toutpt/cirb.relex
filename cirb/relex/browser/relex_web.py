@@ -61,13 +61,16 @@ class SearchView(BrowserView):
             orga = self._cache_orgnisation[contact['organisation']]
             return orga['id']
 
-
-
     def canManageRelex(self):
         return checkPermission('cirb.relex.ManageRelex', self.context)
 
     def getProjects(self):
-        return self.catalog(portal_type="Project")
+        projects = self.catalog(portal_type="Project")
+        projects = [
+            project for project in projects
+            if project.review_state != 'inactive'
+        ]
+        return projects
 
     def getAllStatus(self):
         wtool = getToolByName(self.context, 'portal_workflow')
@@ -75,6 +78,7 @@ class SearchView(BrowserView):
         states = {
             state_id: state.title
             for state_id, state in workflow.states.items()
+            if state_id != 'inactive'
         }
         return states
 
@@ -87,7 +91,7 @@ class SearchView(BrowserView):
     def getAllTermsIdName(self, vocabulary_id):
         terms = [(t['id'], t['name'].get(self.current_language, None))
                  for t in getVocabulary(vocabulary_id)]
-        terms = sorted(list(set(terms)))
+        terms = sorted(list(set(terms)), key=lambda term: term[1])
         return terms
 
     def getAllTermsContact(self, vocabulary_id):
@@ -142,7 +146,10 @@ class SearchView(BrowserView):
         ids = project.getThemes()
         terms = getTerms('theme', ids)
         return [
-            term['id']
+            (
+                term['id'], term['name']['en'],
+                term['name']['fr'], term['name']['nl']
+            )
             for term in terms if term is not None
         ]
 
@@ -152,7 +159,10 @@ class SearchView(BrowserView):
         ids = project.getKeywords()
         terms = getTerms('keywords', ids)
         return [
-            term['id']
+            (
+                term['id'], term['name']['en'],
+                term['name']['fr'], term['name']['nl']
+            )
             for term in terms if term is not None
         ]
 
