@@ -66,10 +66,6 @@ class SearchView(BrowserView):
 
     def getProjects(self):
         projects = self.catalog(portal_type="Project")
-        projects = [
-            project for project in projects
-            if project.review_state != 'inactive'
-        ]
         return projects
 
     def getAllStatus(self):
@@ -78,7 +74,6 @@ class SearchView(BrowserView):
         states = {
             state_id: state.title
             for state_id, state in workflow.states.items()
-            if state_id != 'inactive'
         }
         return states
 

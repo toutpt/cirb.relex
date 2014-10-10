@@ -50,6 +50,16 @@ def fixIdInDict(context):
         view.dump(vocabulary_id, terms)
 
 
+def commonWorkflow(context):
+    """
+    Run all steps + update security settings
+    """
+    setup = getToolByName(context, 'portal_setup')
+    setup.runAllImportStepsFromProfile(PROFILE)
+    portal_workflow = getToolByName(context, 'portal_workflow')
+    portal_workflow.updateRoleMappings()
+
+
 def common(context):
     setup = getToolByName(context, 'portal_setup')
     setup.runAllImportStepsFromProfile(PROFILE)
