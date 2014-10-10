@@ -151,6 +151,14 @@ angular.module('relex.services').factory('vocabularyService', [
             },
             post: function(vocabularyID, term){
                 var deferred = $q.defer();
+                // Make a copy
+                term = JSON.parse(JSON.stringify(term));
+                // Transform attributes refering to other objects to ids
+                angular.forEach(term, function(value, key){
+                    if (typeof value === 'object' && 'id' in value) {
+                        term[key] = value.id;
+                    }
+                });
                 $http.post(BASE_URL + '/relex_vocabulary/'+vocabularyID, term)
                 .then(function(data){
                     deferred.resolve(data.data);
