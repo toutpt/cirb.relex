@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 - Fix: add missing dutch translations.
+- Fix: give Site administrator permission for inactive/archived projects.
 
 
 1.0.11 (2014-10-13)
