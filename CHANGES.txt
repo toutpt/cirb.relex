@@ -4,7 +4,7 @@ Changelog
 1.0.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix: add missing dutch translations.
 
 
 1.0.11 (2014-10-13)
