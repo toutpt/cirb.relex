@@ -95,7 +95,7 @@
              label="'Administrations/Brussels partners'"
              vocabulary="brusselsPartnersVocabulary"
              display="'term.lastname + \' - \' + term.firstname + \' - \' + _(term.organisation.code) + \' - \' + _(term.cell.code)'"
-             legend="'Lastname - Firstname - organisation - cell'"
+             legend="'Name - Firstname - organisation - cell'"
              target="currentProject.brusselspartners"></div>
       </div>
     </div>
@@ -106,7 +106,7 @@
              label="'Countries'"
              vocabulary="countriesVocabulary"
              display="'\'[\' + term.code + \'] \' + _(term.name)'"
-             legend="'[Code] Country'"
+             legend="'Country'"
              target="currentProject.country"
              filter-method="filterCountries"
              filter-param="currentProject"></div>
@@ -114,7 +114,7 @@
              label="'Regions'"
              vocabulary="regionsVocabulary"
              display="'_(term.name) + \' - \' + _(term.country.name)'"
-             legend="'Region - Country'"
+             legend="'Country - Region'"
              target="currentProject.region"
              filter-method="filterRegions"
              filter-param="currentProject"></div>
@@ -122,7 +122,7 @@
              label="'Cities'"
              vocabulary="citiesVocabulary"
              display="'_(term.name) + \' - \' + _(term.region.name) + \' - \' + _(term.country.name)'"
-             legend="'City - Region - Country'"
+             legend="'City - Country - Region'"
              target="currentProject.city"
              filter-method="filterCities"
              filter-param="currentProject"></div>
@@ -135,7 +135,7 @@
              label="'Contacts'"
              vocabulary="contactsVocabulary"
              display="'term.lastname + \' - \' + term.firstname + \' - \' + _(term.organisation.code) + \' - \' + _(term.cell.code)'"
-             legend="'Lastname - Firstname - organisation - cell'"
+             legend="'Name - Firstname - organisation - cell'"
              target="currentProject.contact"></div>
       </div>
     </div>

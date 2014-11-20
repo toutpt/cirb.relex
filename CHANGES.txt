@@ -5,6 +5,7 @@ Changelog
 -------------------
 
 - Fix: check contact is not None in getContactOrganisation.
+- Fix: translate legends in project edit.
 
 
 1.0.12 (2014-11-20)
