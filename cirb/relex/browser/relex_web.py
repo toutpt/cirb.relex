@@ -43,7 +43,7 @@ class SearchView(BrowserView):
         return self.index()
 
     def update(self):
-        self._cache_orgnisation = None
+        self._cache_organisation = None
         self._project = None
         self.catalog = getToolByName(self.context, 'portal_catalog')
         context = self.context.aq_inner
@@ -52,14 +52,15 @@ class SearchView(BrowserView):
         self.current_language = portal_state.language()
 
     def getContactOrganisation(self, contact):
-        if self._cache_orgnisation is None:
+        if self._cache_organisation is None:
             vocab = getVocabulary('organisation')
-            self._cache_orgnisation = {}
+            self._cache_organisation = {}
             for term in vocab:
-                self._cache_orgnisation[term['id']] = term
-        if contact['organisation']:
-            orga = self._cache_orgnisation[contact['organisation']]
-            return orga['id']
+                self._cache_organisation[term['id']] = term
+        if contact and contact.get('organisation', None):
+            orga = self._cache_organisation.get(contact['organisation'], None)
+            if orga:
+                return orga['id']
 
     def canManageRelex(self):
         return checkPermission('cirb.relex.ManageRelex', self.context)
