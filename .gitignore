@@ -75,3 +75,13 @@ Thumbs.db
 /develop-eggs
 /var
 /cirb/relex/admin/bower_components
+
+# Emacs #
+#########
+*~
+.#*
+\#*
+
+# Node.js #
+###########
+node_modules

@@ -34,5 +34,13 @@
         profile="cirb.relex:default"
         handler=".upgrades.commonWorkflow"
         />
+    <upgradeStep
+        source="1005"
+        destination="1006"
+        title="Upgrade"
+        description=""
+        profile="cirb.relex:default"
+        handler=".upgrades.commonWorkflow"
+        />
 
 </configure>
