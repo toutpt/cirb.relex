@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.14 (unreleased)
+1.0.14 (2014-12-15)
 -------------------
 
 - Fix: organisation type in organisation vocab.
